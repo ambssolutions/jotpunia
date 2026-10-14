@@ -189,7 +189,25 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .run-hud b{font:600 17px/1 var(--serif);color:#fff;font-variant-numeric:tabular-nums}
 .patch.pinned .run-hud{top:calc(var(--nav) + 18px);right:24px}
 @media (max-width:560px){.run-hud{top:10px;right:10px;left:10px;justify-content:space-between;gap:8px;padding:9px 14px;font-size:12px}.run-hud b{font-size:15px}}
-@media (prefers-reduced-motion:reduce){.jot-av .in,.jot-av .sh,.jot-av .halo,.pin.been::after,.run-hud .t i{animation:none}}
+.jot-av{z-index:3}
+.jot-av.moving .in{animation:jhop .34s ease-in-out infinite}
+.jot-av.moving .sh{animation:jhopsh .34s ease-in-out infinite}
+.jot-av.moving img{border-color:#fff}
+.jot-av.landed .in{animation:jland .8s cubic-bezier(.2,1.6,.4,1) 1}
+.jot-av.landed::after{content:"";position:absolute;left:50%;bottom:-6px;width:70px;height:22px;margin-left:-35px;border-radius:50%;border:2px solid var(--yellow);animation:jring .9s ease-out forwards}
+@keyframes jhop{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-14px) rotate(4deg)}}
+@keyframes jhopsh{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.5}}
+@keyframes jland{0%{transform:translateY(-16px) scale(.9)}60%{transform:translateY(0) scale(1.12)}100%{transform:none}}
+@keyframes jring{from{transform:scale(.3);opacity:1}to{transform:scale(1.6);opacity:0}}
+#patch.tap .pcard{top:60px;left:12px;right:12px;bottom:auto;width:auto;display:grid;grid-template-columns:118px 1fr;align-items:stretch}
+#patch.tap .pcard img{height:100%;min-height:118px;aspect-ratio:auto}
+#patch.tap .pcard .bd{padding:12px 50px 12px 14px}
+#patch.tap .pcard h3{font-size:17px;margin-top:6px}
+#patch.tap .pcard .m{font-size:13.5px}
+#patch.tap .pcard .spec{display:none}
+#patch.tap .pcard .btn{min-height:40px;margin-top:8px;font-size:13.5px;padding:0 12px}
+#patch.tap .pcard .x{width:36px;height:36px;right:8px;top:8px}
+@media (prefers-reduced-motion:reduce){.jot-av .in,.jot-av .sh,.jot-av .halo,.pin.been::after,.run-hud .t i,.jot-av.landed::after{animation:none}}
 
 
 
@@ -422,6 +440,56 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 }
 @media (prefers-reduced-motion:reduce){.fcard{animation:none;translate:none}}
 
+/* ---------- hero v4: the advisor. Gold rings, light sweep, proof around him ---------- */
+.pillars{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;max-width:560px;border-top:1px solid rgba(255,255,255,.16)}
+.pillars li{position:relative;padding:14px 16px 0 0}
+.pillars li+li{padding-left:16px;border-left:1px solid rgba(255,255,255,.12)}
+.pillars li::before{content:"";position:absolute;top:-1px;left:0;width:34px;height:2px;background:var(--yellow);transform-origin:0 0;transform:scaleX(0)}
+html:not(.intro-on) .pillars li::before{animation:pgrow 1.2s 1.4s var(--ease) forwards}
+@keyframes pgrow{to{transform:scaleX(1)}}
+.pillars li+li::before{left:16px}
+html:not(.intro-on) .pillars li:nth-child(2)::before{animation-delay:1.55s}html:not(.intro-on) .pillars li:nth-child(3)::before{animation-delay:1.7s}
+.pillars .k{display:block;font:600 11px/1 var(--sans);letter-spacing:.18em;color:var(--yellow)}
+.pillars b{display:block;margin-top:8px;font:500 18px/1.15 var(--serif);color:#fff}
+.pillars small{display:block;margin-top:5px;font-size:13px;line-height:1.45;color:#c3cbe4}
+.halo-rings{position:absolute;z-index:0;left:57%;top:calc(var(--nav) + var(--bn) * .55);width:min(46vw,640px);aspect-ratio:1;translate:-50% 0;pointer-events:none}
+.halo-rings i{position:absolute;inset:0;border-radius:50%}
+.halo-rings i:nth-child(1){background:conic-gradient(from 0deg,rgba(248,192,11,0) 0deg,rgba(248,192,11,0) 200deg,rgba(248,192,11,.9) 300deg,#fff3c4 330deg,rgba(248,192,11,0) 360deg);-webkit-mask:radial-gradient(closest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px));mask:radial-gradient(closest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px));animation:ringSpin 9s linear infinite}
+.halo-rings i:nth-child(2){inset:7%;border:1px dashed rgba(169,182,255,.35);animation:ringSpin 60s linear infinite reverse}
+.halo-rings i:nth-child(3){inset:-9%;border:1px solid rgba(255,255,255,.07)}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+.bigname .bn>span{background-image:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%),linear-gradient(180deg,#fff 0%,rgba(255,255,255,.92) 45%,rgba(169,182,255,.35) 100%);background-size:260% 100%,100% 100%;background-repeat:no-repeat;background-position:160% 0,0 0;animation:sweep 9s 2.2s var(--ease) infinite}
+.bigname .bn>.i{background-image:linear-gradient(105deg,transparent 42%,#fffbe8 50%,transparent 58%),linear-gradient(180deg,#ffe08a 0%,var(--yellow) 45%,rgba(248,192,11,.25) 100%);animation-delay:2.45s}
+@keyframes sweep{0%{background-position:160% 0,0 0}22%,100%{background-position:-60% 0,0 0}}
+.f3{display:block;max-width:250px;padding:14px 18px}
+.f3 .stars{display:flex;gap:3px;color:var(--yellow)}.f3 .stars svg{width:14px;height:14px}
+.f3 blockquote{margin:8px 0 0;font:italic 500 17px/1.3 var(--serif);color:#fff}
+.f3 figcaption{margin-top:6px;font-size:12px;color:#c3cbe4}
+.f1{flex-wrap:nowrap}
+.f1 .f1n{display:flex;gap:18px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:#c3cbe4}
+.f1 .f1n b{display:inline;font:500 26px/1 var(--serif);color:var(--yellow);margin-right:4px}
+@media (min-width:981px){
+  .f1{top:calc(var(--nav) + var(--bn) * .95 + 5%);align-items:flex-start}
+  .f3{right:3%;bottom:20%;animation-delay:-3s;translate:calc(var(--px,0) * 26px) 0}
+}
+@media (min-width:981px) and (max-width:1300px){.halo-rings{left:63%;width:min(44vw,520px)}.pillars small{font-size:12.5px}.f3{max-width:220px}}
+@media (min-width:981px) and (max-height:900px){.pillars{margin-top:16px}.pillars li{padding-top:12px}}
+@media (min-width:981px) and (max-height:880px){.pillars small{display:none}}
+@media (min-width:981px) and (max-height:820px){.pillars{margin-top:14px}.pillars small{display:none}.f1 .src{display:none}}
+@media (min-width:1800px){.halo-rings{width:min(40vw,860px)}.pillars{max-width:680px}.pillars b{font-size:21px}.pillars small{font-size:14.5px}}
+@media (max-width:980px){
+  .hero .bigname{font-size:clamp(80px,23vw,190px)}
+  .hero-art{margin-top:calc(min(23vw,190px) * 1.62 + 6px);height:clamp(330px,50svh,560px)}
+  .halo-rings{left:50%;top:auto;bottom:24%;width:min(84vw,460px)}
+  .f3{display:none}
+  .pillars{grid-template-columns:1fr;max-width:none;width:100%;order:6;margin-top:24px}
+  .pillars li,.pillars li+li{display:grid;grid-template-columns:34px 1fr;column-gap:12px;padding:14px 0;border-left:0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .pillars li::before,.pillars li+li::before{left:0}
+  .pillars .k{grid-row:span 2;padding-top:4px}.pillars b{margin-top:0}
+}
+@media (prefers-reduced-motion:reduce){.halo-rings i,.bigname .bn>span{animation:none}.pillars li::before{transform:none;animation:none!important}}
+.hero.off .halo-rings i,.hero.off .bigname .bn>span{animation-play-state:paused}
+
 /* ---------- 3D map (his patch) ---------- */
 .patch{position:relative;background:var(--night);color:#fff}
 .stage{position:relative;overflow:hidden}
@@ -471,7 +539,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .peek b{display:block;font:600 13.5px/1.25 var(--serif);padding:8px 10px 9px}
 .pin:hover .peek,.pin:focus-visible .peek,.pin.pop .peek{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .pin.pop .dot{transform:scale(1.35)}
-.pcard{position:absolute;z-index:6;right:var(--pad);top:calc(var(--nav) + 28px);width:min(360px,calc(100% - 32px));background:#fff;color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);pointer-events:auto}
+.pcard{position:absolute;z-index:6;right:var(--pad);top:calc(var(--nav) + 84px);width:min(360px,calc(100% - 32px));background:#fff;color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);pointer-events:auto}
 .pcard[hidden]{display:none}
 .pcard img{width:100%;aspect-ratio:3/2;object-fit:cover}
 .pcard .bd{padding:16px 18px 18px}
@@ -504,7 +572,6 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .patch.tap .ch-nav{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;margin-top:22px}
 .patch.tap .ch-nav button{white-space:nowrap}
 .patch.tap .prog{display:none}
-.patch.tap .pcard{top:auto;bottom:16px;right:16px}
 .map-slot{position:relative}
 .patch.tap .patch-ui{pointer-events:auto}
 .patch.tap .map-slot{margin-inline:calc(var(--pad) * -1)}
@@ -934,13 +1001,17 @@ footer :focus-visible{outline-color:#fff}
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Residential Sales · Barfoot &amp; Thompson Māngere</span>
-      <h1 id="hero-h" aria-label="Make your sale a landmark.">
-        <span class="ln" aria-hidden="true"><span>Make your</span></span>
-        <span class="ln" aria-hidden="true"><span>sale a</span></span>
-        <span class="ln" aria-hidden="true"><span><em class="rot" id="rot"><span class="rw on">landmark.</span><span class="rw">headline.</span><span class="rw">premiere.</span></em></span></span>
+      <h1 id="hero-h" aria-label="Straight advice from day one.">
+        <span class="ln" aria-hidden="true"><span>Straight advice</span></span>
+        <span class="ln" aria-hidden="true"><span>from <em>day one.</em></span></span>
       </h1>
-      <p class="lead rv" style="--rd:2">Kia ora, I'm Jot Punia. I sell homes across South Auckland with straight talk on price, a creator's eye for marketing and updates you never have to chase.</p>
-      <div class="ask rv" style="--rd:3" id="ask">
+      <p class="lead rv" style="--rd:2">Kia ora, I'm Jot. Before we talk listing, we talk plan: what recent sales say about your home, what buyers here want, and the right way to sell it.</p>
+      <ol class="pillars rv" style="--rd:3" aria-label="How I advise">
+        <li><span class="k" aria-hidden="true">01</span><b>The real number</b><small>A written appraisal backed by comparable sales.</small></li>
+        <li><span class="k" aria-hidden="true">02</span><b>The right plan</b><small>Method, timing and price, explained plainly.</small></li>
+        <li><span class="k" aria-hidden="true">03</span><b>No chasing</b><small>An update from me after every open home.</small></li>
+      </ol>
+      <div class="ask rv" style="--rd:4" id="ask">
         <form class="ask-form" id="askForm" role="search" aria-label="Ask Jot AI">
           <span class="ask-badge" aria-hidden="true"><svg><use href="#i-spark"/></svg><span>Ask Jot AI</span></span>
           <label for="askIn" class="vh">Ask Jot AI a question about buying or selling in South Auckland</label>
@@ -962,9 +1033,10 @@ footer :focus-visible{outline-color:#fff}
     </div>
     <div class="hero-art">
       <div class="cut-glow" aria-hidden="true"></div>
+      <div class="halo-rings" aria-hidden="true"><i></i><i></i><i></i></div>
       <img class="cut" id="cut" src="assets/real/jot-cut-1300.webp" srcset="assets/real/jot-cut-760.webp 760w, assets/real/jot-cut-1300.webp 1300w" sizes="(max-width:980px) 80vw, 46vw" alt="Jot Punia in a navy suit and orange turban, wearing his Barfoot &amp; Thompson name badge" width="1300" height="1684" fetchpriority="high">
-      <div class="fcard f1"><span class="tr" aria-hidden="true"><svg><use href="#i-trophy"/></svg></span><span><b>Top Salesperson</b><small>Manukau Branch, to end March 2026</small><small class="src">Source: <a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Barfoot &amp; Thompson profile</a></small></span></div>
-      <div class="fcard f2"><span class="fn"><b>103</b><small>homes sold</small></span><span class="fn"><b>59</b><small>for sale now</small></span><small class="src">As at 14 October 2026</small></div>
+      <div class="fcard f1"><span class="tr" aria-hidden="true"><svg><use href="#i-trophy"/></svg></span><span><b>Top Salesperson</b><small>Manukau Branch, to end March 2026</small><span class="f1n"><span><b>103</b> sold</span><span><b>59</b> for sale now</span></span><small class="src">As at 14 October 2026. Source: <a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Barfoot &amp; Thompson profile</a></small></span></div>
+      <figure class="fcard f3"><span class="stars" role="img" aria-label="5 out of 5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><blockquote>&ldquo;Professional, honest and supportive.&rdquo;</blockquote><figcaption>Gurdeep Singh, buyer</figcaption></figure>
       <span class="cut-tag"><span class="x">Kia ora</span> <span class="x" aria-hidden="true">·</span> <span lang="pa">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</span> <span aria-hidden="true">·</span> Namaste</span>
     </div>
   </div>
@@ -1064,8 +1136,8 @@ footer :focus-visible{outline-color:#fff}
     <span class="eyebrow rv">By the numbers</span>
     <h2 class="st split" id="nums-h">Counted, <em>not claimed.</em></h2>
     <div class="nums-grid">
-      <div class="num rv"><b><span data-count="59">59</span></b><span>homes for sale with Jot</span></div>
-      <div class="num rv" style="--rd:1"><b><span data-count="103">103</span></b><span>homes sold with Barfoot &amp; Thompson</span></div>
+      <div class="num rv"><b><span>59</span></b><span>homes for sale with Jot</span></div>
+      <div class="num rv" style="--rd:1"><b><span>103</span></b><span>homes sold with Barfoot &amp; Thompson</span></div>
       <div class="num rv" style="--rd:2"><b><span data-count="40">40</span><span class="u">+</span></b><span>years of real estate in the family</span></div>
     </div>
     <p class="soc-line rv">On socials: about <b>30K</b> followers and <b>325.8K</b> likes on TikTok <span>@jotsinghpunia</span>, and about <b>12K</b> followers on Instagram <span>@jot_punia_real_estate</span>.</p>
@@ -1446,22 +1518,39 @@ addEventListener('DOMContentLoaded',function(){
     const grad=(q,f)=>{q=Math.min(.9994,Math.max(.0004,q));const st=[0,'rgba(255,226,140,.9)'];
       if(f!=null&&q>.03){const c=f*q,w=Math.min(.03,q*.12),a=c-w,b=c+w;if(a>.0002)st.push(a,'rgba(248,192,11,.95)');if(c>.0003&&c<q-.0004)st.push(c,'#fffbe8');if(b<q-.0003&&b>c)st.push(b,'rgba(248,192,11,.95)');}
       st.push(q,'#F8C00B',q+.0005,'rgba(248,192,11,0)',1,'rgba(248,192,11,0)');return ['interpolate',['linear'],['line-progress'],...st];};
-    let p=0,target=0,raf=0,av=null,hud=null,m=null,painted=-1,flowOn=false,flowRaf=0,lastF=0;const wasBeen={};
+    let p=0,target=0,raf=0,av=null,hud=null,m=null,painted=-1,flowOn=false,flowRaf=0,lastF=0,tRaf=0,trailT=0;const wasBeen={};
+    const setTrail=c=>{const src=m&&m.getSource('jot-trail');if(src)src.setData({type:'Feature',properties:{},geometry:{type:'LineString',coordinates:c.length>1?c:[]}});};
     function paint(anim){if(!m)return;
       if(Math.abs(p-painted)>.0007||p===target){painted=p;m.setPaintProperty('jot-run','line-gradient',grad(p));m.setPaintProperty('jot-run-glow','line-gradient',grad(p));}
-      av.setLngLat(at(p));let n=0;
+      let n=0;
       RUN_IDS.forEach((id,k)=>{const been=p>=wpP[k]-.0015;if(been)n++;const mk=markers[id];if(mk){const el=mk.getElement();el.classList.toggle('been',been);if(been&&!wasBeen[id]&&anim&&!reduce&&!JP.still){el.classList.add('pop');setTimeout(()=>el.classList.remove('pop'),2200);}}wasBeen[id]=been;});
       hud.querySelector('.n').textContent=n;hud.querySelector('.km').textContent=(p*total).toFixed(1);}
     function flow(now){flowRaf=0;if(!flowOn||!m)return;if(now-lastF>33&&p>.03){lastF=now;m.setPaintProperty('jot-run','line-gradient',grad(p,(now/2600)%1));}flowRaf=requestAnimationFrame(flow);}
     function loop(){raf=0;const d=target-p;if(Math.abs(d)<.0005||JP.still){p=target;paint();return;}p+=d*.075+Math.sign(d)*.0005;if((d>0&&p>target)||(d<0&&p<target))p=target;paint(true);raf=requestAnimationFrame(loop);}
     return {
       arrive:i=>wpP[ARRIVE[CHAPTERS[i].key]],
+      /* Jot walks (well, hops) from wherever he is to a point, leaving a gold trail, then calls done() */
+      travel(ll,ms,done){if(!m||!av){done&&done();return;}cancelAnimationFrame(tRaf);clearTimeout(trailT);
+        const a=av.getLngLat().toArray(),b=ll,el=av.getElement(),d=hav(a,b);
+        if(d<.02||reduce||JP.still){av.setLngLat(b);setTrail([]);done&&done();return;}
+        const dx=b[0]-a[0],dy=b[1]-a[1],bend=.18,t0=performance.now(),trail=[a];
+        const pos=t=>{const k=Math.sin(Math.PI*t)*bend;return [a[0]+dx*t-dy*k,a[1]+dy*t+dx*k];};
+        el.classList.remove('landed');el.classList.add('moving');
+        const step=now=>{const k=Math.min(1,(now-t0)/ms),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,q=pos(e);av.setLngLat(q);trail.push(q);setTrail(trail);
+          if(k<1){tRaf=requestAnimationFrame(step);return;}
+          el.classList.remove('moving');el.classList.add('landed');setTimeout(()=>el.classList.remove('landed'),900);
+          trailT=setTimeout(()=>setTrail([]),1600);done&&done();};
+        tRaf=requestAnimationFrame(step);},
+      at:()=>av?av.getLngLat().toArray():null,
       setFlow(on){flowOn=!!on&&!reduce;if(flowOn&&!flowRaf&&m)flowRaf=requestAnimationFrame(flow);if(!flowOn&&m){painted=-1;paint();}},
       init(map){m=map;
         map.addSource('jot-run',{type:'geojson',lineMetrics:true,data:{type:'Feature',properties:{},geometry:{type:'LineString',coordinates:pts}}});
         map.addLayer({id:'jot-run-base',type:'line',source:'jot-run',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(248,192,11,.4)','line-width':['interpolate',['linear'],['zoom'],9,1.3,15,2.6],'line-dasharray':[1.2,2.4]}});
         map.addLayer({id:'jot-run-glow',type:'line',source:'jot-run',layout:{'line-cap':'round','line-join':'round'},paint:{'line-width':['interpolate',['linear'],['zoom'],9,10,15,26],'line-blur':['interpolate',['linear'],['zoom'],9,7,15,16],'line-opacity':.6,'line-gradient':grad(0)}});
         map.addLayer({id:'jot-run',type:'line',source:'jot-run',layout:{'line-cap':'round','line-join':'round'},paint:{'line-width':['interpolate',['linear'],['zoom'],9,2.8,15,6],'line-gradient':grad(0)}});
+        map.addSource('jot-trail',{type:'geojson',data:{type:'Feature',properties:{},geometry:{type:'LineString',coordinates:[]}}});
+        map.addLayer({id:'jot-trail-glow',type:'line',source:'jot-trail',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#F8C00B','line-width':14,'line-blur':10,'line-opacity':.55}});
+        map.addLayer({id:'jot-trail',type:'line',source:'jot-trail',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#fff3c4','line-width':3,'line-dasharray':[.6,1.6]}});
         const el=document.createElement('div');el.className='jot-av';el.setAttribute('aria-hidden','true');
         el.innerHTML='<div class="in"><span class="halo"></span><img src="assets/real/jot-600.webp" alt="" width="56" height="56"><b>Jot</b></div><span class="sh"></span>';
         av=new maplibregl.Marker({element:el,anchor:'bottom',pitchAlignment:'viewport',rotationAlignment:'viewport'}).setLngLat(pts[0]).addTo(map);
@@ -1488,27 +1577,38 @@ addEventListener('DOMContentLoaded',function(){
     Object.entries(markers).forEach(([id,m])=>m.getElement().classList.toggle('dim',!c.ids.includes(id)));
     closeCard();
     if(mode!=='pinned')run.to(i===0?1:run.arrive(i),{jumpBack:true});
-    if(map&&mapReady){clearTimeout(orbitT);const cam=camFor(c);
-      if(reduce)map.jumpTo(cam);else{if(c.zoom>=13)sink();map.flyTo({...cam,duration:opts.fast?1400:2600,curve:1.35,essential:true});if(c.zoom>=13)map.once('moveend',rise);}}
+    if(map&&mapReady){clearTimeout(orbitT);const cam=camFor(c),dur=opts.fast?1600:2600;
+      if(opts.user&&i>0){cam.center=byId[c.ids[0]].ll;cam.padding=clearPad();cam.zoom=Math.max(cam.zoom,13.6);}
+      if(reduce)map.jumpTo(cam);else{if(c.zoom>=13)sink();map.flyTo({...cam,duration:dur,curve:1.35,essential:true});if(c.zoom>=13)map.once('moveend',rise);}
+      if(i>0){const l=byId[c.ids[0]];run.travel(l.ll,dur,()=>{if(opts.user&&cur===i)setTimeout(()=>openCard(l,markers[l.id]&&markers[l.id].getElement(),{fromNav:opts.from}),180);});}}
   }
   JP.flyTo=key=>{const i=CHAPTERS.findIndex(c=>c.key===key);if(i<0)return;goChapter(i);};
-  function goChapter(i){
+  let navLock=0;
+  function goChapter(i,o={}){
     if(mode==='pinned'&&!patch.classList.contains('nomap')){const top=patch.getBoundingClientRect().top+scrollY,len=patch.offsetHeight-innerHeight;const y=top+len*((i+.5)/N);
-      if(window.__lenis)__lenis.scrollTo(y,{duration:1.2});else scrollTo({top:y,behavior:reduce?'auto':'smooth'});setChapter(i,{fast:true});}
-    else{patch.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});setChapter(i);}
+      navLock=performance.now()+1600;if(window.__lenis)__lenis.scrollTo(y,{duration:1.2});else scrollTo({top:y,behavior:reduce?'auto':'smooth'});setChapter(i,{fast:true,...o});}
+    else{patch.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});setChapter(i,o);}
   }
-  btns.forEach((b,i)=>b.addEventListener('click',()=>{if(mode==='pinned')goChapter(i);else setChapter(i);}));
+  btns.forEach((b,i)=>b.addEventListener('click',()=>{const o={user:true,from:b,force:true};if(mode==='pinned')goChapter(i,o);else setChapter(i,o);}));
   /* scroll drives the chapters in pinned mode */
   const prog=$('#prog');
   function onPatchScroll(){if(mode!=='pinned'||patch.classList.contains('nomap'))return;const r=patch.getBoundingClientRect(),len=patch.offsetHeight-innerHeight;const p=Math.min(1,Math.max(0,-r.top/len));prog.style.transform=`scaleX(${p})`;{const f=p*N,i=Math.min(N-1,Math.floor(f)),loc=f-i,a=i?run.arrive(i-1):0,b=run.arrive(i);run.to(a+(b-a)*Math.min(1,loc/.6));}
-    if(r.top<innerHeight*.5&&r.bottom>innerHeight*.5){setChapter(Math.min(N-1,Math.floor(p*N*.9999)));}}
+    if(performance.now()>navLock&&r.top<innerHeight*.5&&r.bottom>innerHeight*.5){setChapter(Math.min(N-1,Math.floor(p*N*.9999)));}}
   addEventListener('scroll',onPatchScroll,{passive:true});
   /* idle drift: a slow orbit after each flight (stops with Pause or reduced motion) */
   function drift(){clearTimeout(orbitT);if(!map||reduce||JP.still)return;orbitT=setTimeout(()=>{if(!map||JP.still||!inView||map.isMoving())return;map.easeTo({bearing:map.getBearing()+24,duration:24000,easing:t=>t,essential:false});},1200);}
   document.addEventListener('jp:still',e=>{if(!map)return;run.setFlow(!e.detail&&inView);if(e.detail){clearTimeout(orbitT);clearTimeout(tourT);map.stop();}else{drift();tour();}});
+  /* tap a pin: Jot travels there from wherever he is, the camera follows, then the home opens */
+  let pinBusy=0;
+  const clearPad=()=>mode==='pinned'?{left:Math.min(innerWidth*.42,600),top:90,right:Math.min(420,innerWidth*.3),bottom:60}:{left:24,right:24,top:200,bottom:24};
+  function goPin(l,b){closeCard();const now=++pinBusy;clearTimeout(orbitT);clearTimeout(tourT);touched=true;
+    const from=run.at(),km=from?Math.hypot((l.ll[0]-from[0])*89,(l.ll[1]-from[1])*111):0,dur=Math.round(Math.min(2800,Math.max(1100,900+km*160)));
+    Object.entries(markers).forEach(([id,m])=>m.getElement().classList.toggle('on',id===l.id));
+    if(map&&!reduce&&!JP.still){const z=Math.max(map.getZoom(),14.2);map.easeTo({center:l.ll,zoom:z,pitch:Math.max(map.getPitch(),58),duration:dur,easing:t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,essential:true,padding:clearPad()});}
+    run.travel(l.ll,dur,()=>{if(now===pinBusy)setTimeout(()=>openCard(l,b),150);});}
   /* listing card */
   let lastPin=null;
-  function openCard(l,from){lastPin=from;$('#pcardImg').src=img(l.id,640);$('#pcardImg').alt=l.addr;const ch=$('#pcardChip');ch.textContent=l.tag||'For sale';ch.className='chip'+(l.tag==='Open home'?' open':'');
+  function openCard(l,from,o={}){lastPin=o.fromNav||from;$('#pcardImg').src=img(l.id,640);$('#pcardImg').alt=l.addr;const ch=$('#pcardChip');ch.textContent=l.tag||'For sale';ch.className='chip'+(l.tag==='Open home'?' open':'');
     $('#pcardH').textContent=l.addr;$('#pcardM').textContent=l.meth;$('#pcardS').innerHTML=spec(l);$('#pcardA').href=l.url;pcard.hidden=false;$('#pcardH').focus({preventScroll:true});
     Object.entries(markers).forEach(([id,m])=>m.getElement().classList.toggle('on',id===l.id));}
   function closeCard(refocus){if(pcard.hidden)return;pcard.hidden=true;Object.values(markers).forEach(m=>m.getElement().classList.remove('on'));if(refocus&&lastPin)lastPin.focus({preventScroll:true});}
@@ -1566,7 +1666,7 @@ addEventListener('DOMContentLoaded',function(){
         map.getCanvas().setAttribute('aria-label','3D map of South Auckland with Jot\'s 12 listings as gold pins. Use the suburb buttons to fly between them.');
         LISTINGS.forEach(l=>{const b=document.createElement('button');b.type='button';b.className='pin';b.setAttribute('aria-label',`${l.addr}. Show listing details`);b.dataset.cur='view';
           b.innerHTML=`<span class="ring" aria-hidden="true"></span><span class="ring" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="peek" aria-hidden="true"><img src="${img(l.id,640)}" alt="" width="180" height="110" loading="lazy"><b>${l.addr.split(',')[0]}</b></span>`;
-          b.addEventListener('click',e=>{e.stopPropagation();openCard(l,b);});
+          b.addEventListener('click',e=>{e.stopPropagation();goPin(l,b);});
           markers[l.id]=new maplibregl.Marker({element:b,anchor:'center',pitchAlignment:'viewport',rotationAlignment:'viewport'}).setLngLat(l.ll).addTo(map);});
         const c=CHAPTERS[cur];Object.entries(markers).forEach(([id,m])=>m.getElement().classList.toggle('dim',!c.ids.includes(id)));
         run.init(map);bl=(map.getStyle().layers.find(l=>l.type==='fill-extrusion')||{}).id||null;run.setFlow(inView&&!JP.still);tour();if(mode==='pinned')onPatchScroll();else run.to(cur===0?1:run.arrive(cur));
