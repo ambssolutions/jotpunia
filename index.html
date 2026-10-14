@@ -487,6 +487,35 @@ html:not(.intro-on) .pillars li:nth-child(2)::before{animation-delay:1.55s}html:
   .pillars li::before,.pillars li+li::before{left:0}
   .pillars .k{grid-row:span 2;padding-top:4px}.pillars b{margin-top:0}
 }
+@media (max-width:980px){
+  .hero{min-height:calc(100svh - var(--nav))}
+  .hero .bigname{white-space:nowrap;font-size:clamp(56px,min(18vw,9.5svh),150px);line-height:.9;text-align:center;top:calc(var(--nav) + 4px)}
+  .bigname .bn{display:inline-block}.bigname .bn+.bn{text-align:left}
+  .hero-art{margin-top:calc(clamp(56px,min(18vw,9.5svh),150px) * .92);height:clamp(230px,36svh,520px)}
+  .cut{left:63%}
+  .halo-rings{left:63%;bottom:12%;width:min(70vw,400px)}
+  .cut-tag{display:none}
+  .fcard.f1{left:calc(var(--pad) - 4px);right:auto;bottom:5%;top:auto;max-width:min(47vw,220px);padding:9px 11px;gap:8px;align-items:flex-start;animation:none;border-radius:12px}
+  .f1 .tr{width:28px;height:28px}.f1 .tr svg{width:14px;height:14px}
+  .f1 .tr{display:none}
+  .f1 b{font-size:14px}.f1 small{font-size:10px;line-height:1.3;margin-top:2px}
+  .f1 .f1n{gap:10px;margin-top:6px;padding-top:6px;font-size:10px;white-space:nowrap}.f1 .f1n b{font-size:16px;margin-right:2px}
+  .hero .eyebrow{display:none}
+  .hero-copy{padding-top:4px}
+  .hero h1{font-size:clamp(30px,8.6vw,46px);margin-top:4px}
+  .hero-copy .lead{order:3;margin-top:10px;font-size:14.5px;line-height:1.5}
+  .pillars{order:4;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:14px}
+  .pillars li,.pillars li+li{display:block;padding:10px 8px 0 0;border-bottom:0}
+  .pillars li+li{padding-left:10px;border-left:1px solid rgba(255,255,255,.12)}
+  .pillars li+li::before{left:10px}
+  .pillars b{font-size:14px;margin-top:5px}.pillars small{display:none}.pillars .k{font-size:10px;padding-top:0}
+  .hero-copy .ask{order:5;margin-top:16px;width:100%}
+  .hero .ask-chips{display:none}
+  .ask-note{font-size:11px;margin-top:6px}
+  .hero-inner{padding-bottom:14px}
+  .hero-foot .wrap{min-height:0;padding:10px 0 14px}.hero-foot .lic{font-size:11.5px}
+}
+@media (max-width:980px) and (max-height:700px){.hero-copy .lead{display:none}.hero-art{height:clamp(210px,34svh,400px)}}
 @media (prefers-reduced-motion:reduce){.halo-rings i,.bigname .bn>span{animation:none}.pillars li::before{transform:none;animation:none!important}}
 .hero.off .halo-rings i,.hero.off .bigname .bn>span{animation-play-state:paused}
 
@@ -541,6 +570,9 @@ html:not(.intro-on) .pillars li:nth-child(2)::before{animation-delay:1.55s}html:
 .pin.pop .dot{transform:scale(1.35)}
 .pcard{position:absolute;z-index:6;right:var(--pad);top:calc(var(--nav) + 84px);width:min(360px,calc(100% - 32px));background:#fff;color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);pointer-events:auto}
 .pcard[hidden]{display:none}
+.pcard.pop{animation:cardPop .55s cubic-bezier(.2,1.1,.3,1) both}
+@keyframes cardPop{from{transform:scale(.08);opacity:0}40%{opacity:1}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.pcard.pop{animation:none}}
 .pcard img{width:100%;aspect-ratio:3/2;object-fit:cover}
 .pcard .bd{padding:16px 18px 18px}
 .pcard h3{font:600 22px/1.2 var(--serif);color:var(--ink);margin-top:10px}
@@ -931,7 +963,7 @@ footer :focus-visible{outline-color:#fff}
     <div class="ms-glow" aria-hidden="true"></div>
     <div class="ms-copy">
       <p class="ms-k"><i aria-hidden="true"></i>A message from</p>
-      <h2 class="ms-name" id="wcT">Jot <em>Punia.</em></h2>
+      <h2 class="ms-name" id="wcT">Jot <em>Punia</em></h2>
       <p class="ms-say" id="wcS">Kia ora, <span lang="pa">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</span>, I'm Jot. Let's take a look at my website.</p>
       <div class="ms-wave" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
       <div class="ms-acts"><button class="tv-go" type="button" id="wcGo">Come and have a look <svg aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="ms-snd" type="button" id="wcSnd" hidden>Tap for sound</button><button class="tv-skip" type="button" id="wcSkip">Skip</button></div>
@@ -997,7 +1029,7 @@ footer :focus-visible{outline-color:#fff}
 <section class="hero dk" id="top" aria-labelledby="hero-h">
   <div class="hero-aura" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="hero-spot" aria-hidden="true"></div>
-  <p class="bigname" id="bigname"><span class="bn"><span>Jot</span></span> <span class="bn"><span class="i">Punia.</span></span></p>
+  <p class="bigname" id="bigname"><span class="bn"><span>Jot</span></span> <span class="bn"><span class="i">Punia</span></span></p>
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Residential Sales · Barfoot &amp; Thompson Māngere</span>
@@ -1035,7 +1067,7 @@ footer :focus-visible{outline-color:#fff}
       <div class="cut-glow" aria-hidden="true"></div>
       <div class="halo-rings" aria-hidden="true"><i></i><i></i><i></i></div>
       <img class="cut" id="cut" src="assets/real/jot-cut-1300.webp" srcset="assets/real/jot-cut-760.webp 760w, assets/real/jot-cut-1300.webp 1300w" sizes="(max-width:980px) 80vw, 46vw" alt="Jot Punia in a navy suit and orange turban, wearing his Barfoot &amp; Thompson name badge" width="1300" height="1684" fetchpriority="high">
-      <div class="fcard f1"><span class="tr" aria-hidden="true"><svg><use href="#i-trophy"/></svg></span><span><b>Top Salesperson</b><small>Manukau Branch, to end March 2026</small><span class="f1n"><span><b>103</b> sold</span><span><b>59</b> for sale now</span></span><small class="src">As at 14 October 2026. Source: <a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Barfoot &amp; Thompson profile</a></small></span></div>
+      <div class="fcard f1"><span class="tr" aria-hidden="true"><svg><use href="#i-trophy"/></svg></span><span><b>Top Salesperson</b><small>Manukau Branch, to end March 2026</small><span class="f1n"><span><b>103</b> sold</span><span><b>59</b> for sale</span></span><small class="src">As at 14 October 2026. Source: <a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Barfoot &amp; Thompson profile</a></small></span></div>
       <figure class="fcard f3"><span class="stars" role="img" aria-label="5 out of 5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><blockquote>&ldquo;Professional, honest and supportive.&rdquo;</blockquote><figcaption>Gurdeep Singh, buyer</figcaption></figure>
       <span class="cut-tag"><span class="x">Kia ora</span> <span class="x" aria-hidden="true">·</span> <span lang="pa">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</span> <span aria-hidden="true">·</span> Namaste</span>
     </div>
@@ -1577,10 +1609,10 @@ addEventListener('DOMContentLoaded',function(){
     Object.entries(markers).forEach(([id,m])=>m.getElement().classList.toggle('dim',!c.ids.includes(id)));
     closeCard();
     if(mode!=='pinned')run.to(i===0?1:run.arrive(i),{jumpBack:true});
-    if(map&&mapReady){clearTimeout(orbitT);const cam=camFor(c),dur=opts.fast?1600:2600;
+    if(map&&mapReady){clearTimeout(orbitT);const cam=camFor(c),dur=opts.user?1500:(opts.fast?1600:2600);
       if(opts.user&&i>0){cam.center=byId[c.ids[0]].ll;cam.padding=clearPad();cam.zoom=Math.max(cam.zoom,13.6);}
       if(reduce)map.jumpTo(cam);else{if(c.zoom>=13)sink();map.flyTo({...cam,duration:dur,curve:1.35,essential:true});if(c.zoom>=13)map.once('moveend',rise);}
-      if(i>0){const l=byId[c.ids[0]];run.travel(l.ll,dur,()=>{if(opts.user&&cur===i)setTimeout(()=>openCard(l,markers[l.id]&&markers[l.id].getElement(),{fromNav:opts.from}),180);});}}
+      if(i>0){const l=byId[c.ids[0]];run.travel(l.ll,dur,()=>{if(opts.user&&cur===i)setTimeout(()=>openCard(l,markers[l.id]&&markers[l.id].getElement(),{fromNav:opts.from}),60);});}}
   }
   JP.flyTo=key=>{const i=CHAPTERS.findIndex(c=>c.key===key);if(i<0)return;goChapter(i);};
   let navLock=0;
@@ -1602,14 +1634,16 @@ addEventListener('DOMContentLoaded',function(){
   let pinBusy=0;
   const clearPad=()=>mode==='pinned'?{left:Math.min(innerWidth*.42,600),top:90,right:Math.min(420,innerWidth*.3),bottom:60}:{left:24,right:24,top:200,bottom:24};
   function goPin(l,b){closeCard();const now=++pinBusy;clearTimeout(orbitT);clearTimeout(tourT);touched=true;
-    const from=run.at(),km=from?Math.hypot((l.ll[0]-from[0])*89,(l.ll[1]-from[1])*111):0,dur=Math.round(Math.min(2800,Math.max(1100,900+km*160)));
+    const from=run.at(),km=from?Math.hypot((l.ll[0]-from[0])*89,(l.ll[1]-from[1])*111):0,dur=Math.round(Math.min(1600,Math.max(700,600+km*90)));
     Object.entries(markers).forEach(([id,m])=>m.getElement().classList.toggle('on',id===l.id));
     if(map&&!reduce&&!JP.still){const z=Math.max(map.getZoom(),14.2);map.easeTo({center:l.ll,zoom:z,pitch:Math.max(map.getPitch(),58),duration:dur,easing:t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,essential:true,padding:clearPad()});}
-    run.travel(l.ll,dur,()=>{if(now===pinBusy)setTimeout(()=>openCard(l,b),150);});}
+    run.travel(l.ll,dur,()=>{if(now===pinBusy)setTimeout(()=>openCard(l,b),60);});}
   /* listing card */
   let lastPin=null;
   function openCard(l,from,o={}){lastPin=o.fromNav||from;$('#pcardImg').src=img(l.id,640);$('#pcardImg').alt=l.addr;const ch=$('#pcardChip');ch.textContent=l.tag||'For sale';ch.className='chip'+(l.tag==='Open home'?' open':'');
-    $('#pcardH').textContent=l.addr;$('#pcardM').textContent=l.meth;$('#pcardS').innerHTML=spec(l);$('#pcardA').href=l.url;pcard.hidden=false;$('#pcardH').focus({preventScroll:true});
+    $('#pcardH').textContent=l.addr;$('#pcardM').textContent=l.meth;$('#pcardS').innerHTML=spec(l);$('#pcardA').href=l.url;pcard.hidden=false;
+    /* the card grows out of Jot's photo */
+    const avEl=document.querySelector('.jot-av img');if(avEl&&!reduce){const a=avEl.getBoundingClientRect(),r=pcard.getBoundingClientRect();pcard.style.transformOrigin=`${a.left+a.width/2-r.left}px ${a.top+a.height/2-r.top}px`;pcard.classList.remove('pop');void pcard.offsetWidth;pcard.classList.add('pop');}$('#pcardH').focus({preventScroll:true});
     Object.entries(markers).forEach(([id,m])=>m.getElement().classList.toggle('on',id===l.id));}
   function closeCard(refocus){if(pcard.hidden)return;pcard.hidden=true;Object.values(markers).forEach(m=>m.getElement().classList.remove('on'));if(refocus&&lastPin)lastPin.focus({preventScroll:true});}
   $('#pcardX').addEventListener('click',()=>closeCard(true));
