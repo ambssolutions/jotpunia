@@ -15,14 +15,14 @@
 ## Setup
 | Need | Where |
 |---|---|
-| Anthropic API key to switch on live AI answers. Without it every concept uses scripted replies | Vercel > jotpunia > Settings > Environment Variables: `ANTHROPIC_API_KEY` (Production), then redeploy |
-| Web3Forms access key, if enquiries should arrive without the email app | each concept: `FORM_ENDPOINT` |
+| Anthropic API key to switch on live AI answers. Without it the site uses scripted replies | Vercel > jotpunia > Settings > Environment Variables: `ANTHROPIC_API_KEY` (Production), then redeploy |
+| Web3Forms access key, if enquiries should arrive without the email app | `index.html`: `FORM_ENDPOINT` |
 | Domain name | add `canonical`, `og:url` and a `sitemap.xml`, and remove the `noindex` header in `vercel.json` |
 
 ## Content updates
 | Need | Goes in |
 |---|---|
-| Updated listings (they change weekly) | the `LISTINGS` array in each concept, `api/ai.mjs`, and the images in `assets/real/` |
-| Updated stats (homes for sale, homes sold) and the "as at" date | each concept, plus `FACTS` in `api/ai.mjs` |
+| Updated listings (they change weekly) | the `LISTINGS` array (and map coordinates) in `index.html`, `api/ai.mjs`, and the images in `assets/real/` |
+| Updated stats (homes for sale, homes sold) and the "as at" date | `index.html`, plus `FACTS` in `api/ai.mjs` |
 | 2 to 4 more client reviews with name, suburb and permission | review sections |
-| A few of his own reels, with permission, to replace the photo-based "reel" frames | reel sections in concepts 01 and 05 |
+| Exact coordinates for the two Airfield Drive lots in Takanini (new streets aren't on OpenStreetMap yet) | `LISTINGS` in `index.html` |
