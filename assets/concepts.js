@@ -5,15 +5,17 @@
    Links are relative so everything also works from a downloaded folder. */
 (function () {
   var CONCEPTS = [
-    { slug: '01-signature', name: 'Signature', type: 'Barfoot classic', motion: 'Animated',
+    { slug: '01-landmark', name: 'Landmark', type: 'Flagship 3D', motion: 'WebGL + 3D map',
+      desc: 'The flagship. A solid-gold 3D Barfoot ampersand hero, then a 3D map that flies suburb by suburb through Jot\'s real listings, with liquid photo hovers, a cinematic intro and Ask Jot AI.' },
+    { slug: '02-signature', name: 'Signature', type: 'Barfoot classic', motion: 'Animated',
       desc: 'Barfoot DNA done premium. Jot\'s portrait with the yellow SOLD sign and his award, plus Ask Jot AI right in the hero for instant answers about his homes and process.' },
-    { slug: '02-the-wall', name: 'The Wall', type: 'Listings-first', motion: 'Highly animated',
+    { slug: '03-the-wall', name: 'The Wall', type: 'Listings-first', motion: 'Highly animated',
       desc: 'A living wall of Jot\'s real listings, styled like his TikTok grid. Describe your next home to the AI home finder and watch the wall rearrange to match.' },
-    { slug: '03-the-story', name: 'The Story', type: 'Cinematic', motion: 'Highly animated',
+    { slug: '04-the-story', name: 'The Story', type: 'Cinematic', motion: 'Highly animated',
       desc: 'A cinematic opening: tell Jot your move in one line and AI writes your three-chapter story, in English or Punjabi. Then his story plays out in pinned chapters.' },
-    { slug: '04-dashboard', name: 'Dashboard', type: 'App-like', motion: 'Interactive',
+    { slug: '05-dashboard', name: 'Dashboard', type: 'App-like', motion: 'Interactive',
       desc: 'Jot\'s profile as a live dashboard. Ask it anything in the AI command bar and the matching tiles light up: stats, award, listings, socials and reviews.' },
-    { slug: '05-royal', name: 'Royal', type: 'Bold', motion: 'Animated',
+    { slug: '06-royal', name: 'Royal', type: 'Bold', motion: 'Animated',
       desc: 'Royal blue at full volume. Describe your home and the AI reel hook generator writes the scroll-stopping opener Jot would film, inside a phone frame.' }
   ];
   var KEY = 'jp-shortlist';
