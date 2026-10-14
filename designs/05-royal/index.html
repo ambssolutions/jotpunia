@@ -180,7 +180,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .amp-box{width:46%;height:250px}
   .amp-box .spin{width:380px;top:42%}
   .phone{height:480px;left:0;max-width:80%}
-  .phone-tag{right:0;bottom:auto;top:262px;max-width:44%;background:none;padding:0;color:var(--on-royal);text-align:right}
+  .phone-tag{display:none}
   .award{align-self:stretch}
 }
 
@@ -259,8 +259,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .go{display:inline-flex;align-items:center;gap:10px;margin-top:34px;min-height:48px;font:600 16px/1 var(--sans);color:var(--royal);text-decoration:none;border-bottom:2px solid var(--royal);padding-top:2px}
 .go svg{width:17px;height:17px;transition:transform .3s var(--ease)}
 .go:hover svg{transform:translate(3px,-3px)}
-.gsap-on .row-ph{clip-path:inset(0 0 0 100%)}
-.gsap-on .row:nth-child(even) .row-ph{clip-path:inset(0 100% 0 0)}
+.rows-armed .row-ph{clip-path:inset(0 0 0 100%)}
+.rows-armed .row:nth-child(even) .row-ph{clip-path:inset(0 100% 0 0)}
 @media (max-width:860px){
   .row{grid-template-columns:1fr;min-height:0}
   .row:nth-child(even) .row-ph{order:0}
@@ -909,7 +909,7 @@ addEventListener('DOMContentLoaded',function(){
     let sub=SUBURBS.find(x=>f.includes(fold(x)))||'South Auckland';
     let m=f.match(/(\d+)\s*-?\s*(bed|br\b|bdr|bedroom)/)||f.match(/\b(one|two|three|four|five|six|seven)\s*-?\s*(bed|bedroom)/);
     const n=m?(NUMS[m[1]]||+m[1]):0;
-    const type=/townhouse/.test(f)?'townhouse':/apartment|unit/.test(f)?'apartment':/land|section only|bare/.test(f)?'section':'home';
+    const type=/townhouse/.test(f)?'townhouse':/apartment|unit/.test(f)?'apartment':/studio/.test(f)?'studio':/land|section only|bare/.test(f)?'section':'home';
     const isNew=/brand.?new|new build|newly built|\bnew\b/.test(f);
     const feats=FEATS.filter(x=>x[0].test(f));
     const F=feats[0]?feats[0][1]:(n>=4?'room for everyone':'a layout that just works');
@@ -968,7 +968,7 @@ addEventListener('DOMContentLoaded',function(){
     fit();
     const animate=!reduce&&!still;
     if(animate){hookOut.classList.add('out');shotsOut.classList.add('out');void hookOut.offsetWidth;requestAnimationFrame(()=>{hookOut.classList.remove('out');shotsOut.classList.remove('out');});}
-    if(announce){const tmp=document.createElement('div');tmp.innerHTML=res.hook;hookLive.textContent='Your reel hook: '+tmp.textContent+(res.shots.length?' Shot list: '+res.shots.map((s,k)=>`Shot ${k+1}, ${s.replace(/<[^>]+>/g,'')}`).join(' '):'');}
+    if(announce){const tmp=document.createElement('div');tmp.innerHTML=res.hook;hookLive.textContent=(res.refuse?'':'Your reel hook: ')+tmp.textContent+(res.shots.length?' Shot list: '+res.shots.map((s,k)=>`Shot ${k+1}, ${s.replace(/<[^>]+>/g,'')}`).join(' '):'');}
   }
   async function generate(input){
     lastInput=input.trim();
@@ -989,7 +989,7 @@ addEventListener('DOMContentLoaded',function(){
   let intro=null; const scrubs=[]; let motionBuilt=false;
   function buildMotion(){
     if(!hasGsap||motionBuilt) return; motionBuilt=true;
-    html.classList.add('gsap-on');html.classList.remove('no-gsap');
+    html.classList.add('gsap-on','rows-armed');html.classList.remove('no-gsap');
     gsap.registerPlugin(ScrollTrigger);
     if(fine&&window.Lenis&&!window.__lenis){const lenis=new Lenis({lerp:.1});window.__lenis=lenis;lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
       $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length<2)return;const t=$(id);if(!t)return;e.preventDefault();lenis.scrollTo(t,{offset:id==='#top'?-200:-80});}));}
@@ -1023,19 +1023,19 @@ addEventListener('DOMContentLoaded',function(){
   function finishMotion(){
     /* static, fully visible state */
     if(intro) intro.progress(1);
-    scrubs.forEach(t=>{if(t.scrollTrigger)t.scrollTrigger.disable(false);});
+    scrubs.forEach(t=>{const st=t.scrollTrigger;if(st&&!st.vars.scrub){st.kill();t.progress(1).kill();return;}if(st)st.disable(false);t.pause();});
     if(window.gsap){
       gsap.set('#ampSpin,#whyAmp,#apprAmp',{clearProps:'transform'});
       gsap.set('.kl > span,.row-ph img',{clearProps:'transform'});
       gsap.set('.row-ph,#arch',{clearProps:'clipPath'});
     }
-    html.classList.remove('gsap-on');
+    html.classList.remove('gsap-on','rows-armed');
   }
   function resumeMotion(){
     if(!hasGsap) return;
     if(!motionBuilt){buildMotion();return;}
     html.classList.add('gsap-on');
-    scrubs.forEach(t=>{if(t.scrollTrigger)t.scrollTrigger.enable();});
+    scrubs.forEach(t=>{if(t.scrollTrigger){t.scrollTrigger.enable();t.resume();}});
     ScrollTrigger.refresh();
   }
   if(hasGsap&&!still) buildMotion();

@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_NZ">
 <meta property="og:title" content="Jot Punia | Barfoot &amp; Thompson Māngere">
-<meta property="og:description" content="Real estate, minus the waffle. 59 for sale, 103 sold across South Auckland.">
+<meta property="og:description" content="Describe your next home and watch the wall move. 59 for sale, 103 sold across South Auckland.">
 <meta property="og:image" content="../../assets/real/jot-900.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23003572'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-weight='700' font-size='40' fill='%23F8C00B'%3E%26%3C/text%3E%3C/svg%3E">
 <script>
@@ -142,6 +142,19 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .tile[data-slot="2"],.tile[data-slot="3"],.tile[data-slot="6"],.tile[data-slot="7"],.tile[data-slot="10"],.tile[data-slot="11"]{top:-110px;--cy:340px}
 .tile[data-slot="0"],.tile[data-slot="1"],.tile[data-slot="4"],.tile[data-slot="5"],.tile[data-slot="8"],.tile[data-slot="9"]{--cy:0px}
 
+/* wide screens: three reel columns a side, two rows */
+@media (min-width:1760px){
+  .wall{grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,2.4fr) repeat(3,minmax(0,1fr))}
+  .jot{grid-column:4!important;grid-row:2/4!important}
+  .tile[data-slot="0"]{grid-area:2/3}.tile[data-slot="1"]{grid-area:2/5}.tile[data-slot="2"]{grid-area:2/2}.tile[data-slot="3"]{grid-area:2/6}
+  .tile[data-slot="4"]{grid-area:2/1}.tile[data-slot="5"]{grid-area:2/7}.tile[data-slot="6"]{grid-area:3/3}.tile[data-slot="7"]{grid-area:3/5}
+  .tile[data-slot="8"]{grid-area:3/2}.tile[data-slot="9"]{grid-area:3/6}.tile[data-slot="10"]{grid-area:3/1}.tile[data-slot="11"]{grid-area:3/7}
+  .tile[data-slot]{top:0;--cy:0px}
+  .tile[data-slot="2"],.tile[data-slot="3"],.tile[data-slot="8"],.tile[data-slot="9"]{top:-50px;--cy:150px}
+  .tile[data-slot="4"],.tile[data-slot="5"],.tile[data-slot="10"],.tile[data-slot="11"]{top:-110px;--cy:330px}
+}
+@media (min-width:1200px) and (max-width:1499px){.fbar .lbl span{display:none}}
+@media (min-width:1200px) and (max-width:1365px){.fbar .lbl{display:none}}
 /* Jot's profile card */
 .jot{grid-column:3;grid-row:2/5;position:sticky;top:calc(var(--navh) + 12px);z-index:5;align-self:start;background:#fff;border-radius:12px;padding:clamp(20px,1.9vw,30px);
   box-shadow:0 40px 80px -36px rgba(0,36,79,.5),0 0 0 1px rgba(0,36,79,.08)}
@@ -175,7 +188,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .ai button[type=submit]:hover{background:var(--navy-2)}
 .ai button[type=submit] svg{width:16px;height:16px}
 .ai button:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.sugg{display:flex;flex-wrap:nowrap;gap:6px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
+.sugg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .sugg::-webkit-scrollbar{display:none}
 .sugg button{flex:none;min-height:44px;padding:0 11px;border-radius:8px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;font:500 13px/1.2 var(--sans);cursor:pointer;text-align:left;white-space:nowrap}
 .sugg button:hover{background:rgba(255,255,255,.2)}
@@ -186,6 +199,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .dots i{width:6px;height:6px;border-radius:50%;background:#fff;animation:dot 1s infinite ease-in-out}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
 @keyframes dot{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+.jump{display:none;align-items:center;gap:8px;min-height:44px;margin-top:6px;color:#fff;font:600 14px/1 var(--sans)}
+.jump svg{width:16px;height:16px;transform:rotate(90deg)}
+@media (max-width:1199px){.jump.on{display:inline-flex}}
 .ai .disc{margin-top:10px;font:400 12px/1.45 var(--sans);color:#E4E7FF}
 .ai .reset{all:unset;cursor:pointer;font:600 12.5px/1 var(--sans);text-decoration:underline;min-height:24px;display:none;align-items:center}
 .ai .reset.on{display:inline-flex}
@@ -225,7 +241,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .tile:nth-child(odd){}
 }
 @media (max-width:860px){
-  .jot{grid-template-columns:1fr}.jot > .r{grid-column:1}
+  .jot{grid-template-columns:minmax(0,1fr)}.jot > .r{grid-column:1}
 }
 @media (max-width:699px){
   .wall{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;padding:3px}
@@ -246,7 +262,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .counts li{font-size:11.5px}
   .av{width:68px;height:68px}
   .ai-row{flex-direction:column}
-  .sugg{margin-inline:-16px;padding-inline:16px}
+  .sugg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
   .ai button[type=submit]{justify-content:center}
   .jot .cta .btn{flex:1 1 100%}
 }
@@ -491,7 +507,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
 <!-- ============ THE WALL ============ -->
 <section class="wall" id="top" aria-labelledby="hero-h">
   <div class="fbar" id="fbar">
-    <p class="lbl"><b>The wall.</b>12 of Jot's 59 homes for sale</p>
+    <p class="lbl"><b>The wall.</b><span>12 of Jot's 59 homes for sale</span></p>
     <div class="chips" role="group" aria-label="Filter the wall by suburb">
       <button type="button" class="chip-btn" data-f="all" aria-pressed="true">All <i>12</i></button>
       <button type="button" class="chip-btn" data-f="mangere" aria-pressed="false">Māngere <i>1</i></button>
@@ -530,6 +546,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
           <button type="button" data-q="Auction homes in Manurewa">Manurewa auctions</button>
         </div>
         <p class="answer" id="answer" aria-live="polite"></p>
+        <a class="jump" id="jump" href="#fbar">See the homes on the wall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <p class="disc" id="ai-disc">AI-generated, may be imperfect. Not financial or legal advice. For a real appraisal, talk to Jot.</p>
       </form>
       <div class="cta">
@@ -962,13 +979,14 @@ addEventListener('DOMContentLoaded',function(){
     }
     if(!res) {res=local; await new Promise(r=>setTimeout(r,reduce?0:650));}
     pressChip('');
+    $('#jump').classList.toggle('on',res.ids.length>0);
     if(res.ids.length){arrange(new Set(res.ids.map(id=>byId.get(id))));reset.classList.add('on');}
     else {arrange(null);reset.classList.remove('on');pressChip('all');}
     say(res.text,true);
   }
   ai.addEventListener('submit',e=>{e.preventDefault();ask(q.value);});
   $$('.sugg button').forEach(b=>b.addEventListener('click',()=>{q.value=b.dataset.q;ask(b.dataset.q);}));
-  reset.addEventListener('click',()=>{arrange(null);pressChip('all');reset.classList.remove('on');say('Showing every home on the wall.');q.focus();});
+  reset.addEventListener('click',()=>{$('#jump').classList.remove('on');arrange(null);pressChip('all');reset.classList.remove('on');say('Showing every home on the wall.');q.focus();});
 
   /* ---------- living wall: drift + pointer parallax ---------- */
   const layers=tiles.map((t,i)=>({el:$('.drift',t),d:+t.style.getPropertyValue('--d')||.5,ph:i*1.7,sp:.00016+(i%5)*.00004,ax:10+(i%3)*4,ay:9+(i%4)*3}));
