@@ -1642,7 +1642,10 @@ addEventListener('DOMContentLoaded',function(){
     $('#pcardH').textContent=l.addr;$('#pcardM').textContent=l.meth;$('#pcardS').innerHTML=spec(l);$('#pcardA').href=l.url;pcard.hidden=false;
     /* the card grows out of Jot's photo */
     const avEl=document.querySelector('.jot-av img');if(avEl&&!reduce){const a=avEl.getBoundingClientRect(),r=pcard.getBoundingClientRect();pcard.style.transformOrigin=`${a.left+a.width/2-r.left}px ${a.top+a.height/2-r.top}px`;pcard.classList.remove('pop');void pcard.offsetWidth;pcard.classList.add('pop');}$('#pcardH').focus({preventScroll:true});
-    Object.entries(markers).forEach(([id,m])=>m.getElement().classList.toggle('on',id===l.id));}
+    Object.entries(markers).forEach(([id,m])=>m.getElement().classList.toggle('on',id===l.id));
+    /* phones: if the card covers Jot, slide the map down so he stands just below it */
+    if(mode!=='pinned'&&map){let tries=0;const clear=()=>{const av=document.querySelector('.jot-av');if(!av||pcard.hidden)return;const need=pcard.getBoundingClientRect().bottom+14-av.getBoundingClientRect().top;
+        if(need>2&&tries++<6){map.panBy([0,-need],{duration:reduce?0:400,essential:true});map.once('moveend',clear);}};requestAnimationFrame(clear);}}
   function closeCard(refocus){if(pcard.hidden)return;pcard.hidden=true;Object.values(markers).forEach(m=>m.getElement().classList.remove('on'));if(refocus&&lastPin)lastPin.focus({preventScroll:true});}
   $('#pcardX').addEventListener('click',()=>closeCard(true));
   pcard.addEventListener('keydown',e=>{if(e.key==='Escape')closeCard(true);});
