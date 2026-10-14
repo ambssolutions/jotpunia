@@ -175,8 +175,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .ai button[type=submit]:hover{background:var(--navy-2)}
 .ai button[type=submit] svg{width:16px;height:16px}
 .ai button:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.sugg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.sugg button{min-height:44px;padding:0 12px;border-radius:8px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;font:500 13.5px/1.2 var(--sans);cursor:pointer;text-align:left}
+.sugg{display:flex;flex-wrap:nowrap;gap:6px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
+.sugg::-webkit-scrollbar{display:none}
+.sugg button{flex:none;min-height:44px;padding:0 11px;border-radius:8px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;font:500 13px/1.2 var(--sans);cursor:pointer;text-align:left;white-space:nowrap}
 .sugg button:hover{background:rgba(255,255,255,.2)}
 .answer{margin-top:12px;min-height:0;font:500 15px/1.45 var(--sans);color:#fff}
 .answer:empty{display:none}
@@ -237,7 +238,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .tile .tour svg{width:12px;height:12px}
   .tile .tour .t{display:none}
   .tile .tour small{font-size:11.5px;color:#fff;font-weight:600}
-  .tile .info{display:none}
+  .tile .info{width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .tile:hover .tour,.tile:focus-visible .tour{opacity:1}
   .tile.hit .tour{opacity:1}
   .jot h1{font-size:clamp(32px,9.4vw,42px)}
@@ -245,8 +246,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .counts li{font-size:11.5px}
   .av{width:68px;height:68px}
   .ai-row{flex-direction:column}
-  .sugg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
-  .sugg button{flex:none}
+  .sugg{margin-inline:-16px;padding-inline:16px}
   .ai button[type=submit]{justify-content:center}
   .jot .cta .btn{flex:1 1 100%}
 }
@@ -545,7 +545,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9ca4j-640.webp" srcset="../../assets/real/9ca4j-640.webp 640w, ../../assets/real/9ca4j-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">New listing</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Māngere</small></span></span>
-      <span class="info"><span class="addr">525A Massey Road<span class="vh">, Māngere.</span></span><span class="sub">Māngere · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">525A Massey Road<span class="vh">, Māngere.</span></span><span class="sub">Māngere · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/franklin-district/karaka/house/942995" target="_blank" rel="noopener" data-id="9c807" data-sub="franklin" data-slot="1" style="--d:0.35;--kd:27s;--kdl:-5s;--kx:-2%;--ky:1%">
@@ -553,7 +553,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9c807-640.webp" srcset="../../assets/real/9c807-640.webp 640w, ../../assets/real/9c807-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">New listing</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Karaka</small></span></span>
-      <span class="info"><span class="addr">354 Linwood Road<span class="vh">, Karaka.</span></span><span class="sub">Karaka · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>5<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>3<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>4<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">354 Linwood Road<span class="vh">, Karaka.</span></span><span class="sub">Karaka · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>5<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>3<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>4<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/franklin-district/ramarama/house/942844" target="_blank" rel="noopener" data-id="9c3jm" data-sub="franklin" data-slot="2" style="--d:0.7;--kd:21s;--kdl:-10s;--kx:1.5%;--ky:1.5%">
@@ -561,7 +561,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9c3jm-640.webp" srcset="../../assets/real/9c3jm-640.webp 640w, ../../assets/real/9c3jm-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">New listing</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Ramarama</small></span></span>
-      <span class="info"><span class="addr">29 John Main Drive<span class="vh">, Ramarama.</span></span><span class="sub">Ramarama · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">29 John Main Drive<span class="vh">, Ramarama.</span></span><span class="sub">Ramarama · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/manukau-city/papatoetoe/house-on-cross-lease/942424" target="_blank" rel="noopener" data-id="9c92n" data-sub="papatoetoe" data-slot="3" style="--d:0.5;--kd:28s;--kdl:-15s;--kx:-1.5%;--ky:-1%">
@@ -569,7 +569,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9c92n-640.webp" srcset="../../assets/real/9c92n-640.webp 640w, ../../assets/real/9c92n-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">New listing</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Papatoetoe</small></span></span>
-      <span class="info"><span class="addr">2/105 Coronation Road<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>2<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>1<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">2/105 Coronation Road<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>2<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>1<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/franklin-district/clarks-beach/house/942582" target="_blank" rel="noopener" data-id="9bpsb" data-sub="franklin" data-slot="4" style="--d:1;--kd:22s;--kdl:-3s;--kx:2.5%;--ky:1%">
@@ -577,7 +577,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9bpsb-640.webp" srcset="../../assets/real/9bpsb-640.webp 640w, ../../assets/real/9bpsb-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Clarks Beach</small></span></span>
-      <span class="info"><span class="addr">55 Clarks Beach Road<span class="vh">, Clarks Beach.</span></span><span class="sub">Clarks Beach · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">55 Clarks Beach Road<span class="vh">, Clarks Beach.</span></span><span class="sub">Clarks Beach · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/manukau-city/manurewa/house/941764" target="_blank" rel="noopener" data-id="9c9q7" data-sub="manurewa" data-slot="5" style="--d:0.45;--kd:29s;--kdl:-8s;--kx:-1%;--ky:-2%">
@@ -585,7 +585,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9c9q7-640.webp" srcset="../../assets/real/9c9q7-640.webp 640w, ../../assets/real/9c9q7-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Manurewa</small></span></span>
-      <span class="info"><span class="addr">6 Civita Court<span class="vh">, Manurewa.</span></span><span class="sub">Manurewa · For sale by auction, 28 October</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">6 Civita Court<span class="vh">, Manurewa.</span></span><span class="sub">Manurewa · For sale by auction, 28 October</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/manukau-city/manurewa/house/941424" target="_blank" rel="noopener" data-id="9c9yp" data-sub="manurewa" data-slot="6" style="--d:0.8;--kd:23s;--kdl:-13s;--kx:1%;--ky:-1%">
@@ -593,7 +593,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9c9yp-640.webp" srcset="../../assets/real/9c9yp-640.webp 640w, ../../assets/real/9c9yp-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Manurewa</small></span></span>
-      <span class="info"><span class="addr">10 Piriti Place<span class="vh">, Manurewa.</span></span><span class="sub">Manurewa · For sale by auction, 20 October</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">10 Piriti Place<span class="vh">, Manurewa.</span></span><span class="sub">Manurewa · For sale by auction, 20 October</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/papakura-district/takanini/house/941968" target="_blank" rel="noopener" data-id="9b3g9" data-sub="takanini" data-slot="7" style="--d:0.3;--kd:30s;--kdl:-1s;--kx:-2.5%;--ky:1.5%">
@@ -601,7 +601,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9b3g9-640.webp" srcset="../../assets/real/9b3g9-640.webp 640w, ../../assets/real/9b3g9-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Takanini</small></span></span>
-      <span class="info"><span class="addr">Lot 6/18 Airfield Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">Lot 6/18 Airfield Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/papakura-district/takanini/house/941969" target="_blank" rel="noopener" data-id="9axx2" data-sub="takanini" data-slot="8" style="--d:0.6;--kd:24s;--kdl:-6s;--kx:2%;--ky:-1%">
@@ -609,7 +609,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9axx2-640.webp" srcset="../../assets/real/9axx2-640.webp 640w, ../../assets/real/9axx2-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Takanini</small></span></span>
-      <span class="info"><span class="addr">Lot 7/18 Airfield Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">Lot 7/18 Airfield Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/papakura-district/takanini/townhouse/940546" target="_blank" rel="noopener" data-id="9acsc" data-sub="takanini" data-slot="9" style="--d:0.95;--kd:31s;--kdl:-11s;--kx:-1.5%;--ky:2%">
@@ -617,7 +617,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9acsc-640.webp" srcset="../../assets/real/9acsc-640.webp 640w, ../../assets/real/9acsc-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Takanini</small></span></span>
-      <span class="info"><span class="addr">67C Soaring Bird Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · $769,000</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>1<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">67C Soaring Bird Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · $769,000</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>1<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/manukau-city/papatoetoe/townhouse/941660" target="_blank" rel="noopener" data-id="9abn7" data-sub="papatoetoe" data-slot="10" style="--d:0.4;--kd:25s;--kdl:-16s;--kx:1.5%;--ky:-1.5%">
@@ -625,7 +625,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9abn7-640.webp" srcset="../../assets/real/9abn7-640.webp 640w, ../../assets/real/9abn7-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Papatoetoe</small></span></span>
-      <span class="info"><span class="addr">23C Laureston Avenue<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · $748,000</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">23C Laureston Avenue<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · $748,000</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/manukau-city/papatoetoe/townhouse/941661" target="_blank" rel="noopener" data-id="9abkx" data-sub="papatoetoe" data-slot="11" style="--d:0.75;--kd:32s;--kdl:-4s;--kx:-2%;--ky:1%">
@@ -633,7 +633,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9abkx-640.webp" srcset="../../assets/real/9abkx-640.webp 640w, ../../assets/real/9abkx-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Papatoetoe</small></span></span>
-      <span class="info"><span class="addr">13E Caspar Road<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">13E Caspar Road<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
 </section>
@@ -895,7 +895,7 @@ function localFind(raw){
   }
   let extra='';
   if(budget) extra=' Most of Jot\'s homes are by negotiation or auction, so ask him about those too.';
-  else if(hits.length&&hits.length<=3) extra=' First up: '+hits[0].addr+'.';
+  else if(hits.length>1&&hits.length<=3) extra=' First up: '+hits[0].addr+'.';
   return {ids:hits.map(l=>l.id),text:lead+extra};
 }
 
