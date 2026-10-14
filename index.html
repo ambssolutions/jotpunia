@@ -113,6 +113,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .pz svg{width:14px;height:14px}
 .pz .play{display:none}
 .still .pz .play{display:block}.still .pz .pause{display:none}
+.pz .t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .menu-btn{display:none;width:46px;height:46px;border:0;border-radius:8px;background:rgba(255,255,255,.1);color:#fff;cursor:pointer}
 .menu-btn span{display:block;width:20px;height:2px;background:currentColor;margin:5px auto;transition:transform .3s var(--ease),opacity .2s}
 .menu-open .menu-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -152,6 +153,22 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 @media (max-width:560px){.run-hud{top:10px;right:10px;left:10px;justify-content:space-between;gap:8px;padding:9px 14px;font-size:12px}.run-hud b{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.jot-av .in,.jot-av .sh,.jot-av .halo,.pin.been::after,.run-hud .t i{animation:none}}
 
+
+/* ---------- vision & mission ---------- */
+.vm{background:#fff;padding:clamp(90px,10vw,150px) 0 clamp(80px,9vw,130px)}
+.vm-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(24px,4vw,64px);align-items:stretch;margin-top:clamp(40px,5vw,64px)}
+.vm-card{padding-top:26px;border-top:2px solid var(--ink)}
+.vm-k{display:block;font:700 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--royal)}
+.vm-q{font:500 clamp(30px,3.1vw,46px)/1.12 var(--serif);letter-spacing:-.02em;color:var(--ink);margin-top:18px}
+.vm-q em{font-style:italic;color:var(--royal)}
+.vm-s{margin-top:18px;color:var(--muted);max-width:44ch}
+.vm-amp{align-self:center;font:italic 600 clamp(80px,9vw,140px)/1 var(--serif);color:var(--yellow)}
+.vm-vals{list-style:none;padding:0;margin:clamp(56px,7vw,96px) 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.4vw,36px)}
+.vm-vals li{padding-top:18px;border-top:1px solid var(--line)}
+.vm-vals b{display:block;font:600 20px/1.2 var(--serif);color:var(--ink)}
+.vm-vals span{display:block;margin-top:8px;font-size:15px;color:var(--muted);line-height:1.5}
+@media (max-width:860px){.vm-grid{grid-template-columns:1fr}.vm-amp{display:none}.vm-vals{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.vm-vals{grid-template-columns:1fr}}
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:max(100svh,700px);background:
   radial-gradient(52% 62% at 74% 46%,rgba(56,53,226,.55),rgba(56,53,226,0) 72%),
@@ -399,7 +416,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .tabs a{color:var(--ink)}
 .tabs a:hover{background:var(--bg-2)}
 .asat{font-size:13.5px;color:var(--muted);max-width:44ch;text-align:right}
-.gal{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2.2vw,32px);row-gap:clamp(48px,5.5vw,90px);margin-top:clamp(56px,7vw,100px)}
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(18px,2.2vw,32px);row-gap:clamp(40px,4vw,64px);margin-top:clamp(44px,5vw,72px)}
+.lst .ph{aspect-ratio:4/3}
 .lst{position:relative}
 .lst>a{display:block;color:var(--text);text-decoration:none}
 .lst .ph{display:block;position:relative;overflow:hidden;background:var(--bg-2);aspect-ratio:3/2}
@@ -411,23 +429,14 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .lst a:hover h3{color:var(--royal)}
 .lst .meth{display:block;font-size:15px;margin-top:4px}
 .lst .chip.none{display:none}
-.lst:nth-child(4n+1){grid-column:1/span 7}
-.lst:nth-child(4n+2){grid-column:9/span 4;margin-top:clamp(40px,8vw,140px)}
-.lst:nth-child(4n+2) .ph,.lst:nth-child(4n+3) .ph{aspect-ratio:4/5}
-.lst:nth-child(4n+3){grid-column:2/span 4}
-.lst:nth-child(4n+4){grid-column:7/span 6;margin-top:clamp(30px,5vw,90px)}
-.lst:nth-child(4n+1) .ph{aspect-ratio:16/10.5}
 .gal-foot{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-top:clamp(60px,7vw,100px);padding-top:28px;border-top:1px solid var(--line)}
 .gal-foot p{font-size:14px;color:var(--muted);max-width:64ch}
 .no-touch-lq .lst a:hover .ph img{transform:scale(1.05)}
 @media (max-width:860px){
   .gal-head{grid-template-columns:1fr}.asat{text-align:left}
-  .gal{grid-template-columns:repeat(6,minmax(0,1fr));row-gap:56px}
-  .lst:nth-child(n){grid-column:1/-1;margin-top:0}
-  .lst:nth-child(4n+2),.lst:nth-child(4n+3){grid-column:2/-1}
-  .lst:nth-child(4n+2) .ph,.lst:nth-child(4n+3) .ph{aspect-ratio:4/4.4}
-  .lst:nth-child(4n+3){grid-column:1/span 5}
+  .gal{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
 }
+@media (max-width:560px){.gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin-inline:calc(var(--pad) * -1);padding:0 var(--pad) 12px;scroll-padding-inline:var(--pad);scrollbar-width:none}.gal::-webkit-scrollbar{display:none}.lst{flex:0 0 80%;scroll-snap-align:start}.lst h3{font-size:20px}}
 .lq-gl{position:fixed;inset:0;width:100vw;height:100vh;z-index:30;pointer-events:none}
 
 /* ---------- numbers ---------- */
@@ -443,7 +452,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .soc div{display:flex;align-items:baseline;gap:14px;padding:22px 24px;border-radius:14px;background:var(--bg-2)}
 .soc b{font:500 clamp(36px,3.6vw,52px)/1 var(--serif);color:var(--ink);letter-spacing:-.03em}
 .soc div>span{font-size:14.5px;color:var(--muted);line-height:1.35}
-.nums .fine{margin-top:22px;font-size:13.5px;color:var(--muted)}
+.soc-line{margin-top:40px;font-size:17px;color:var(--text)}.soc-line b{font:600 1.15em/1 var(--serif);color:var(--ink)}.soc-line span{color:var(--muted)}
+.nums .fine{margin-top:16px;font-size:13.5px;color:var(--muted)}
 .nums .fine a{color:var(--muted)}
 @media (max-width:860px){.nums-grid,.soc{grid-template-columns:1fr}.num,.num+.num{padding:24px 0;border-right:0;border-bottom:1px solid var(--line)}}
 
@@ -708,7 +718,6 @@ footer{background:var(--bg-2);color:var(--text);padding:0 0 40px;font-size:15px}
         <div class="ask-chips" role="group" aria-label="Try a question">
           <button type="button">Homes in Takanini?</button>
           <button type="button">Is the appraisal free?</button>
-          <button type="button">What is Chardi Kala?</button>
         </div>
         <div class="ask-out" id="askOut">
           <div class="who"><img src="assets/real/jot-600.webp" alt="" width="30" height="30">Jot AI</div>
@@ -734,7 +743,6 @@ footer{background:var(--bg-2);color:var(--text);padding:0 0 40px;font-size:15px}
     <div class="wrap">
       <div class="award"><span class="tr" aria-hidden="true"><svg><use href="#i-trophy"/></svg></span><span><b>Top Salesperson, Manukau Branch, to end March 2026</b><small>Source: <a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Jot's Barfoot &amp; Thompson profile</a>, as at 14 October 2026</small></span></div>
       <p class="lic">Jot Punia, Residential Sales · Barfoot &amp; Thompson Ltd · Licensed REAA 2008</p>
-      <span class="cue" aria-hidden="true"><i></i>Scroll to fly the patch</span>
     </div>
   </div>
 </section>
@@ -774,13 +782,32 @@ footer{background:var(--bg-2);color:var(--text);padding:0 0 40px;font-size:15px}
     <div class="kin-row r1" id="kr1"><span>Chardi Kala <i class="a">&amp;</i></span><span lang="pa">ਚੜ੍ਹਦੀ ਕਲਾ</span><span><i class="a">&amp;</i> #Fitagent <i class="a">&amp;</i></span><span>South Auckland pride <i class="a">&amp;</i></span><span>Chardi Kala <i class="a">&amp;</i></span><span>#Fitagent</span></div>
     <div class="kin-row r2" id="kr2"><span>Māngere <i class="a">&amp;</i></span><span>Papatoetoe <i class="a">&amp;</i></span><span>Manurewa <i class="a">&amp;</i></span><span>Takanini <i class="a">&amp;</i></span><span>Karaka <i class="a">&amp;</i></span><span>Ramarama <i class="a">&amp;</i></span><span>Clarks Beach <i class="a">&amp;</i></span><span>Māngere</span></div>
   </div>
-  <div class="wrap kin-note">
-    <b>High spirits, early gym, South Auckland proud.</b>
-    <p>Chardi Kala is the Sikh idea of staying in high spirits, whatever the day brings. It's in my TikTok bio next to #Fitagent, and it's how I run every campaign.</p>
-    <div class="handles">
-      <a href="https://www.tiktok.com/@jotsinghpunia" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tt"/></svg>@jotsinghpunia</a>
-      <a href="https://www.instagram.com/jot_punia_real_estate/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@jot_punia_real_estate</a>
+</section>
+
+<!-- ============ VISION & MISSION ============ -->
+<section class="vm" id="vision" aria-labelledby="vm-h">
+  <div class="wrap">
+    <span class="eyebrow rv">Vision &amp; mission</span>
+    <h2 class="h2 split" id="vm-h">What I'm <em>here to do.</em></h2>
+    <div class="vm-grid">
+      <article class="vm-card rv">
+        <span class="vm-k">My vision</span>
+        <p class="vm-q">To bring your property <em>dreams to fruition.</em></p>
+        <p class="vm-s">Every move is personal. I want every client to feel looked after, well informed and proud of the move they make.</p>
+      </article>
+      <span class="vm-amp" aria-hidden="true">&amp;</span>
+      <article class="vm-card rv" style="--rd:1">
+        <span class="vm-k">My mission</span>
+        <p class="vm-q">To become Barfoot &amp; Thompson's <em>number one agent,</em> all the while putting my clients first.</p>
+        <p class="vm-s">A goal, in my own words, not a ranking. I'll earn it one honest sale at a time.</p>
+      </article>
     </div>
+    <ul class="vm-vals" aria-label="What guides me">
+      <li class="rv"><b>Chardi Kala</b><span>High spirits, whatever the day brings. It's in my TikTok bio next to #Fitagent.</span></li>
+      <li class="rv" style="--rd:1"><b>Honesty</b><span>Straight answers on price, backed by comparable sales.</span></li>
+      <li class="rv" style="--rd:2"><b>Transparency</b><span>Your plan and every cost set out up front.</span></li>
+      <li class="rv" style="--rd:3"><b>Communication</b><span>Timely updates you never have to chase.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -790,14 +817,14 @@ footer{background:var(--bg-2);color:var(--text);padding:0 0 40px;font-size:15px}
     <div class="gal-head">
       <div>
         <span class="eyebrow rv">On the market with Jot</span>
-        <h2 class="h2 split" id="homes-h">Twelve front doors, <em>one agent.</em></h2>
+        <h2 class="h2 split" id="homes-h">On the market <em>right now.</em></h2>
         <div class="tabs rv" style="--rd:2"><span class="on" aria-current="true">For sale (59)</span><a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Sold (103)</a></div>
       </div>
       <p class="asat rv" style="--rd:2">Listings as at 14 October 2026. Prices, methods and open homes can change; see barfoot.co.nz for current details.</p>
     </div>
     <div class="gal" id="gal"></div>
     <div class="gal-foot">
-      <p>Twelve of Jot's 59 current listings. Counts as at 14 October 2026, from his Barfoot &amp; Thompson profile.</p>
+      <p>Six of Jot's 59 current listings. All 12 featured homes are on the map above. Counts as at 14 October 2026, from his Barfoot &amp; Thompson profile.</p>
       <a class="btn btn-line" href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">See all 59 on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></a>
     </div>
   </div>
@@ -813,11 +840,7 @@ footer{background:var(--bg-2);color:var(--text);padding:0 0 40px;font-size:15px}
       <div class="num rv" style="--rd:1"><b><span data-count="103">103</span></b><span>homes sold with Barfoot &amp; Thompson</span></div>
       <div class="num rv" style="--rd:2"><b><span data-count="40">40</span><span class="u">+</span></b><span>years of real estate in the family</span></div>
     </div>
-    <div class="soc">
-      <div class="rv"><b>~<span data-count="30">30</span>K</b><span>TikTok followers<br>@jotsinghpunia</span></div>
-      <div class="rv" style="--rd:1"><b><span data-count="325.8" data-dec="1">325.8</span>K</b><span>likes on TikTok</span></div>
-      <div class="rv" style="--rd:2"><b>~<span data-count="12">12</span>K</b><span>Instagram followers<br>@jot_punia_real_estate</span></div>
-    </div>
+    <p class="soc-line rv">On socials: about <b>30K</b> followers and <b>325.8K</b> likes on TikTok <span>@jotsinghpunia</span>, and about <b>12K</b> followers on Instagram <span>@jot_punia_real_estate</span>.</p>
     <p class="fine rv">All figures as at 14 October 2026. Listing and sales counts from <a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Jot's Barfoot &amp; Thompson profile</a>. Social figures are approximate, from his public profiles.</p>
   </div>
 </section>
@@ -835,11 +858,10 @@ footer{background:var(--bg-2);color:var(--text);padding:0 0 40px;font-size:15px}
     </div>
     <div>
       <ol class="reasons">
-        <li class="reason rv"><span class="n" aria-hidden="true">01</span><div><h3>I know the streets.</h3><p>New Zealand has been home for more than 15 years, and South Auckland since 2019. I have an in-depth understanding of the wider southern suburbs, so the advice you get is local, not lifted from a spreadsheet.</p><div class="facts"><span>15+ years in NZ</span><span>South Auckland since 2019</span><span>Māngere branch</span></div></div></li>
+        <li class="reason rv"><span class="n" aria-hidden="true">01</span><div><h3>I know the streets.</h3><p>New Zealand has been home for more than 15 years, and South Auckland since 2019. I have an in-depth understanding of the wider southern suburbs, so the advice you get is local, not lifted from a spreadsheet.</p></div></li>
         <li class="reason rv"><span class="n" aria-hidden="true">02</span><div><h3>Your home gets a premiere.</h3><p>As a digital creator, I harness technology and creative strategies to showcase your property in the best possible light. Photos, reels and walkthroughs go out together, so buyers see the whole story.</p></div></li>
         <li class="reason rv"><span class="n" aria-hidden="true">03</span><div><h3>You're never left guessing.</h3><p>Trustworthy, honest and a proficient communicator, I prioritise transparency and integrity at every step. Timely updates, reliable guidance and a plan tailored to your needs and goals.</p></div></li>
       </ol>
-      <p class="goal rv">My mission: to become the number one agent for Barfoot &amp; Thompson, all the while prioritising my clients.<small>A goal, in Jot's words. Not a ranking.</small></p>
     </div>
   </div>
 </section>
@@ -1050,7 +1072,7 @@ addEventListener('DOMContentLoaded',function(){
   /* ---------- listings gallery ---------- */
   const order=['9c807','9ca4j','9c9q7','9abn7','9bpsb','9c3jm','9c9yp','9abkx','9acsc','9b3g9','9c92n','9axx2'];
   const gal=$('#gal');
-  order.forEach((id,k)=>{const l=byId[id];const big=k%4===0||k%4===3;
+  order.slice(0,6).forEach((id,k)=>{const l=byId[id];const big=true;
     const el=document.createElement('article');el.className='lst';
     el.innerHTML=`<a href="${l.url}" target="_blank" rel="noopener" data-cur="view"><span class="ph lq clip"><img src="${img(l.id,big?1200:640)}" alt="${l.addr}" width="${big?1200:640}" height="${big?800:427}" loading="lazy" decoding="async"></span>
       <span class="tx"><span class="no">${String(k+1).padStart(2,'0')}</span><span><span class="chip ${l.tag==='Open home'?'open':''} ${l.tag?'':'none'}">${l.tag||'Listing'}</span><h3>${l.addr}</h3><span class="meth">${l.meth}</span><span class="spec">${spec(l)}</span></span></span></a>`;
