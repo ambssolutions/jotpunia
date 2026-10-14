@@ -343,6 +343,53 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .arch-tag{left:auto;right:-2px;transform:none}
 }
 
+/* ---------- hero v2: Jot in front of his own name ---------- */
+.hero .bigname{position:absolute;z-index:1;left:0;right:0;top:calc(var(--nav) + 1.5vh);margin:0;text-align:center;white-space:nowrap;pointer-events:none;
+  font:500 var(--bn)/.86 var(--serif);letter-spacing:-.05em;translate:calc(var(--px,0) * -22px) 0}
+.hero{--bn:clamp(96px,min(17.5vw,25vh),330px)}
+.bigname .bn{display:inline-block;overflow:hidden;padding:0 .04em .1em;vertical-align:top}
+.bigname .bn>span{display:inline-block;background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.92) 45%,rgba(169,182,255,.35) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bigname .bn>.i{font-style:italic;background:linear-gradient(180deg,#ffe08a 0%,var(--yellow) 45%,rgba(248,192,11,.25) 100%);-webkit-background-clip:text;background-clip:text}
+.gsap-on .bigname .bn>span{transform:translateY(105%)}
+.hero-inner{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;padding-top:calc(var(--bn) * .92);padding-bottom:clamp(16px,3vh,36px)}
+.hero h1{font-size:clamp(34px,min(3.8vw,6.4vh),62px);line-height:1;margin-top:14px}
+.hero .lead{font-size:16px;margin-top:16px;max-width:44ch}
+.hero .ask{margin-top:20px;max-width:520px}
+.hero-art{position:static;min-height:0;align-self:stretch}
+@media (min-width:981px){.hero-inner{position:static}.hero-art{height:auto!important;min-height:0!important}}
+.hero .bigname,.cut{transition:translate .7s var(--ease)}
+.hero-art .arch{display:none}
+.cut{position:absolute;z-index:3;bottom:0;left:62%;height:min(calc(100svh - var(--nav) - 20px),1100px);width:auto;max-width:none;
+  translate:calc(-50% + var(--px,0) * 12px) 0;transform-origin:50% 100%;-webkit-mask-image:linear-gradient(180deg,#000 80%,transparent 99%);mask-image:linear-gradient(180deg,#000 80%,transparent 99%);pointer-events:none}
+.cut-glow{position:absolute;z-index:1;bottom:0;left:62%;width:min(70vw,1000px);aspect-ratio:1;translate:-50% 30%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(83,80,255,.6),rgba(56,53,226,.25) 45%,rgba(248,192,11,.08) 62%,transparent 72%);pointer-events:none}
+.cut-tag{position:absolute;z-index:6;left:62%;bottom:104px;translate:calc(-50% + 230px) 0;display:flex;gap:10px;align-items:center;white-space:nowrap;background:var(--navy-2);border:1px solid rgba(248,192,11,.55);border-radius:999px;padding:8px 16px;font:500 13px/1 var(--sans);color:#fff}
+.cut-tag [lang=pa]{font-size:14px;color:var(--yellow)}
+.hero .amp-anchor{left:auto;right:6%;bottom:auto;top:34%;width:min(15vw,230px)}
+.hero-copy{z-index:5}
+.hero-foot{z-index:5;background:linear-gradient(180deg,rgba(0,22,52,0),rgba(0,22,52,.85) 40%)}
+@media (min-width:981px) and (max-width:1300px){.cut{left:66%}.cut-glow{left:66%}.cut-tag{left:66%;translate:calc(-50% + 170px) 0}.hero .amp-anchor{right:2%;width:min(14vw,170px)}}
+@media (min-width:981px) and (max-height:820px){.hero .ask-chips{display:none}.hero .lead{font-size:15px;margin-top:10px}.hero h1{font-size:clamp(30px,5.6vh,48px)}}
+@media (min-width:981px) and (max-height:900px){.hero-inner{padding-bottom:10px}}
+@media (min-width:1800px) and (max-height:1200px){.hero{--bn:clamp(220px,min(16vw,22vh),400px)}.hero h1{font-size:clamp(48px,5.4vh,72px)!important}.hero .ask-chips{display:none}}
+@media (min-width:1800px){.hero{--bn:clamp(260px,min(17vw,26vh),420px)}.hero h1{font-size:clamp(52px,3.4vw,80px)}}
+@media (max-width:980px){
+  .hero .bigname{top:calc(var(--nav) + 6px);white-space:normal;line-height:.8;font-size:clamp(92px,28vw,210px);text-align:left;padding:0 var(--pad);translate:none}
+  .bigname .bn{display:block}
+  .bigname .bn+.bn{text-align:right}
+  .hero-inner{grid-template-columns:1fr;padding-top:0}
+  .hero-art{order:-1;position:relative;height:clamp(340px,56svh,600px);margin-top:calc(24vw + 4px)}
+  .cut{bottom:0;left:50%;height:100%;translate:-50% 0}
+  .cut-glow{left:50%;width:120vw;translate:-50% 35%}
+  .cut-tag{left:50%;bottom:14px;translate:-50% 0;font-size:12px;padding:7px 12px}
+  .cut-tag .x{display:none}
+  .hero .amp-anchor{right:3%;top:auto;bottom:2%;width:min(24vw,120px)}
+  .hero-gl{z-index:4}
+  .hero-copy{padding-top:6px}
+  .hero-foot{background:none}
+}
+@media (prefers-reduced-motion:reduce){.hero .bigname,.cut{translate:none}.cut{translate:-50% 0}}
+
 /* ---------- 3D map (his patch) ---------- */
 .patch{position:relative;background:var(--night);color:#fff}
 .stage{position:relative;overflow:hidden}
@@ -854,6 +901,7 @@ footer :focus-visible{outline-color:#fff}
   <div class="hero-aura" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="hero-spot" aria-hidden="true"></div>
   <canvas class="hero-gl" id="heroGL" role="img" aria-label="A gold, three-dimensional ampersand, the Barfoot &amp; Thompson symbol, turning slowly in royal blue light"></canvas>
+  <p class="bigname" id="bigname"><span class="bn"><span>Jot</span></span> <span class="bn"><span class="i">Punia.</span></span></p>
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Residential Sales · Barfoot &amp; Thompson Māngere</span>
@@ -884,11 +932,9 @@ footer :focus-visible{outline-color:#fff}
       </div>
     </div>
     <div class="hero-art">
-      <div class="arch" id="arch">
-        <span class="trace" aria-hidden="true"></span>
-        <div class="arch-in"><img src="assets/real/jot-900.webp" srcset="assets/real/jot-600.webp 600w, assets/real/jot-900.webp 900w" sizes="(max-width:980px) 48vw, 380px" alt="Jot Punia in a navy suit and orange turban, wearing his Barfoot &amp; Thompson name badge" width="900" height="1199" fetchpriority="high"></div>
-        <span class="arch-tag"><span class="x">Kia ora</span> <span class="x" aria-hidden="true">·</span> <span lang="pa">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</span> <span aria-hidden="true">·</span> Namaste</span>
-      </div>
+      <div class="cut-glow" aria-hidden="true"></div>
+      <img class="cut" id="cut" src="assets/real/jot-cut-1300.webp" srcset="assets/real/jot-cut-760.webp 760w, assets/real/jot-cut-1300.webp 1300w" sizes="(max-width:980px) 80vw, 46vw" alt="Jot Punia in a navy suit and orange turban, wearing his Barfoot &amp; Thompson name badge" width="1300" height="1684" fetchpriority="high">
+      <span class="cut-tag"><span class="x">Kia ora</span> <span class="x" aria-hidden="true">·</span> <span lang="pa">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</span> <span aria-hidden="true">·</span> Namaste</span>
       <div class="amp-anchor" id="ampAnchor">
         <div class="amp-glow"></div>
         <svg class="amp-svg" id="ampSvg" viewBox="19 -1478 1607 1528" aria-hidden="true" focusable="false"><defs><linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE7A0"/><stop offset=".35" stop-color="#F2BE3A"/><stop offset=".7" stop-color="#B9831A"/><stop offset="1" stop-color="#F8D57A"/></linearGradient></defs><path transform="scale(1,-1)" fill="url(#gGold)" d="M565 -30Q412 -30 293.5 15.0Q175 60 107.0 147.5Q39 235 39 361Q39 458 88.0 536.5Q137 615 220.0 671.0Q303 727 404 758Q331 839 281.0 928.5Q231 1018 231 1124Q231 1237 296.0 1311.0Q361 1385 463.5 1421.5Q566 1458 679 1458Q882 1458 980.0 1385.0Q1078 1312 1078 1178Q1078 1094 1029.0 1027.0Q980 960 907.0 907.0Q834 854 763 811L1142 412Q1177 473 1196.0 526.0Q1215 579 1223.0 620.0Q1231 661 1232.5 686.5Q1234 712 1235 718Q1236 757 1209.0 777.5Q1182 798 1146.0 806.5Q1110 815 1082 818Q1063 820 1057.5 829.5Q1052 839 1052 855Q1051 870 1059.5 883.0Q1068 896 1085 896H1538Q1555 896 1563.5 883.0Q1572 870 1573 855Q1571 818 1539 818Q1496 818 1457.0 790.0Q1418 762 1401 711Q1385 662 1361.5 596.0Q1338 530 1300.5 464.0Q1263 398 1204 347L1336 212Q1374 175 1437.5 129.0Q1501 83 1570 78Q1591 77 1598.5 70.5Q1606 64 1606 41Q1606 26 1597.5 13.0Q1589 0 1572 0H1105L981 129Q903 64 792.0 17.0Q681 -30 565 -30ZM688 892Q763 931 799.5 981.0Q836 1031 848.0 1081.0Q860 1131 860 1167Q862 1201 845.0 1248.5Q828 1296 792.5 1332.5Q757 1369 702 1369Q618 1369 577.0 1329.0Q536 1289 536 1208Q536 1138 555.0 1087.0Q574 1036 608.0 991.0Q642 946 688 892ZM667 140Q734 140 803.0 155.0Q872 170 919 201L491 663Q460 638 435.5 605.0Q411 572 397.5 528.0Q384 484 384 425Q384 335 419.5 271.5Q455 208 519.0 174.0Q583 140 667 140Z"/></svg>
@@ -1518,12 +1564,14 @@ addEventListener('DOMContentLoaded',function(){
     const tl=gsap.timeline({defaults:{ease:'expo.out'},delay:d});
     tl.to('.hero h1 .ln>span',{y:0,duration:1.3,stagger:.1})
       .from('.hero .eyebrow',{opacity:0,y:16,duration:1},0.1)
-      .fromTo('.arch',{clipPath:'inset(100% 0% 0% 0% round 999px 999px 16px 16px)'},{clipPath:'inset(-30% -30% -30% -30% round 999px 999px 16px 16px)',duration:1.5,ease:'expo.inOut',clearProps:'clipPath'},0)
-      .from('.arch-in img',{scale:1.3,duration:2},0)
-      .from('.arch-tag',{y:20,opacity:0,duration:.9},0.9)
+      .to('.bigname .bn>span',{y:0,duration:1.5,stagger:.12},0)
+      .from('.cut-glow',{opacity:0,scale:.7,duration:2},0)
+      .from('.cut',{y:90,opacity:0,duration:1.7},0.15)
+      .from('.cut-tag',{y:20,opacity:0,duration:.9},1.0)
       .from('.hero-foot .wrap>*',{y:20,opacity:0,duration:.9,stagger:.08},0.6);
     JP.onIntroSkip=()=>{tl.delay(0);tl.restart(true);};
-    gsap.to('.arch',{yPercent:-12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    gsap.to('.bigname',{yPercent:-45,opacity:.15,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    gsap.to('.cut',{yPercent:4,scale:1.05,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     gsap.to('.hero-copy',{yPercent:-10,opacity:.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     const mm=gsap.matchMedia();
     /* listings: pinned horizontal reel on wide screens with a fine pointer */
@@ -1809,15 +1857,15 @@ addEventListener('DOMContentLoaded',function(){
       setTimeout(tick,wait);
     })();
   }
-  var hero=document.getElementById('top'), inner=document.querySelector('.arch-in');
+  var hero=document.getElementById('top');
   if(fine&&!reduce&&hero){
     var raf=0,ev=null;
     hero.addEventListener('pointermove',function(e){ev=e;if(!raf)raf=requestAnimationFrame(function(){raf=0;if(still())return;
       var r=hero.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width,y=(ev.clientY-r.top)/r.height;
       hero.style.setProperty('--mx',(x*100).toFixed(1)+'%');hero.style.setProperty('--my',(y*100).toFixed(1)+'%');
-      if(inner){inner.style.setProperty('--ry',((x-.5)*8).toFixed(2)+'deg');inner.style.setProperty('--rx',((.5-y)*6).toFixed(2)+'deg');}
+      hero.style.setProperty('--px',((x-.5)*2).toFixed(3));
     });},{passive:true});
-    hero.addEventListener('pointerleave',function(){if(inner){inner.style.setProperty('--ry','0deg');inner.style.setProperty('--rx','0deg');}});
+    hero.addEventListener('pointerleave',function(){hero.style.setProperty('--px','0');});
   }
 });
 </script>
