@@ -33,16 +33,25 @@
       ]
     },
     {
-      "source": "/assets/(real|vendor|img)/(.*)",
+      "source": "/assets/(real|img)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=604800"
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
         }
       ]
     },
     {
-      "source": "/assets/(.*)\\.js",
+      "source": "/assets/vendor/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/assets/([^/]+)",
       "headers": [
         {
           "key": "Cache-Control",
