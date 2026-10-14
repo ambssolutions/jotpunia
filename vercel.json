@@ -41,5 +41,6 @@
         }
       ]
     }
-  ]
+  ],
+  "trailingSlash": true
 }

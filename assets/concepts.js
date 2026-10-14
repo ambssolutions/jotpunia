@@ -22,13 +22,16 @@
   function toggle(slug) { var l = getList(), k = l.indexOf(slug); if (k > -1) l.splice(k, 1); else l.push(slug); setList(l); return l; }
   window.JP_CONCEPTS = { list: CONCEPTS, getList: getList, setList: setList, toggle: toggle, key: KEY };
 
-  var m = location.pathname.match(/\/designs\/(\d\d-[a-z-]+)\//);
+  var m = location.pathname.match(/\/designs\/(\d\d-[a-z-]+)(\/|$)/);
   var i = m ? CONCEPTS.findIndex(function (c) { return c.slug === m[1]; }) : -1;
   if (i < 0) return;
   var cur = CONCEPTS[i], prev = CONCEPTS[(i + CONCEPTS.length - 1) % CONCEPTS.length], next = CONCEPTS[(i + 1) % CONCEPTS.length];
-  var href = function (c) { return '../' + c.slug + '/index.html'; };
-  var num = function (c) { return c.slug.slice(0, 2); };
+  // Build links from this script's own URL (assets/concepts.js), so they work with or without a trailing slash and from a downloaded folder.
   var script = document.currentScript || document.querySelector('script[src*="concepts.js"]');
+  var ROOT = new URL('../', script.src).href;
+  var href = function (c) { return ROOT + 'designs/' + c.slug + '/index.html'; };
+  var GALLERY = ROOT + 'index.html';
+  var num = function (c) { return c.slug.slice(0, 2); };
   var mobileBottom = (script && +script.getAttribute('data-mobile-bottom')) || 84;
   var star = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L12 16.9l-5.25 2.75 1-5.85L3.5 9.7l5.9-.9z"/></svg>';
   var grid = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>';
@@ -69,7 +72,7 @@
     '@media print{.bar{display:none}}' +
     '</style>' +
     '<nav class="bar" aria-label="Design concepts">' +
-    '<a class="ic" href="../../index.html" aria-label="All concepts" title="All concepts">' + grid + '</a>' +
+    '<a class="ic" href="' + GALLERY + '" aria-label="All concepts" title="All concepts">' + grid + '</a>' +
     '<span class="sep" aria-hidden="true"></span>' +
     '<a class="ic" href="' + href(prev) + '" aria-label="Previous concept: ' + prev.name + '" title="' + prev.name + '">&#8249;</a>' +
     '<button type="button" class="label" aria-expanded="false" aria-controls="jp-menu" aria-label="Concept ' + num(cur) + ', ' + cur.name + '. Change style">' +
@@ -78,7 +81,7 @@
     '<span class="sep" aria-hidden="true"></span>' +
     '<button type="button" class="ic fav" aria-pressed="false">' + star + '</button>' +
     '<div class="menu" id="jp-menu"><ul>' +
-    '<li><a href="../../index.html">All concepts <small>gallery &amp; shortlist</small></a></li></ul><hr><ul>' +
+    '<li><a href="' + GALLERY + '">All concepts <small>gallery &amp; shortlist</small></a></li></ul><hr><ul>' +
     CONCEPTS.map(function (c, k) {
       return '<li><a href="' + href(c) + '"' + (k === i ? ' aria-current="page"' : '') + ' data-slug="' + c.slug + '">' +
         '<span>' + num(c) + ' &nbsp;' + c.name + '<span class="st" hidden><span aria-hidden="true">&#9733;</span><span class="vh"> (shortlisted)</span></span></span> <small>' + c.type + '</small></a></li>';
