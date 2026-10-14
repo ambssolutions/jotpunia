@@ -15,7 +15,7 @@
 ## Setup
 | Need | Where |
 |---|---|
-| Anthropic API key to switch on live AI answers. Without it the site uses scripted replies | Vercel > jotpunia > Settings > Environment Variables: `ANTHROPIC_API_KEY` (Production), then redeploy |
+| **Anthropic API key** to switch on live AI answers. Without it the site uses scripted replies | Vercel > jotpunia > Settings > Environment Variables: `ANTHROPIC_API_KEY` (Production), then redeploy |
 | Web3Forms access key, if enquiries should arrive without the email app | `index.html`: `FORM_ENDPOINT` |
 | Domain name | add `canonical`, `og:url` and a `sitemap.xml`, and remove the `noindex` header in `vercel.json` |
 
@@ -26,5 +26,6 @@
 | Updated stats (homes for sale, homes sold) and the "as at" date | `index.html`, plus `FACTS` in `api/ai.mjs` |
 | 2 to 4 more client reviews with name, suburb and permission | review sections |
 | Exact coordinates for the two Airfield Drive lots in Takanini (new streets aren't on OpenStreetMap yet) | `LISTINGS` in `index.html` |
-| Jot to confirm the six TikTok clips used (welcome: 7687840237564775700; feed: 7686730819729198357, 7688591599164476693, 7691922777015684373, 7695991275962600705, 7690796914840702229) show only him for the whole clip, and that he's happy for them to be on the site | Only the preview frames could be checked. Swap IDs in `index.html` (`wcVid` and the `ttk-card` list) and posters in `assets/tt/` |
-| Optional: a purpose-made 10 to 15 second welcome clip (him to camera, saying kia ora) | Would replace the current welcome video |
+| **Jot's AI welcome video** (9:16 MP4, 10 to 15 seconds, under 4 MB, only Jot in frame). Script and steps: `WELCOME-VIDEO.md` | Save as `assets/video/welcome.mp4` with captions `assets/video/welcome.vtt`, then set `data-video="assets/video/welcome.mp4"` on `#intro` in `index.html` |
+| Jot's Facebook profile picture (send the image file or a public link; Facebook blocks downloads) | hero cut-out `assets/real/jot-cut-*.webp` |
+| 4 to 6 more photos of Jot on his own (no other people in shot), high resolution | hero, welcome and appraisal sections |
