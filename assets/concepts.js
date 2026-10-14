@@ -5,16 +5,16 @@
    Links are relative so everything also works from a downloaded folder. */
 (function () {
   var CONCEPTS = [
-    { slug: '02-the-feed', name: 'The Feed', type: 'Immersive', motion: 'Highly animated',
-      desc: 'The whole homepage is a vertical reel feed. Snap from reel to reel with giant kinetic type and a creator action rail.' },
-    { slug: '03-golden-hour', name: 'Golden Hour', type: 'Premium', motion: 'Animated',
-      desc: 'Calm, cinematic and confident. Full-bleed homes, refined type and light that shifts from dusk to night as you scroll.' },
-    { slug: '04-southside', name: 'Southside', type: 'Cinematic', motion: 'Interactive',
-      desc: 'Moody night palette with a glowing interactive map of South Auckland, a film-strip story and a timeline that lights up.' },
-    { slug: '05-level-up', name: 'Level Up', type: 'Playful', motion: 'Interactive',
-      desc: 'Selling your home as a beautifully made game. A title screen, a quest path that draws as you scroll and level unlocks.' },
-    { slug: '06-home-screen', name: 'Home Screen', type: 'App', motion: 'Interactive',
-      desc: 'The site is Jot\'s phone. A lock-screen intro, a widget home screen and apps that zoom open for each part of the offer.' }
+    { slug: '01-signature', name: 'Signature', type: 'Barfoot classic', motion: 'Animated',
+      desc: 'Barfoot DNA done premium. Jot\'s portrait with the yellow SOLD sign, his award, a live listing card and a swipeable rail of his real homes.' },
+    { slug: '02-the-wall', name: 'The Wall', type: 'Listings-first', motion: 'Highly animated',
+      desc: 'Opens on a full-screen living wall of Jot\'s real listings. Filter by suburb, hover any home, and Jot steps out of the grid.' },
+    { slug: '03-the-story', name: 'The Story', type: 'Cinematic', motion: 'Highly animated',
+      desc: 'A full-screen portrait opening, then Jot\'s story told in pinned chapters, each set against one of his real homes.' },
+    { slug: '04-dashboard', name: 'Dashboard', type: 'App-like', motion: 'Interactive',
+      desc: 'Jot\'s profile reimagined as a live dashboard. Stats, award, listings, reviews and socials as interactive Barfoot-style tiles.' },
+    { slug: '05-royal', name: 'Royal', type: 'Bold', motion: 'Animated',
+      desc: 'Barfoot royal blue at full volume. Giant serif type, the ampersand as a hero graphic and big alternating feature rows.' }
   ];
   var KEY = 'jp-shortlist';
   function getList() { try { return JSON.parse(localStorage.getItem(KEY) || '[]').filter(function (s) { return CONCEPTS.some(function (c) { return c.slug === s; }); }); } catch (e) { return []; } }
