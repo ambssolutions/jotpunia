@@ -170,6 +170,29 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 @media (max-width:860px){.vm-grid{grid-template-columns:1fr}.vm-amp{display:none}.vm-vals{grid-template-columns:1fr 1fr}}
 @media (max-width:480px){.vm-vals{grid-template-columns:1fr}}
 /* ---------- hero ---------- */
+/* ---------- hero effects ---------- */
+.hero-aura{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.hero-aura i{position:absolute;border-radius:50%;will-change:transform}
+.hero-aura i:nth-child(1){width:60vw;height:60vw;left:38%;top:-18%;background:radial-gradient(closest-side,rgba(56,53,226,.5),rgba(56,53,226,0));animation:aura1 22s ease-in-out infinite alternate}
+.hero-aura i:nth-child(2){width:46vw;height:46vw;left:-12%;top:40%;background:radial-gradient(closest-side,rgba(71,169,216,.22),rgba(71,169,216,0));animation:aura2 26s ease-in-out infinite alternate}
+.hero-aura i:nth-child(3){width:30vw;height:30vw;left:58%;top:52%;background:radial-gradient(closest-side,rgba(248,192,11,.16),rgba(248,192,11,0));animation:aura3 18s ease-in-out infinite alternate}
+@keyframes aura1{to{transform:translate(-14vw,10vh) scale(1.15)}}
+@keyframes aura2{to{transform:translate(16vw,-12vh) scale(1.2)}}
+@keyframes aura3{to{transform:translate(-10vw,-16vh) scale(.85)}}
+.hero-spot{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .6s;background:radial-gradient(520px circle at var(--mx,70%) var(--my,40%),rgba(248,192,11,.10),rgba(56,53,226,.06) 40%,transparent 70%)}
+.hero:hover .hero-spot{opacity:1}
+.rot{display:inline-grid;vertical-align:top}
+.rw{grid-area:1/1;transform:translateY(105%);opacity:0;transition:transform .9s var(--ease),opacity .6s;background:linear-gradient(100deg,var(--yellow) 0 38%,#fff4cc 48%,#ffe08a 52%,var(--yellow) 62% 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite;padding-right:.06em}
+.rw.on{transform:none;opacity:1}
+.rw.out{transform:translateY(-105%);opacity:0}
+@keyframes shine{from{background-position:130% 0}to{background-position:-130% 0}}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.arch .trace{position:absolute;inset:-14px;z-index:1;border-radius:999px 999px 22px 22px;padding:2px;pointer-events:none;background:conic-gradient(from var(--ang),transparent 0 68%,rgba(248,192,11,.0) 68%,var(--yellow) 82%,#fff6d0 86%,transparent 92%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:trace 7s linear infinite}
+@keyframes trace{to{--ang:360deg}}
+.arch-in{transform:perspective(1000px) rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transition:transform .5s var(--ease)}
+@media (max-width:560px){.arch .trace{inset:-9px}}
+@media (prefers-reduced-motion:reduce){.hero-aura i,.rw,.arch .trace{animation:none}.rw{transition:none}.hero-spot{display:none}}
+
 .hero{position:relative;min-height:max(100svh,700px);background:
   radial-gradient(52% 62% at 74% 46%,rgba(56,53,226,.55),rgba(56,53,226,0) 72%),
   radial-gradient(40% 50% at 4% 104%,rgba(56,53,226,.32),rgba(56,53,226,0) 70%),
@@ -195,7 +218,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .arch-tag{position:absolute;left:50%;bottom:-17px;transform:translateX(-50%);z-index:2;display:flex;gap:10px;align-items:center;white-space:nowrap;background:var(--navy-2);border:1px solid rgba(248,192,11,.55);border-radius:999px;padding:8px 16px;font:500 13px/1 var(--sans);color:#fff}
 .arch-tag [lang=pa]{font-size:14px;color:var(--yellow)}
 .arch-side{position:absolute;left:-36px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--on-dark);white-space:nowrap}
-.amp-anchor{position:absolute;left:-25%;bottom:3%;width:min(86%,500px);aspect-ratio:1.053;z-index:0;pointer-events:none}
+.amp-anchor{position:absolute;left:-12%;bottom:5%;width:min(52%,300px);aspect-ratio:1.053;z-index:0;pointer-events:none}
 .amp-glow{position:absolute;inset:-20%;border-radius:50%;background:radial-gradient(closest-side,rgba(248,192,11,.18),rgba(56,53,226,.0) 70%)}
 .amp-svg{position:absolute;inset:0;width:100%;height:100%;z-index:2;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45));transition:opacity .8s}
 .gl-ready .amp-svg{opacity:0}
@@ -245,14 +268,14 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 /* hero per-screen tuning */
 @media (min-width:981px) and (max-width:1300px){
   .hero-inner{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
-  .amp-anchor{left:-6%;bottom:6%;width:min(70%,360px)}
+  .amp-anchor{left:-2%;bottom:7%;width:min(46%,220px)}
   .arch{width:min(100%,clamp(240px,24vw,320px))}
   .hero h1{font-size:clamp(48px,min(6.6vw,12vh),96px)}
   .ask{max-width:520px}
 }
 @media (min-width:981px) and (max-height:1000px){.hero h1{font-size:clamp(44px,min(6.6vw,10.6vh),112px);margin-top:16px}.hero .lead{margin-top:16px}.ask{margin-top:20px}.hero-inner{padding-block:clamp(12px,2.5vh,28px)}.ask-note{margin-top:8px}}
 @media (min-width:981px) and (max-height:820px){.hero h1{font-size:clamp(44px,min(6.2vw,9.4vh),96px);margin-top:12px}.hero .lead{font-size:16px;line-height:1.55;margin-top:12px}.ask{margin-top:16px}.ask-chips{margin-top:8px}.ask-chips button{min-height:40px;padding:8px 13px}.hero-foot .wrap{min-height:64px;padding:8px 0}.hero-inner{padding-block:10px}}
-@media (min-width:1800px) and (max-height:1200px){.hero h1{font-size:clamp(100px,min(7vw,11vh),150px)}.hero-art{height:min(66vh,760px)}.arch{width:min(100%,clamp(340px,19vw,420px))}.amp-anchor{width:min(80%,520px)}}
+@media (min-width:1800px) and (max-height:1200px){.hero h1{font-size:clamp(100px,min(7vw,11vh),150px)}.hero-art{height:min(66vh,760px)}.arch{width:min(100%,clamp(340px,19vw,420px))}.amp-anchor{width:min(50%,330px)}}
 @media (min-width:981px) and (max-width:1300px){.cue{display:none}.hero-foot .wrap{gap:18px}.lic{text-align:right;max-width:340px}}
 @media (min-width:1800px){
   .wrap{width:min(1640px,100% - var(--pad)*2)}
@@ -263,14 +286,14 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .ask-chips button{font-size:15px;padding:12px 16px}
   .arch{width:min(100%,clamp(380px,22vw,520px))}
   .hero-art{align-self:center;height:min(66vh,860px)}
-  .amp-anchor{left:-18%;bottom:2%;width:min(86%,640px)}
+  .amp-anchor{left:-10%;bottom:4%;width:min(52%,380px)}
   .award b{font-size:19px}
 }
 @media (max-width:980px){
   .hero-inner{grid-template-columns:1fr;gap:0;align-items:start;padding-top:8px}
   .hero-art{order:-1;min-height:0;height:clamp(290px,38svh,460px)}
   .arch{width:min(52vw,calc((clamp(290px,38svh,460px) - 34px) / 1.35));right:12px;top:10px;transform:none}
-  .amp-anchor{left:0;bottom:16px;width:min(48vw,250px)}
+  .amp-anchor{left:4px;bottom:24px;width:min(30vw,160px)}
   .hero-copy{padding-top:8px}
   .hero-copy{display:flex;flex-direction:column;align-items:flex-start}
   .hero-copy .lead{order:5;margin-top:26px}
@@ -698,6 +721,8 @@ footer{background:var(--bg-2);color:var(--text);padding:0 0 40px;font-size:15px}
 <main id="main">
 <!-- ============ HERO ============ -->
 <section class="hero dk" id="top" aria-labelledby="hero-h">
+  <div class="hero-aura" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="hero-spot" aria-hidden="true"></div>
   <canvas class="hero-gl" id="heroGL" role="img" aria-label="A gold, three-dimensional ampersand, the Barfoot &amp; Thompson symbol, turning slowly in royal blue light"></canvas>
   <div class="wrap hero-inner">
     <div class="hero-copy">
@@ -705,7 +730,7 @@ footer{background:var(--bg-2);color:var(--text);padding:0 0 40px;font-size:15px}
       <h1 id="hero-h" aria-label="Make your sale a landmark.">
         <span class="ln" aria-hidden="true"><span>Make your</span></span>
         <span class="ln" aria-hidden="true"><span>sale a</span></span>
-        <span class="ln" aria-hidden="true"><span><em>landmark.</em></span></span>
+        <span class="ln" aria-hidden="true"><span><em class="rot" id="rot"><span class="rw on">landmark.</span><span class="rw">headline.</span><span class="rw">premiere.</span></em></span></span>
       </h1>
       <p class="lead rv" style="--rd:2">Kia ora, I'm Jot Punia. I sell homes across South Auckland with straight talk on price, a creator's eye for marketing and updates you never have to chase.</p>
       <div class="ask rv" style="--rd:3" id="ask">
@@ -730,6 +755,7 @@ footer{background:var(--bg-2);color:var(--text);padding:0 0 40px;font-size:15px}
     </div>
     <div class="hero-art">
       <div class="arch" id="arch">
+        <span class="trace" aria-hidden="true"></span>
         <div class="arch-in"><img src="assets/real/jot-900.webp" srcset="assets/real/jot-600.webp 600w, assets/real/jot-900.webp 900w" sizes="(max-width:980px) 48vw, 380px" alt="Jot Punia in a navy suit and orange turban, wearing his Barfoot &amp; Thompson name badge" width="900" height="1199" fetchpriority="high"></div>
         <span class="arch-tag"><span class="x">Kia ora</span> <span class="x" aria-hidden="true">·</span> <span lang="pa">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</span> <span aria-hidden="true">·</span> Namaste</span>
       </div>
@@ -1389,7 +1415,7 @@ function hero(){
   function update(dt){
     if(!JP.still&&!reduce)t+=dt;
     px+=(tx-px)*.05;py+=(ty-py)*.05;
-    const e=rig.intro, s=base.s*(.55+.45*e)*(1+rig.dolly*.35);
+    const e=rig.intro, s=base.s*(.55+.45*e)*(1+rig.dolly*.18);
     pivot.position.set(base.x+(0-base.x)*rig.center,base.y+(0-base.y)*rig.center+rig.dolly*.2,0);
     pivot.scale.setScalar(s);
     amp.rotation.y=(1-e)*-1.6+Math.sin(t*.35)*.42+px*.35;
@@ -1531,6 +1557,43 @@ function liquid(){
   form.addEventListener('submit',e=>{e.preventDefault();ask(input.value)});
   document.querySelectorAll('.ask-chips button').forEach(b=>b.addEventListener('click',()=>{input.value=b.textContent;ask(b.textContent)}));
 })();
+</script>
+
+<script>
+/* hero effects: rotating word, typewriter placeholder, spotlight and portrait tilt */
+addEventListener('DOMContentLoaded',function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, fine=matchMedia('(pointer: fine)').matches;
+  var still=function(){return document.documentElement.classList.contains('still');};
+  var words=[].slice.call(document.querySelectorAll('#rot .rw')), wi=0;
+  if(!reduce&&words.length>1) setInterval(function(){
+    if(still()||document.hidden||window.scrollY>innerHeight)return;
+    var a=words[wi];wi=(wi+1)%words.length;var b=words[wi];
+    a.classList.remove('on');a.classList.add('out');b.classList.remove('out');b.classList.add('on');
+    setTimeout(function(){a.classList.remove('out');},950);
+  },3400);
+  var inp=document.getElementById('askIn');
+  if(inp&&!reduce){
+    var qs=['Homes near Manurewa?','Is the appraisal free?','What sells in Takanini?','How do your open homes work?','Four bedrooms in Papatoetoe?'],qi=0,ci=0,del=false;
+    (function tick(){
+      var wait=70;
+      if(still()||document.activeElement===inp||inp.value){wait=600;}
+      else{var q=qs[qi];
+        if(!del){ci++;inp.placeholder=q.slice(0,ci);if(ci>=q.length){del=true;wait=1900;}}
+        else{ci--;inp.placeholder=q.slice(0,Math.max(ci,0));wait=28;if(ci<=0){del=false;qi=(qi+1)%qs.length;wait=350;}}}
+      setTimeout(tick,wait);
+    })();
+  }
+  var hero=document.getElementById('top'), inner=document.querySelector('.arch-in');
+  if(fine&&!reduce&&hero){
+    var raf=0,ev=null;
+    hero.addEventListener('pointermove',function(e){ev=e;if(!raf)raf=requestAnimationFrame(function(){raf=0;if(still())return;
+      var r=hero.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width,y=(ev.clientY-r.top)/r.height;
+      hero.style.setProperty('--mx',(x*100).toFixed(1)+'%');hero.style.setProperty('--my',(y*100).toFixed(1)+'%');
+      if(inner){inner.style.setProperty('--ry',((x-.5)*8).toFixed(2)+'deg');inner.style.setProperty('--rx',((.5-y)*6).toFixed(2)+'deg');}
+    });},{passive:true});
+    hero.addEventListener('pointerleave',function(){if(inner){inner.style.setProperty('--ry','0deg');inner.style.setProperty('--rx','0deg');}});
+  }
+});
 </script>
 </body>
 </html>
