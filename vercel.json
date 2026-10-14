@@ -54,12 +54,12 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/designs/:path*",
+      "source": "/designs(/.*)?",
       "destination": "/",
       "permanent": false
     },
     {
-      "source": "/gallery/:path*",
+      "source": "/gallery(/.*)?",
       "destination": "/",
       "permanent": false
     }
