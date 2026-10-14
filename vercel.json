@@ -64,7 +64,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "/designs/01-signature/",
+      "destination": "/designs/01-landmark/",
       "permanent": false
     }
   ]
