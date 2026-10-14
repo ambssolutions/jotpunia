@@ -26,4 +26,5 @@
 | Updated stats (homes for sale, homes sold) and the "as at" date | `index.html`, plus `FACTS` in `api/ai.mjs` |
 | 2 to 4 more client reviews with name, suburb and permission | review sections |
 | Exact coordinates for the two Airfield Drive lots in Takanini (new streets aren't on OpenStreetMap yet) | `LISTINGS` in `index.html` |
-| Optional: a 10 to 15 second welcome video of Jot (portrait, on his phone is fine) | Can replace the typed welcome messages that open the site |
+| Jot to confirm the six TikTok clips used (welcome: 7687840237564775700; feed: 7686730819729198357, 7688591599164476693, 7691922777015684373, 7695991275962600705, 7690796914840702229) show only him for the whole clip, and that he's happy for them to be on the site | Only the preview frames could be checked. Swap IDs in `index.html` (`wcVid` and the `ttk-card` list) and posters in `assets/tt/` |
+| Optional: a purpose-made 10 to 15 second welcome clip (him to camera, saying kia ora) | Would replace the current welcome video |
