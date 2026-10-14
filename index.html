@@ -390,6 +390,41 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 }
 @media (prefers-reduced-motion:reduce){.hero .bigname,.cut{translate:none}.cut{translate:-50% 0}}
 
+/* ---------- hero v3: name fully visible, floating cards instead of the & ---------- */
+.cut{height:max(320px,calc(100svh - var(--nav) - var(--bn) * .95 - 6px))}
+.fcard{position:absolute;z-index:6;display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:16px;background:rgba(0,22,52,.9);border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 50px -24px rgba(0,0,0,.8);color:#fff;
+  translate:calc(var(--px,0) * 18px) 0;transition:translate .8s var(--ease);animation:fl 7s ease-in-out infinite}
+.fcard b{display:block;font:500 19px/1.15 var(--serif)}
+.fcard small{display:block;font-size:12.5px;color:#c3cbe4;margin-top:3px}
+.fcard .src{font-size:11px;color:#9aa6c6;margin-top:6px}.fcard .src a{color:#c3cbe4}
+.fcard .tr{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid rgba(248,192,11,.6);display:grid;place-items:center;color:var(--yellow)}
+.fcard .tr svg{width:19px;height:19px}
+.f1{right:4%;top:calc(var(--nav) + var(--bn) * .95 + 8%)}
+.f2{right:7%;bottom:22%;flex-wrap:wrap;gap:6px 22px;animation-delay:-3.5s;translate:calc(var(--px,0) * 26px) 0}
+.f2 .fn b{font:500 34px/1 var(--serif);color:var(--yellow)}
+.f2 .src{flex-basis:100%}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.rw{transform:none!important;transition:opacity .8s ease!important}
+.rw.out{opacity:0}
+@media (min-width:1301px){.cut,.cut-glow,.cut-tag{left:57%}}
+@media (min-width:981px){.f1{right:3%}.f2{right:3%;bottom:26%;max-width:230px}}
+@media (min-width:981px) and (max-width:1300px){.cut,.cut-glow,.cut-tag{left:63%}}
+.hero.off .fcard{animation-play-state:paused}
+.hero-foot .wrap{justify-content:flex-end}
+@media (min-width:981px) and (max-width:1300px){.f1{right:2%}.f2{right:3%}}
+@media (max-width:980px){
+  .hero-art{margin-top:calc(min(28vw,210px) * 1.62 + 6px)}
+  .cut{height:100%}
+  .fcard{padding:10px 12px;gap:10px;border-radius:12px;translate:none}
+  .fcard b{font-size:15px}.fcard small{font-size:11px}.fcard .src{display:none}
+  .fcard .tr{width:32px;height:32px}
+  .f1{left:3%;right:auto;top:auto;bottom:34%}
+  .f2{right:3%;bottom:16%;gap:4px 14px}.f2 .fn b{font-size:24px}
+  .f2{display:none}
+  .hero-foot .wrap{justify-content:flex-start}
+}
+@media (prefers-reduced-motion:reduce){.fcard{animation:none;translate:none}}
+
 /* ---------- 3D map (his patch) ---------- */
 .patch{position:relative;background:var(--night);color:#fff}
 .stage{position:relative;overflow:hidden}
@@ -900,7 +935,6 @@ footer :focus-visible{outline-color:#fff}
 <section class="hero dk" id="top" aria-labelledby="hero-h">
   <div class="hero-aura" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="hero-spot" aria-hidden="true"></div>
-  <canvas class="hero-gl" id="heroGL" role="img" aria-label="A gold, three-dimensional ampersand, the Barfoot &amp; Thompson symbol, turning slowly in royal blue light"></canvas>
   <p class="bigname" id="bigname"><span class="bn"><span>Jot</span></span> <span class="bn"><span class="i">Punia.</span></span></p>
   <div class="wrap hero-inner">
     <div class="hero-copy">
@@ -934,16 +968,13 @@ footer :focus-visible{outline-color:#fff}
     <div class="hero-art">
       <div class="cut-glow" aria-hidden="true"></div>
       <img class="cut" id="cut" src="assets/real/jot-cut-1300.webp" srcset="assets/real/jot-cut-760.webp 760w, assets/real/jot-cut-1300.webp 1300w" sizes="(max-width:980px) 80vw, 46vw" alt="Jot Punia in a navy suit and orange turban, wearing his Barfoot &amp; Thompson name badge" width="1300" height="1684" fetchpriority="high">
+      <div class="fcard f1"><span class="tr" aria-hidden="true"><svg><use href="#i-trophy"/></svg></span><span><b>Top Salesperson</b><small>Manukau Branch, to end March 2026</small><small class="src">Source: <a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Barfoot &amp; Thompson profile</a></small></span></div>
+      <div class="fcard f2"><span class="fn"><b>103</b><small>homes sold</small></span><span class="fn"><b>59</b><small>for sale now</small></span><small class="src">As at 14 October 2026</small></div>
       <span class="cut-tag"><span class="x">Kia ora</span> <span class="x" aria-hidden="true">·</span> <span lang="pa">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</span> <span aria-hidden="true">·</span> Namaste</span>
-      <div class="amp-anchor" id="ampAnchor">
-        <div class="amp-glow"></div>
-        <svg class="amp-svg" id="ampSvg" viewBox="19 -1478 1607 1528" aria-hidden="true" focusable="false"><defs><linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE7A0"/><stop offset=".35" stop-color="#F2BE3A"/><stop offset=".7" stop-color="#B9831A"/><stop offset="1" stop-color="#F8D57A"/></linearGradient></defs><path transform="scale(1,-1)" fill="url(#gGold)" d="M565 -30Q412 -30 293.5 15.0Q175 60 107.0 147.5Q39 235 39 361Q39 458 88.0 536.5Q137 615 220.0 671.0Q303 727 404 758Q331 839 281.0 928.5Q231 1018 231 1124Q231 1237 296.0 1311.0Q361 1385 463.5 1421.5Q566 1458 679 1458Q882 1458 980.0 1385.0Q1078 1312 1078 1178Q1078 1094 1029.0 1027.0Q980 960 907.0 907.0Q834 854 763 811L1142 412Q1177 473 1196.0 526.0Q1215 579 1223.0 620.0Q1231 661 1232.5 686.5Q1234 712 1235 718Q1236 757 1209.0 777.5Q1182 798 1146.0 806.5Q1110 815 1082 818Q1063 820 1057.5 829.5Q1052 839 1052 855Q1051 870 1059.5 883.0Q1068 896 1085 896H1538Q1555 896 1563.5 883.0Q1572 870 1573 855Q1571 818 1539 818Q1496 818 1457.0 790.0Q1418 762 1401 711Q1385 662 1361.5 596.0Q1338 530 1300.5 464.0Q1263 398 1204 347L1336 212Q1374 175 1437.5 129.0Q1501 83 1570 78Q1591 77 1598.5 70.5Q1606 64 1606 41Q1606 26 1597.5 13.0Q1589 0 1572 0H1105L981 129Q903 64 792.0 17.0Q681 -30 565 -30ZM688 892Q763 931 799.5 981.0Q836 1031 848.0 1081.0Q860 1131 860 1167Q862 1201 845.0 1248.5Q828 1296 792.5 1332.5Q757 1369 702 1369Q618 1369 577.0 1329.0Q536 1289 536 1208Q536 1138 555.0 1087.0Q574 1036 608.0 991.0Q642 946 688 892ZM667 140Q734 140 803.0 155.0Q872 170 919 201L491 663Q460 638 435.5 605.0Q411 572 397.5 528.0Q384 484 384 425Q384 335 419.5 271.5Q455 208 519.0 174.0Q583 140 667 140Z"/></svg>
-      </div>
     </div>
   </div>
   <div class="hero-foot">
     <div class="wrap">
-      <div class="award"><span class="tr" aria-hidden="true"><svg><use href="#i-trophy"/></svg></span><span><b>Top Salesperson, Manukau Branch, to end March 2026</b><small>Source: <a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Jot's Barfoot &amp; Thompson profile</a>, as at 14 October 2026</small></span></div>
       <p class="lic">Jot Punia, Residential Sales · Barfoot &amp; Thompson Ltd · Licensed REAA 2008</p>
     </div>
   </div>
@@ -1568,6 +1599,7 @@ addEventListener('DOMContentLoaded',function(){
       .from('.cut-glow',{opacity:0,scale:.7,duration:2},0)
       .from('.cut',{y:90,opacity:0,duration:1.7},0.15)
       .from('.cut-tag',{y:20,opacity:0,duration:.9},1.0)
+      .from('.fcard',{opacity:0,scale:.92,duration:1,stagger:.15},1.1)
       .from('.hero-foot .wrap>*',{y:20,opacity:0,duration:.9,stagger:.08},0.6);
     JP.onIntroSkip=()=>{tl.delay(0);tl.restart(true);};
     gsap.to('.bigname',{yPercent:-45,opacity:.15,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
@@ -1633,7 +1665,7 @@ const COARSE=matchMedia('(pointer: coarse)').matches;
 const DPR=Math.min(devicePixelRatio||1,COARSE?1.25:1.5);
 function glOK(){try{const c=document.createElement('canvas');return !!(c.getContext('webgl2')||c.getContext('webgl'));}catch(e){return false;}}
 
-if(!glOK()) html.classList.add('no-webgl'); else { const startGL=()=>{ try{ hero(); }catch(e){ html.classList.add('no-webgl'); } try{ liquid(); }catch(e){} }; if(html.classList.contains('intro-on')) document.addEventListener('jp:enter',startGL,{once:true}); else startGL(); }
+if(!glOK()) html.classList.add('no-webgl'); else { const startGL=()=>{ try{ liquid(); }catch(e){} }; if(html.classList.contains('intro-on')) document.addEventListener('jp:enter',startGL,{once:true}); else startGL(); }
 
 function hero(){
   const canvas=document.getElementById('heroGL'), sec=document.getElementById('top'), anchor=document.getElementById('ampAnchor');
