@@ -30,7 +30,7 @@
   var script = document.currentScript || document.querySelector('script[src*="concepts.js"]');
   var ROOT = new URL('../', script.src).href;
   var href = function (c) { return ROOT + 'designs/' + c.slug + '/index.html'; };
-  var GALLERY = ROOT + 'index.html';
+  var GALLERY = ROOT + 'gallery/index.html';
   var num = function (c) { return c.slug.slice(0, 2); };
   var mobileBottom = (script && +script.getAttribute('data-mobile-bottom')) || 84;
   var star = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L12 16.9l-5.25 2.75 1-5.85L3.5 9.7l5.9-.9z"/></svg>';

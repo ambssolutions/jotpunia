@@ -33,14 +33,30 @@
       ]
     },
     {
-      "source": "/assets/(.*)",
+      "source": "/assets/(real|vendor|img)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=604800"
         }
       ]
+    },
+    {
+      "source": "/assets/(.*)\\.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ],
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/designs/01-signature/",
+      "permanent": false
+    }
+  ]
 }

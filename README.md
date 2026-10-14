@@ -1,6 +1,6 @@
 # Jot Punia: homepage concepts
 
-Homepage concepts for **Jot Punia**, Residential Sales at Barfoot & Thompson in South Auckland. Open `index.html` for the gallery. On any concept page, the floating bar at the bottom switches between concepts and stars a concept for the shortlist (saved in the browser, shareable with a `?s=02,04` link). The concept list lives in `assets/concepts.js`. Each concept is one self-contained page at `designs/NN-slug/index.html`, and they all share `assets/`.
+Homepage concepts for **Jot Punia**, Residential Sales at Barfoot & Thompson in South Auckland. The site opens on concept 01 (`index.html` forwards to `designs/01-signature/`). The gallery with all concepts is at `gallery/index.html`. On any concept page, the floating bar at the bottom switches between concepts and stars a concept for the shortlist (saved in the browser, shareable with a `?s=02,04` link). The concept list lives in `assets/concepts.js`. Each concept is one self-contained page at `designs/NN-slug/index.html`, and they all share `assets/`.
 
 | # | Concept | Style | Motion |
 |---|---|---|---|
