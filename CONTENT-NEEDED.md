@@ -26,6 +26,6 @@
 | Updated stats (homes for sale, homes sold) and the "as at" date | `index.html`, plus `FACTS` in `api/ai.mjs` |
 | 2 to 4 more client reviews with name, suburb and permission | review sections |
 | Exact coordinates for the two Airfield Drive lots in Takanini (new streets aren't on OpenStreetMap yet) | `LISTINGS` in `index.html` |
-| **Jot's AI welcome video** (9:16 MP4, 10 to 15 seconds, under 4 MB, only Jot in frame). Script and steps: `WELCOME-VIDEO.md` | Save as `assets/video/welcome.mp4` with captions `assets/video/welcome.vtt`, then set `data-video="assets/video/welcome.mp4"` on `#intro` in `index.html` |
+| Optional: Jot's own welcome clip, to replace the current narrator film (see `WELCOME-VIDEO.md`). Barfoot & Thompson to approve the current film and its AI narrator voice before launch | `assets/video/` |
 | Jot's Facebook profile picture (send the image file or a public link; Facebook blocks downloads) | hero cut-out `assets/real/jot-cut-*.webp` |
 | 4 to 6 more photos of Jot on his own (no other people in shot), high resolution | hero, welcome and appraisal sections |

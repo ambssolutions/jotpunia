@@ -73,60 +73,59 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .btn-white:hover{background:var(--royal-tint)}
 .ic{width:18px;height:18px;flex:none}
 
-/* ---------- welcome: a message from Jot (AI video slot, captions until the video is ready) ---------- */
+/* ---------- welcome: a short film, like a movie opening. Muted preview, then play with sound ---------- */
 .intro{display:none}
 .intro-on{overflow:hidden}
 .intro-on .intro{display:block;position:fixed;inset:0;z-index:500;color:#fff;background:#020a1c;overflow:hidden}
-.ms{position:relative;height:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;max-width:1360px;margin:0 auto;padding:0 var(--pad)}
-.ms-glow{position:absolute;inset:0;background:radial-gradient(60% 70% at 68% 62%,rgba(56,53,226,.42),rgba(2,10,28,0) 70%),radial-gradient(40% 40% at 70% 40%,rgba(248,192,11,.12),rgba(2,10,28,0) 70%);pointer-events:none}
-.ms-copy{position:relative;z-index:2;align-self:center;padding:clamp(24px,5vh,64px) 0}
+.cin{position:relative;height:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(32px,6vw,110px);max-width:1280px;margin:0 auto;padding:clamp(20px,4vh,48px) var(--pad)}
+.cin-bg{position:absolute;inset:0;background:center/cover no-repeat;filter:blur(40px) saturate(1.2);opacity:.5;transform:scale(1.25)}
+.intro .cin{overflow:hidden}
+.cin-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 70% 50%,rgba(2,10,28,.2),rgba(2,10,28,.92))}
+.cin-side{position:relative;z-index:2}
 .ms-k{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:#c3cbe4}
-.ms-k i{width:8px;height:8px;border-radius:50%;background:#ff5c5c;box-shadow:0 0 0 0 rgba(255,77,77,.6);animation:msRec 1.6s ease-out infinite}
-@keyframes msRec{70%{box-shadow:0 0 0 10px rgba(255,77,77,0)}100%{box-shadow:0 0 0 0 rgba(255,77,77,0)}}
-.ms-name{margin:16px 0 0;color:#fff;font:500 clamp(52px,7vw,112px)/.92 var(--serif);letter-spacing:-.025em}
+.ms-k i{width:8px;height:8px;border-radius:50%;background:#ff5c5c}
+.ms-name{margin:16px 0 0;color:#fff;font:500 clamp(52px,7vw,108px)/.92 var(--serif);letter-spacing:-.025em}
 .ms-name em{color:var(--yellow)}
-.ms-say{margin:26px 0 0;min-height:3.3em;max-width:26ch;font:400 clamp(22px,2.2vw,32px)/1.3 var(--serif);color:#fff}
-.ms-say .w{display:inline-block;opacity:.18;transition:opacity .35s ease,transform .35s ease;transform:translateY(4px)}
-.ms-say .w.on{opacity:1;transform:none}
-.ms-say [lang=pa]{font-family:var(--pa)}
-.ms-wave{display:flex;align-items:center;gap:4px;height:26px;margin-top:20px}
-.ms-wave b{width:3px;height:100%;border-radius:3px;background:var(--yellow);transform:scaleY(.15);transform-origin:center}
-.ms.talk .ms-wave b{animation:msWave 1s ease-in-out infinite}
-.ms-wave b:nth-child(2n){animation-delay:-.3s!important}.ms-wave b:nth-child(3n){animation-delay:-.55s!important}.ms-wave b:nth-child(5n){animation-delay:-.8s!important}
-@keyframes msWave{0%,100%{transform:scaleY(.15)}50%{transform:scaleY(1)}}
-.ms-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:30px}
+.cin-s{margin:22px 0 0;max-width:34ch;font:400 17px/1.6 var(--sans);color:#dfe4f2}
+.cin-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:28px}
 .tv-go{display:inline-flex;align-items:center;gap:12px;min-height:54px;padding:0 26px;border:0;border-radius:999px;background:var(--yellow);color:#00244F;font:700 16px/1 var(--sans);cursor:pointer;transition:transform .3s var(--ease)}
-.tv-go:hover{transform:translateY(-2px)}
-.tv-go svg{width:18px;height:18px}
-.tv-skip,.ms-snd{background:none;border:0;color:#c3cbe4;font:600 14px/1 var(--sans);cursor:pointer;padding:12px 4px;min-height:44px}
-.tv-skip{text-decoration:underline;text-underline-offset:3px}
-.ms-snd{display:inline-flex;align-items:center;gap:8px;padding:0 16px;border-radius:999px;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35);color:#fff}
-.ms-snd[hidden]{display:none}
-.tv-go:focus-visible,.tv-skip:focus-visible,.ms-snd:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.ms-stage{position:relative;z-index:1;height:100%;display:flex;align-items:flex-end;justify-content:center}
-.ms-stage img,.ms-stage video{display:block;height:min(92vh,1000px);width:auto;max-width:100%;object-fit:contain;object-position:bottom}
-.ms-stage img{animation:msBreath 7s ease-in-out infinite;transform-origin:50% 100%;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent 98%),linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,#000 70%,transparent 98%),linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-composite:intersect}
-@keyframes msBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.012) translateY(-2px)}}
-.ms-stage video{height:min(86vh,900px);aspect-ratio:9/16;object-fit:cover;align-self:center;border-radius:28px;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 40px 90px -30px rgba(0,0,0,.9)}
-.ms-copy,.ms-stage{opacity:0;animation:tvIn 1s var(--ease) forwards}
-.ms-copy{animation-delay:.25s}
+.tv-go:hover{transform:translateY(-2px)}.tv-go svg{width:18px;height:18px}
+.tv-skip{background:none;border:0;color:#c3cbe4;font:600 14px/1 var(--sans);cursor:pointer;padding:12px 4px;min-height:44px;text-decoration:underline;text-underline-offset:3px}
+.cin-ai{margin-top:22px;font-size:12.5px;color:#9aa6c6}
+.cin-frame{position:relative;z-index:2;height:min(86vh,860px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#020a1c;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 0 10px rgba(255,255,255,.035),0 50px 100px -30px rgba(0,0,0,.95),0 0 120px -20px rgba(56,53,226,.6)}
+.cin-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cin-play{position:absolute;left:50%;top:63%;translate:-50% -50%;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:14px;border:0;background:none;color:#fff;font:700 15px/1 var(--sans);letter-spacing:.02em;cursor:pointer;padding:16px;border-radius:24px}
+.cin-play .b{position:relative;width:84px;height:84px;border-radius:50%;background:var(--yellow);color:#00244F;display:grid;place-items:center;box-shadow:0 20px 40px -12px rgba(0,0,0,.7)}
+.cin-play .b svg{width:34px;height:34px;margin-left:5px}
+.cin-play .b::before,.cin-play .b::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:2px solid rgba(248,192,11,.7);animation:cinPulse 2s ease-out infinite}
+.cin-play .b::after{animation-delay:1s}
+@keyframes cinPulse{from{transform:scale(.85);opacity:1}to{transform:scale(1.5);opacity:0}}
+.cin-play .t{background:rgba(2,10,28,.85);padding:9px 14px;border-radius:999px}
+.cin-play:hover .b{transform:scale(1.05)}
+.cin-frame.playing .cin-play{display:none}
+.cin-bar{position:absolute;left:14px;right:14px;bottom:12px;height:3px;border-radius:3px;background:rgba(255,255,255,.18);overflow:hidden;opacity:0;transition:opacity .4s}
+.cin-bar i{display:block;height:100%;width:100%;background:var(--yellow);transform-origin:0 0;transform:scaleX(0)}
+.cin-frame.playing .cin-bar{opacity:1}
+.cin-snd{position:absolute;right:12px;top:12px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(2,10,28,.75);color:#fff;display:grid;place-items:center;cursor:pointer}
+.cin-snd[hidden]{display:none}.cin-snd svg{width:20px;height:20px}
+.cin-play:focus-visible,.cin-snd:focus-visible,.tv-go:focus-visible,.tv-skip:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.cin-side,.cin-frame{opacity:0;animation:tvIn 1s var(--ease) forwards}
+.cin-side{animation-delay:.25s}
 @keyframes tvIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.intro.leaving{animation:tvOut .7s ease forwards}
-@keyframes tvOut{to{opacity:0;transform:scale(1.03)}}
+.intro.leaving{animation:tvOut .8s ease forwards}
+@keyframes tvOut{to{opacity:0;transform:scale(1.04)}}
 @media (max-width:860px){
   .intro-on .intro{overflow:auto}
-  .ms{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:stretch;text-align:center;min-height:100%;height:auto}
-  .ms-glow{background:radial-gradient(80% 50% at 50% 30%,rgba(56,53,226,.45),rgba(2,10,28,0) 70%)}
-  .ms-stage{order:-1;height:auto;min-height:0;padding-top:12px}
-  .ms-stage img{height:min(46svh,440px)}
-  .ms-stage video{height:min(52svh,480px)}
-  .ms-copy{padding:6px 0 30px}
-  .ms-name{font-size:clamp(40px,11vw,60px);margin-top:12px}
-  .ms-say{margin:14px auto 0;font-size:20px;min-height:2.6em}
-  .ms-wave{justify-content:center;margin-top:12px}
-  .ms-acts{justify-content:center;margin-top:20px}
+  .cin{grid-template-columns:1fr;justify-items:center;text-align:center;align-content:start;gap:18px;height:auto;min-height:100%;padding-top:14px;padding-bottom:28px}
+  .cin-frame{order:-1;height:min(72svh,640px)}
+  .ms-name{font-size:clamp(38px,11vw,58px);margin-top:10px}
+  .cin-s{display:none}
+  .cin-side .ms-k,.cin-side .ms-name{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .cin-play .b{width:68px;height:68px}.cin-play .b svg{width:26px;height:26px}.cin-play{font-size:13.5px}
+  .cin-acts{justify-content:center;margin-top:16px}
+  .cin-ai{margin-top:12px}
 }
-@media (prefers-reduced-motion:reduce){.ms-copy,.ms-stage,.ms-stage img,.ms-k i{animation:none;opacity:1}.ms-say .w{opacity:1;transform:none;transition:none}.intro.leaving{animation:none;display:none}}
+@media (prefers-reduced-motion:reduce){.cin-side,.cin-frame{animation:none;opacity:1}.cin-play .b::before,.cin-play .b::after{animation:none}.intro.leaving{animation:none;display:none}}
 .still .intro *{animation-play-state:running!important}
 
 
@@ -199,13 +198,14 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 @keyframes jhopsh{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.5}}
 @keyframes jland{0%{transform:translateY(-16px) scale(.9)}60%{transform:translateY(0) scale(1.12)}100%{transform:none}}
 @keyframes jring{from{transform:scale(.3);opacity:1}to{transform:scale(1.6);opacity:0}}
-#patch.tap .pcard{top:60px;left:12px;right:12px;bottom:auto;width:auto;display:grid;grid-template-columns:118px 1fr;align-items:stretch}
-#patch.tap .pcard img{height:100%;min-height:118px;aspect-ratio:auto}
-#patch.tap .pcard .bd{padding:12px 50px 12px 14px}
-#patch.tap .pcard h3{font-size:17px;margin-top:6px}
-#patch.tap .pcard .m{font-size:13.5px}
+#patch.tap .pcard{top:58px;left:10px;right:10px;bottom:auto;width:auto;display:grid;grid-template-columns:92px 1fr;align-items:stretch;border-radius:14px}
+#patch.tap .pcard img{height:100%;min-height:0;aspect-ratio:auto}
+#patch.tap .pcard .bd{padding:10px 44px 10px 12px}
+#patch.tap .pcard h3{font-size:15px;line-height:1.2;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#patch.tap .pcard .m{font-size:12.5px;margin-top:2px}
+#patch.tap .pcard .chip{font-size:10px;padding:3px 7px}
 #patch.tap .pcard .spec{display:none}
-#patch.tap .pcard .btn{min-height:40px;margin-top:8px;font-size:13.5px;padding:0 12px}
+#patch.tap .pcard .btn{min-height:36px;margin-top:7px;font-size:13px;padding:0 10px;white-space:nowrap;width:auto}
 #patch.tap .pcard .x{width:36px;height:36px;right:8px;top:8px}
 @media (prefers-reduced-motion:reduce){.jot-av .in,.jot-av .sh,.jot-av .halo,.pin.been::after,.run-hud .t i,.jot-av.landed::after{animation:none}}
 
@@ -958,17 +958,22 @@ footer :focus-visible{outline-color:#fff}
 </style>
 </head>
 <body>
-<div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="wcT" aria-describedby="wcS" data-video="">
-  <div class="ms" id="ms">
-    <div class="ms-glow" aria-hidden="true"></div>
-    <div class="ms-copy">
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="wcT" aria-describedby="wcS">
+  <div class="cin">
+    <div class="cin-bg" aria-hidden="true" style="background-image:url(assets/video/welcome-poster.webp)"></div>
+    <div class="cin-side">
       <p class="ms-k"><i aria-hidden="true"></i>A message from</p>
       <h2 class="ms-name" id="wcT">Jot <em>Punia</em></h2>
-      <p class="ms-say" id="wcS">Kia ora, <span lang="pa">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</span>, I'm Jot. Let's take a look at my website.</p>
-      <div class="ms-wave" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
-      <div class="ms-acts"><button class="tv-go" type="button" id="wcGo">Come and have a look <svg aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="ms-snd" type="button" id="wcSnd" hidden>Tap for sound</button><button class="tv-skip" type="button" id="wcSkip">Skip</button></div>
+      <p class="cin-s" id="wcS">A 13-second welcome to my corner of South Auckland. Play it with sound, or come straight in.</p>
+      <div class="cin-acts"><button class="tv-go" type="button" id="wcGo">Come and have a look <svg aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="tv-skip" type="button" id="wcSkip">Skip intro</button></div>
+      <p class="cin-ai">The narration is an AI-generated voice. Captions are in the video.</p>
     </div>
-    <div class="ms-stage" id="wcStage"><img src="assets/real/jot-cut-760.webp" srcset="assets/real/jot-cut-760.webp 760w, assets/real/jot-cut-1300.webp 1300w" sizes="(max-width:980px) 80vw, 46vw" width="1300" height="1684" alt="Jot Punia" fetchpriority="high"></div>
+    <div class="cin-frame" id="wcFrame">
+      <video id="wcVid" muted playsinline preload="none" poster="assets/video/welcome-poster.webp" aria-label="Welcome video for Jot Punia, with captions"><source src="assets/video/welcome.mp4" type='video/mp4; codecs="avc1.64001F, mp4a.40.2"'><source src="assets/video/welcome.webm" type='video/webm; codecs="vp9, opus"'></video>
+      <button class="cin-play" type="button" id="wcPlay"><span class="b" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 4.5v15l13-7.5z"/></svg></span><span class="t">Play with sound</span></button>
+      <button class="cin-snd" type="button" id="wcSnd" aria-label="Mute" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M11 5 6 9H3v6h3l5 4zM16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></svg></button>
+      <div class="cin-bar" aria-hidden="true"><i id="wcProg"></i></div>
+    </div>
   </div>
 </div>
 <a class="skip" href="#main">Skip to content</a>
@@ -1397,47 +1402,31 @@ addEventListener('DOMContentLoaded',function(){
   const byId=Object.fromEntries(LISTINGS.map(l=>[l.id,l]));
   const spec=l=>`<span><svg aria-hidden="true"><use href="#i-bed"/></svg>${l.bed}<span class="vh"> bedrooms</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>${l.bath}<span class="vh"> bathrooms</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>${l.car}<span class="vh"> car parks</span></span>`;
 
-  /* ---------- welcome: a message from Jot. Plays his AI video when data-video names one, else speaks in captions ---------- */
+  /* ---------- welcome: Jot's short film. Muted preview loops; Play restarts it with sound; the site opens when it ends ---------- */
   const intro=$('#intro');
   JP.introDelay=html.classList.contains('intro-on')?9999:0;
   if(html.classList.contains('intro-on')){
-    const go=$('#wcGo'), skip=$('#wcSkip'), snd=$('#wcSnd'), ms=$('#ms'), say=$('#wcS'), src=intro.dataset.video;
-    let vid=null, timers=[];
-    /* captions: reveal his line word by word, like he is saying it */
-    const words=[];
-    (function split(node){[...node.childNodes].forEach(n=>{if(n.nodeType===3){const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.append(t);return;}const w=document.createElement('span');w.className='w';w.textContent=t;words.push(w);f.append(w);});n.replaceWith(f);}else split(n);});})(say);
-    function speak(){
-      if(reduce){words.forEach(w=>w.classList.add('on'));return;}
-      ms.classList.add('talk');let t=700;
-      words.forEach((w,k)=>{timers.push(setTimeout(()=>w.classList.add('on'),t));t+=/[,.]$/.test(w.textContent)?520:260;});
-      timers.push(setTimeout(()=>ms.classList.remove('talk'),t+200));
-    }
-    if(src){
-      /* Jot's AI video: muted autoplay (browsers block sound until a tap), captions from the .vtt beside it */
-      vid=document.createElement('video');
-      Object.assign(vid,{muted:true,playsInline:true,autoplay:!reduce,loop:false,preload:'auto',poster:'assets/real/jot-cut-760.webp'});
-      vid.setAttribute('playsinline','');vid.setAttribute('aria-label','Video message from Jot Punia');
-      vid.innerHTML=`<source src="${src}" type="video/mp4"><track kind="captions" srclang="en" label="English" src="${src.replace(/\.mp4$/,'.vtt')}" default>`;
-      vid.addEventListener('loadeddata',()=>{const st=$('#wcStage');st.replaceChildren(vid);ms.classList.add('has-video');snd.hidden=false;});
-      vid.addEventListener('error',()=>{},true);
-      vid.addEventListener('playing',()=>ms.classList.add('talk'));vid.addEventListener('pause',()=>ms.classList.remove('talk'));vid.addEventListener('ended',()=>{ms.classList.remove('talk');go.focus();});
-      snd.addEventListener('click',()=>{vid.muted=false;vid.currentTime=0;vid.play().catch(()=>{});snd.hidden=true;});
-      vid.load();
-    }
-    speak();
-    go.focus({preventScroll:true});
-    let closed=false;
+    const go=$('#wcGo'), skip=$('#wcSkip'), play=$('#wcPlay'), snd=$('#wcSnd'), vid=$('#wcVid'), frame=$('#wcFrame'), prog=$('#wcProg');
+    let closed=false, withSound=false;
+    vid.preload=reduce?'metadata':'auto';
+    if(!reduce&&!html.classList.contains('still')){vid.loop=true;vid.play().catch(()=>{});}
+    play.addEventListener('click',()=>{withSound=true;vid.loop=false;vid.currentTime=0;vid.muted=false;frame.classList.add('playing');snd.hidden=false;snd.setAttribute('aria-label','Mute');
+      vid.play().catch(()=>{vid.muted=true;vid.play().catch(()=>{});});snd.focus({preventScroll:true});});
+    snd.addEventListener('click',()=>{vid.muted=!vid.muted;snd.setAttribute('aria-label',vid.muted?'Unmute':'Mute');});
+    vid.addEventListener('timeupdate',()=>{if(vid.duration)prog.style.transform=`scaleX(${vid.currentTime/vid.duration})`;});
+    vid.addEventListener('ended',()=>{if(withSound)setTimeout(enter,500);});
+    play.focus({preventScroll:true});
     function enter(){
       if(closed)return;closed=true;
       try{sessionStorage.setItem('jp-landmark-intro','1');}catch(e){}
-      timers.forEach(clearTimeout);if(vid){vid.pause();vid.removeAttribute('src');}
-      const done=()=>{html.classList.add('intro-done');html.classList.remove('intro-on');intro.remove();document.dispatchEvent(new Event('jp:enter'));if(window.__lenis)__lenis.start();JP.introDelay=0;if(JP.onIntroSkip)JP.onIntroSkip();const h=$('#hero-h');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true});}};
-      if(reduce)done();else{intro.classList.add('leaving');setTimeout(done,650);}
+      vid.pause();
+      const done=()=>{vid.removeAttribute('src');[...vid.querySelectorAll('source')].forEach(x=>x.remove());vid.load();html.classList.add('intro-done');html.classList.remove('intro-on');intro.remove();document.dispatchEvent(new Event('jp:enter'));if(window.__lenis)__lenis.start();JP.introDelay=0;if(JP.onIntroSkip)JP.onIntroSkip();const h=$('#hero-h');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true});}};
+      if(reduce)done();else{intro.classList.add('leaving');setTimeout(done,750);}
       removeEventListener('keydown',onKey);
     }
     function onKey(e){
       if(e.key==='Escape'){e.preventDefault();enter();return;}
-      if(e.key==='Tab'){const f=[...intro.querySelectorAll('button:not([hidden]),a,video[controls]')],i=f.indexOf(document.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus();}}
+      if(e.key==='Tab'){const f=[...intro.querySelectorAll('button:not([hidden])')].filter(b=>b.offsetParent),i=f.indexOf(document.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus();}}
     }
     go.addEventListener('click',enter);skip.addEventListener('click',enter);addEventListener('keydown',onKey);
   }
@@ -1611,8 +1600,11 @@ addEventListener('DOMContentLoaded',function(){
     if(mode!=='pinned')run.to(i===0?1:run.arrive(i),{jumpBack:true});
     if(map&&mapReady){clearTimeout(orbitT);const cam=camFor(c),dur=opts.user?1500:(opts.fast?1600:2600);
       if(opts.user&&i>0){cam.center=byId[c.ids[0]].ll;cam.padding=clearPad();cam.zoom=Math.max(cam.zoom,13.6);}
-      if(reduce)map.jumpTo(cam);else{if(c.zoom>=13)sink();map.flyTo({...cam,duration:dur,curve:1.35,essential:true});if(c.zoom>=13)map.once('moveend',rise);}
-      if(i>0){const l=byId[c.ids[0]];run.travel(l.ll,dur,()=>{if(opts.user&&cur===i)setTimeout(()=>openCard(l,markers[l.id]&&markers[l.id].getElement(),{fromNav:opts.from}),60);});}}
+      if(opts.user&&i>0){const l=byId[c.ids[0]],me=++pinBusy;
+        journey(l,me,()=>{if(cur!==i||me!==pinBusy)return;const land=()=>{if(cur===i&&me===pinBusy)openCard(l,markers[l.id]&&markers[l.id].getElement(),{fromNav:opts.from});};
+          if(reduce||JP.still){map.jumpTo(cam);land();return;}if(cam.zoom>=13)sink();map.flyTo({...cam,duration:1300,curve:1.2,essential:true});map.once('moveend',()=>{if(cam.zoom>=13)rise();land();});});}
+      else{if(reduce)map.jumpTo(cam);else{if(c.zoom>=13)sink();map.flyTo({...cam,duration:dur,curve:1.35,essential:true});if(c.zoom>=13)map.once('moveend',rise);}
+        if(i>0)run.travel(byId[c.ids[0]].ll,dur);}}
   }
   JP.flyTo=key=>{const i=CHAPTERS.findIndex(c=>c.key===key);if(i<0)return;goChapter(i);};
   let navLock=0;
@@ -1621,23 +1613,41 @@ addEventListener('DOMContentLoaded',function(){
       navLock=performance.now()+1600;if(window.__lenis)__lenis.scrollTo(y,{duration:1.2});else scrollTo({top:y,behavior:reduce?'auto':'smooth'});setChapter(i,{fast:true,...o});}
     else{patch.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});setChapter(i,o);}
   }
-  btns.forEach((b,i)=>b.addEventListener('click',()=>{const o={user:true,from:b,force:true};if(mode==='pinned')goChapter(i,o);else setChapter(i,o);}));
+  btns.forEach((b,i)=>b.addEventListener('click',()=>{touched=true;clearTimeout(tourT);const o={user:true,from:b,force:true};if(mode==='pinned'){goChapter(i,o);return;}
+    /* phones: bring the whole map into view first, so the journey happens where you can see it */
+    const r=mapEl.getBoundingClientRect(),qb=$('#qbar'),bot=qb&&qb.offsetParent?qb.getBoundingClientRect().top:innerHeight;
+    if(r.top<0||r.bottom>bot){const y=scrollY+r.top-Math.max(70,(bot-r.height)/2);if(window.__lenis)__lenis.scrollTo(y,{duration:.6});else scrollTo({top:y,behavior:reduce?'auto':'smooth'});setTimeout(()=>setChapter(i,o),reduce?0:650);}else setChapter(i,o);}));
   /* scroll drives the chapters in pinned mode */
   const prog=$('#prog');
   function onPatchScroll(){if(mode!=='pinned'||patch.classList.contains('nomap'))return;const r=patch.getBoundingClientRect(),len=patch.offsetHeight-innerHeight;const p=Math.min(1,Math.max(0,-r.top/len));prog.style.transform=`scaleX(${p})`;{const f=p*N,i=Math.min(N-1,Math.floor(f)),loc=f-i,a=i?run.arrive(i-1):0,b=run.arrive(i);run.to(a+(b-a)*Math.min(1,loc/.6));}
     if(performance.now()>navLock&&r.top<innerHeight*.5&&r.bottom>innerHeight*.5){setChapter(Math.min(N-1,Math.floor(p*N*.9999)));}}
   addEventListener('scroll',onPatchScroll,{passive:true});
   /* idle drift: a slow orbit after each flight (stops with Pause or reduced motion) */
-  function drift(){clearTimeout(orbitT);if(!map||reduce||JP.still)return;orbitT=setTimeout(()=>{if(!map||JP.still||!inView||map.isMoving())return;map.easeTo({bearing:map.getBearing()+24,duration:24000,easing:t=>t,essential:false});},1200);}
+  function drift(){clearTimeout(orbitT);if(!map||reduce||JP.still||journeying||!pcard.hidden)return;orbitT=setTimeout(()=>{if(!map||JP.still||!inView||map.isMoving())return;map.easeTo({bearing:map.getBearing()+24,duration:24000,easing:t=>t,essential:false});},1200);}
   document.addEventListener('jp:still',e=>{if(!map)return;run.setFlow(!e.detail&&inView);if(e.detail){clearTimeout(orbitT);clearTimeout(tourT);map.stop();}else{drift();tour();}});
   /* tap a pin: Jot travels there from wherever he is, the camera follows, then the home opens */
   let pinBusy=0;
-  const clearPad=()=>mode==='pinned'?{left:Math.min(innerWidth*.42,600),top:90,right:Math.min(420,innerWidth*.3),bottom:60}:{left:24,right:24,top:200,bottom:24};
-  function goPin(l,b){closeCard();const now=++pinBusy;clearTimeout(orbitT);clearTimeout(tourT);touched=true;
-    const from=run.at(),km=from?Math.hypot((l.ll[0]-from[0])*89,(l.ll[1]-from[1])*111):0,dur=Math.round(Math.min(1600,Math.max(700,600+km*90)));
+  /* the part of the map a visitor can actually see: clear of the side panel, the home card, and (on phones) the quick bar */
+  const clearPad=travel=>{if(mode==='pinned')return {left:Math.min(innerWidth*.42,600),top:90,right:Math.min(420,innerWidth*.3),bottom:60};
+    const r=mapEl.getBoundingClientRect(),qb=$('#qbar'),bar=qb&&qb.offsetParent&&qb.getBoundingClientRect().height?innerHeight-qb.getBoundingClientRect().top+12:24,visTop=Math.max(r.top,0),visBot=Math.min(r.bottom,innerHeight-bar);
+    const top=travel?Math.max(80,visTop-r.top+70):Math.max(260,visTop-r.top+230),bottom=Math.max(28,r.bottom-visBot+28);
+    return (r.height-top-bottom<120)?{left:28,right:28,top:Math.max(40,(r.height-120)/2),bottom:Math.max(28,(r.height-120)/2)}:{left:28,right:28,top,bottom};};
+  function goPin(l,b){closeCard();const me=++pinBusy;clearTimeout(orbitT);clearTimeout(tourT);touched=true;
     Object.entries(markers).forEach(([id,m])=>m.getElement().classList.toggle('on',id===l.id));
-    if(map&&!reduce&&!JP.still){const z=Math.max(map.getZoom(),14.2);map.easeTo({center:l.ll,zoom:z,pitch:Math.max(map.getPitch(),58),duration:dur,easing:t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,essential:true,padding:clearPad()});}
-    run.travel(l.ll,dur,()=>{if(now===pinBusy)setTimeout(()=>openCard(l,b),60);});}
+    journey(l,me,()=>{if(me===pinBusy)setTimeout(()=>openCard(l,b),80);});}
+  /* Jot's journey: frame where he is and where he's going, then he travels there in full view */
+  let journeying=false;
+  function journey(l,me,after){const from=run.at();let went=false;journeying=true;
+    const done=()=>{journeying=false;after&&after();};
+    const go=()=>{if(went||me!==pinBusy)return;went=true;const f=run.at()||from,km=f?Math.hypot((l.ll[0]-f[0])*89,(l.ll[1]-f[1])*111):0;
+      run.travel(l.ll,Math.round(Math.min(1900,Math.max(900,800+km*110))),done);};
+    if(!map||!from||reduce||JP.still){run.travel(l.ll,0,done);return;}
+    clearTimeout(orbitT);if(map.isMoving())map.stop();
+    const pad=clearPad(true),c=map.getContainer(),vis=p=>{const q=map.project(p);return q.x>pad.left&&q.x<c.clientWidth-pad.right&&q.y>pad.top&&q.y<c.clientHeight-pad.bottom;};
+    if(vis(from)&&vis(l.ll)){go();return;}
+    const bb=new maplibregl.LngLatBounds(from,from).extend(l.ll);
+    map.fitBounds(bb,{padding:{top:pad.top+30,bottom:pad.bottom+30,left:pad.left+30,right:pad.right+30},maxZoom:Math.max(13.5,Math.min(map.getZoom(),15)),pitch:Math.min(map.getPitch(),mode==='pinned'?50:28),duration:850,essential:true});
+    map.once('moveend',go);setTimeout(go,1150);}
   /* listing card */
   let lastPin=null;
   function openCard(l,from,o={}){lastPin=o.fromNav||from;$('#pcardImg').src=img(l.id,640);$('#pcardImg').alt=l.addr;const ch=$('#pcardChip');ch.textContent=l.tag||'For sale';ch.className='chip'+(l.tag==='Open home'?' open':'');
