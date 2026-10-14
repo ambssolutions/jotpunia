@@ -185,7 +185,7 @@ em{font-style:italic}
 .arrows button{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s}
 .arrows button:hover{background:var(--royal);border-color:var(--royal);color:#fff}
 .arrows svg{width:20px;height:20px}
-.rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(270px,27vw,360px);gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:36px var(--pad) 26px calc((100vw - min(1240px,100vw - var(--pad)*2))/2);margin-top:6px;scrollbar-width:thin;scrollbar-color:var(--royal) var(--bg-2);cursor:grab}
+.rail{position:relative;display:grid;grid-auto-flow:column;grid-auto-columns:clamp(270px,27vw,360px);gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:36px var(--pad) 26px calc((100vw - min(1240px,100vw - var(--pad)*2))/2);margin-top:6px;scrollbar-width:thin;scrollbar-color:var(--royal) var(--bg-2);cursor:grab}
 .rail:active{cursor:grabbing}
 .rail::-webkit-scrollbar{height:6px}.rail::-webkit-scrollbar-thumb{background:var(--royal);border-radius:6px}.rail::-webkit-scrollbar-track{background:var(--bg-2)}
 .card{scroll-snap-align:start;text-decoration:none;color:var(--text);display:flex;flex-direction:column}
