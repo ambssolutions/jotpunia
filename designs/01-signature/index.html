@@ -92,6 +92,32 @@ em{font-style:italic}
 @media (max-width:860px){.nav .btn{display:none}.menu-btn{display:block}}
 @media (max-width:480px){.lockup img{height:38px}.lockup b{font-size:18px}.lockup small{display:none}.lockup{gap:12px}}
 
+/* ---------- ask jot ai ---------- */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ask{margin-top:28px;max-width:600px}
+.ask-form{position:relative;display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:6px 6px 6px 16px;box-shadow:0 20px 40px -28px rgba(0,36,79,.5);transition:border-color .2s,box-shadow .2s}
+.ask-form:focus-within{border-color:var(--royal);box-shadow:0 0 0 4px var(--royal-tint),0 20px 40px -28px rgba(0,36,79,.5)}
+.ask-badge{flex:none;display:inline-flex;align-items:center;gap:6px;font:700 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--navy);background:var(--yellow);border-radius:6px;padding:6px 8px}
+.ask-form input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:500 16px/1.4 var(--sans);color:var(--ink);padding:10px 4px}
+.ask-form input::placeholder{color:var(--muted)}
+.ask-form button{flex:none;display:grid;place-items:center;width:46px;height:46px;border:0;border-radius:10px;background:var(--royal);color:#fff;cursor:pointer}
+.ask-form button:hover{background:var(--royal-2)}
+.ask-form button svg{width:18px;height:18px}
+.ask-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ask-chips button{font:600 13.5px/1 var(--sans);color:var(--navy);background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:10px 14px;min-height:40px;cursor:pointer}
+.ask-chips button:hover{background:var(--royal-tint);border-color:var(--royal);color:var(--royal)}
+.ask-out{display:none;margin-top:14px;background:var(--navy);color:#fff;border-radius:14px;padding:16px 18px 14px;position:relative}
+.ask-out.on{display:block}
+.ask-out .who{display:flex;align-items:center;gap:10px;font:600 13px/1 var(--sans);color:#B8C7E0}
+.ask-out .who img{width:30px;height:30px;border-radius:50%;object-fit:cover;object-position:50% 10%}
+.ask-out p{margin:10px 0 0;font:500 16.5px/1.5 var(--sans);color:#fff;min-height:1.5em}
+.ask-out .dots i{display:inline-block;width:7px;height:7px;margin-right:4px;border-radius:50%;background:var(--yellow);animation:askb 1s infinite}
+.ask-out .dots i:nth-child(2){animation-delay:.15s}.ask-out .dots i:nth-child(3){animation-delay:.3s}
+@keyframes askb{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.ask-out .cta{display:inline-block;margin-top:10px;color:var(--yellow);font-weight:700;font-size:14px}
+.ask-note{margin-top:8px;font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.ask-out .dots i{animation:none;opacity:.8}}
+
 /* ---------- hero ---------- */
 .hero{position:relative;padding:clamp(48px,6vw,84px) 0 clamp(60px,7vw,100px);overflow:hidden}
 .hero::before{content:"";position:absolute;right:-12%;top:-30%;width:68%;height:150%;background:radial-gradient(closest-side,var(--royal-tint),transparent 72%);z-index:-1}
@@ -127,6 +153,7 @@ em{font-style:italic}
 .award b{display:block;font:600 16px/1.2 var(--serif)}
 .award small{display:block;font-size:12.5px;color:#B8C7E0;margin-top:3px}
 .live{position:absolute;right:-34px;bottom:-40px;z-index:5;width:250px;background:#fff;border-radius:14px;box-shadow:0 30px 50px -22px rgba(0,36,79,.55);overflow:hidden;text-decoration:none;color:var(--ink)}
+.live .ph,.live .tx{display:block}
 .live .ph{position:relative;aspect-ratio:3/2;background:var(--bg-2)}
 .live .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s}
 .live .ph img.on{opacity:1}
@@ -425,6 +452,26 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
         <span class="ln" aria-hidden="true"><span>minus the <em>waffle.</em></span></span>
       </h1>
       <p class="lead rv" style="--rd:2">Kia ora, I'm Jot. With a passion for the industry and digital creation, I bring energy, creativity and a tireless work ethic to every sale across South Auckland. Straight answers, real numbers, and marketing people actually stop for.</p>
+      <div class="ask rv" style="--rd:3" id="ask">
+        <form class="ask-form" id="askForm" role="search" aria-label="Ask Jot AI">
+          <span class="ask-badge" aria-hidden="true">Ask Jot AI</span>
+          <label for="askIn" class="sr">Ask a question about selling or buying with Jot</label>
+          <input id="askIn" name="q" type="text" maxlength="300" autocomplete="off" placeholder="Ask me anything. How does an appraisal work?">
+          <button type="submit" aria-label="Ask"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </form>
+        <div class="ask-chips" aria-label="Try a question">
+          <button type="button">What's for sale in Takanini?</button>
+          <button type="button">Why should I list with you?</button>
+          <button type="button">What does #Fitagent mean?</button>
+        </div>
+        <div class="ask-out" id="askOut">
+          <div class="who"><img src="../../assets/real/jot-600.webp" alt="" width="30" height="30">Jot AI</div>
+          <p id="askTx" aria-hidden="true"></p>
+          <a class="cta" href="#appraisal">Talk to the real Jot</a>
+        </div>
+        <p class="sr" id="askSr" aria-live="polite"></p>
+        <p class="ask-note">AI-generated, may be imperfect. Not financial or legal advice. For a real appraisal, talk to Jot.</p>
+      </div>
       <div class="hero-cta rv" style="--rd:3">
         <a class="btn btn-royal mag" href="#appraisal">Get a free written appraisal <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="btn btn-line" href="#listings">See my 59 listings</a>
@@ -440,7 +487,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
 
     <div class="portrait-wrap" id="pw">
       <div class="slab" aria-hidden="true"></div>
-      <div class="portrait"><img src="../../assets/real/jot-900.webp" srcset="../../assets/real/jot-600.webp 600w, assets/real/jot-900.webp 900w" sizes="(max-width:1000px) 86vw, 500px" alt="Jot Punia in a navy suit and orange turban, wearing his Barfoot &amp; Thompson name badge" width="900" height="1199" fetchpriority="high"></div>
+      <div class="portrait"><img src="../../assets/real/jot-900.webp" srcset="../../assets/real/jot-600.webp 600w, ../../assets/real/jot-900.webp 900w" sizes="(max-width:1000px) 86vw, 500px" alt="Jot Punia in a navy suit and orange turban, wearing his Barfoot &amp; Thompson name badge" width="900" height="1199" fetchpriority="high"></div>
       <div class="sold" aria-hidden="true"><b>SOLD</b><small>103 homes &amp; counting</small></div>
       <div class="award"><span class="ic" aria-hidden="true"><svg><use href="#i-trophy"/></svg></span><span><b>Top Salesperson</b><small>Manukau Branch, to end March 2026</small></span></div>
       <a class="live" id="live" href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener" aria-label="See Jot's current listings on barfoot.co.nz">
@@ -809,5 +856,58 @@ addEventListener('DOMContentLoaded',function(){
 });
 </script>
 <script src="../../assets/concepts.js" data-mobile-bottom="84" defer></script>
+<script>
+/* Ask Jot AI: calls /api/ai (Claude, server-side). Without a key, offline or on file:// it answers from the scripted replies below. */
+(function(){
+  const form=document.getElementById('askForm'), input=document.getElementById('askIn'), out=document.getElementById('askOut'), tx=document.getElementById('askTx');
+  if(!form) return;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NO_PRICE="I won't guess a number. Jot gives a free written appraisal backed by comparable sales. Pop your address in the form below and he'll come to you.";
+  const suburbOf=a=>a.split(', ').pop();
+  function local(q){
+    const t=q.toLowerCase();
+    if(/(worth|value|valuation|price my|how much (is|would|will|can)|what.*(get|sell) for)/.test(t)) return NO_PRICE;
+    const subs=[...new Set(LISTINGS.map(l=>suburbOf(l.addr)))];
+    const hit=subs.find(s=>t.includes(s.toLowerCase().replace('ā','a'))||t.includes(s.toLowerCase()));
+    if(hit){const ls=LISTINGS.filter(l=>suburbOf(l.addr)===hit);
+      return `In ${hit} right now: ${ls.map(l=>`${l.addr.split(',')[0]} (${l.bed} bed, ${l.meth.toLowerCase()})`).join('; ')}. Tap any listing below for the full details.`;}
+    if(/(bed|bedroom|family|first home|buy)/.test(t)){const n=+(t.match(/(\d)\s*(bed|br|bedroom)/)||[])[1];
+      const ls=LISTINGS.filter(l=>n?l.bed===n:true).slice(0,3);
+      return ls.length?`Worth a look: ${ls.map(l=>`${l.addr} (${l.bed} bed)`).join('; ')}. When I'm marketing a home I act for the seller, and I'll always deal with you fairly and honestly.`:`Nothing with exactly that right now, but new listings land every week. Leave your details below and Jot will let you know.`;}
+    if(/fitagent|fit|gym/.test(t)) return "#Fitagent is how Jot rolls. Gym early, phone on, open homes all day. Same discipline goes into selling your home.";
+    if(/chardi|chardhi|kala|bio/.test(t)) return "Chardi Kala means staying in high spirits, whatever happens. It's how Jot runs every campaign: positive, steady and in your corner.";
+    if(/why|choose|different|list with/.test(t)) return "Three things: he knows the southern suburbs street by street, he tells you the truth about price, and he markets homes like a creator, with reels and tours people actually watch.";
+    if(/apprais/.test(t)) return "It's free, written and backed by comparable local sales. Jot visits, walks the home with you, then sends the numbers in writing. No obligation.";
+    if(/video|reel|tiktok|instagram|social|market/.test(t)) return "Every listing gets a launch: photos, a reel and a full tour, live on barfoot.co.nz, Trade Me and Jot's socials. You approve everything before it posts.";
+    if(/fee|commission|cost/.test(t)) return "Jot sets out every cost in writing before you sign anything, and he'll recommend you get legal advice before signing the agency agreement.";
+    if(/award|top|sold|how many/.test(t)) return "Jot was Top Salesperson for the Manukau Branch to end March 2026, and has 103 homes sold as at 14 October 2026.";
+    if(/contact|call|phone|text|email/.test(t)) return "Call or text 027 786 0004, or email j.punia@barfoot.co.nz. Jot aims to reply within one business day.";
+    return "Good question for the real Jot. Leave it in the form below, or text 027 786 0004, and he aims to reply within one business day.";
+  }
+  async function remote(q){
+    const ctl=new AbortController(), to=setTimeout(()=>ctl.abort(),15000);
+    try{
+      const r=await fetch(new URL('../../api/ai/',location.href),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({task:'chat',input:q}),signal:ctl.signal});
+      if(!r.ok) return null; const j=await r.json(); return j&&j.text?j.text:null;
+    }catch(e){return null}finally{clearTimeout(to)}
+  }
+  let run=0;
+  function type(text,id){
+    const still=document.documentElement.classList.contains('still');
+    if(reduce||still){tx.textContent=text;return}
+    tx.textContent='';let i=0;
+    (function step(){if(id!==run)return;i+=2;tx.textContent=text.slice(0,i);if(i<text.length)setTimeout(step,14)})();
+  }
+  async function ask(q){
+    q=q.trim().slice(0,300); if(!q) return;
+    const id=++run; out.classList.add('on');
+    tx.innerHTML='<span class="dots" aria-label="Thinking"><i></i><i></i><i></i></span>';
+    const ans=(location.protocol.startsWith('http')&&await remote(q))||local(q);
+    if(id===run){ type(ans,id); document.getElementById('askSr').textContent=ans; }
+  }
+  form.addEventListener('submit',e=>{e.preventDefault();ask(input.value)});
+  document.querySelectorAll('.ask-chips button').forEach(b=>b.addEventListener('click',()=>{input.value=b.textContent;ask(b.textContent)}));
+})();
+</script>
 </body>
 </html>

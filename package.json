@@ -1,0 +1,8 @@
+{
+  "name": "jotpunia",
+  "private": true,
+  "description": "Homepage concepts for Jot Punia. Static pages plus one serverless AI endpoint (api/ai.mjs).",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0"
+  }
+}
