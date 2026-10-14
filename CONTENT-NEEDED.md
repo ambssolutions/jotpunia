@@ -26,3 +26,4 @@
 | Updated stats (homes for sale, homes sold) and the "as at" date | `index.html`, plus `FACTS` in `api/ai.mjs` |
 | 2 to 4 more client reviews with name, suburb and permission | review sections |
 | Exact coordinates for the two Airfield Drive lots in Takanini (new streets aren't on OpenStreetMap yet) | `LISTINGS` in `index.html` |
+| Optional: a 10 to 15 second welcome video of Jot (portrait, on his phone is fine) | Can replace the typed welcome messages that open the site |
