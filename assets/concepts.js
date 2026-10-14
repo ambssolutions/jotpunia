@@ -44,7 +44,7 @@
   root.innerHTML =
     '<style>' +
     ':host{all:initial}' +
-    '.bar{position:fixed;left:16px;bottom:16px;z-index:2147483000;display:flex;align-items:center;gap:2px;' +
+    '.bar{position:fixed;left:16px;bottom:16px;transition:bottom .35s ease;z-index:2147483000;display:flex;align-items:center;gap:2px;' +
     'font:600 13px/1 "Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;color:#fff;background:rgba(0,27,61,.94);' +
     'backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:999px;' +
     'padding:4px;box-shadow:0 14px 34px -12px rgba(0,0,0,.55)}' +
@@ -69,7 +69,7 @@
     '.menu hr{border:0;border-top:1px solid rgba(255,255,255,.12);margin:6px 4px}' +
     '.toast{position:absolute;left:0;bottom:calc(100% + 8px);background:#F8C00B;color:#002A5C;font-weight:700;font-size:12.5px;padding:8px 12px;border-radius:999px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:opacity .2s,transform .2s;pointer-events:none}' +
     '.toast.on{opacity:1;transform:none}' +
-    '@media (max-width:760px){.bar{left:50%;transform:translateX(-50%);bottom:calc(' + mobileBottom + 'px + env(safe-area-inset-bottom))}.sub,.name{display:none}.menu{left:50%;transform:translateX(-50%);min-width:min(290px,calc(100vw - 32px))}.toast{left:50%;transform:translate(-50%,4px)}.toast.on{transform:translate(-50%,0)}}' +
+    '@media (max-width:760px){.bar{left:50%;transform:translateX(-50%);bottom:calc(var(--jp-mb,' + mobileBottom + 'px) + env(safe-area-inset-bottom))}.sub,.name{display:none}.menu{left:50%;transform:translateX(-50%);min-width:min(290px,calc(100vw - 32px))}.toast{left:50%;transform:translate(-50%,4px)}.toast.on{transform:translate(-50%,0)}}' +
     '@media (prefers-reduced-motion:reduce){.toast{transition:none}}' +
     '@media print{.bar{display:none}}' +
     '</style>' +
@@ -117,4 +117,17 @@
   var footers = document.querySelectorAll('footer'), last = footers[footers.length - 1];
   if (last) { var pad = parseFloat(getComputedStyle(last).paddingBottom) || 0; last.style.paddingBottom = (pad + 64) + 'px'; }
   document.body.appendChild(host);
+
+  // On phones, a page can name its own bottom bar (data-mobile-bar). The switcher sits above it only while it is showing.
+  var barSel = script && script.getAttribute('data-mobile-bar');
+  var pageBar = barSel && document.querySelector(barSel);
+  if (pageBar) {
+    var nav = root.querySelector('.bar');
+    var place = function () {
+      var up = pageBar.classList.contains('show') && getComputedStyle(pageBar).display !== 'none';
+      nav.style.setProperty('--jp-mb', (up ? mobileBottom : 16) + 'px');
+    };
+    new MutationObserver(place).observe(pageBar, { attributes: true, attributeFilter: ['class'] });
+    addEventListener('resize', place); place();
+  }
 })();
