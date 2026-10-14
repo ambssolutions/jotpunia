@@ -1,17 +1,16 @@
 # Jot Punia: homepage concepts
 
-Homepage concepts for **Jot Punia**, Residential Sales at Barfoot & Thompson in South Auckland. Open `index.html` for the gallery. Each concept is one self-contained page at `designs/NN-slug/index.html`, and they all share `assets/`.
+Homepage concepts for **Jot Punia**, Residential Sales at Barfoot & Thompson in South Auckland. Open `index.html` for the gallery. On any concept page, the floating bar at the bottom switches between concepts and stars a concept for the shortlist (saved in the browser, shareable with a `?s=02,04` link). The concept list lives in `assets/concepts.js`. Each concept is one self-contained page at `designs/NN-slug/index.html`, and they all share `assets/`.
 
 | # | Concept | Style | Motion |
 |---|---|---|---|
-| 01 | Creator Channel | Social (first version) | Animated |
 | 02 | The Feed | Vertical reel feed with snap transitions | Highly animated |
 | 03 | Golden Hour | Calm and cinematic, dusk-to-night scroll lighting | Animated |
 | 04 | Southside | Interactive night map of South Auckland | Interactive |
 | 05 | Level Up | Selling your home as a polished game | Interactive |
 | 06 | Home Screen | The site is Jot's phone (JotOS) | Interactive |
 
-All concepts use Barfoot & Thompson branding, the same copy deck and the same compliance content (see `COMPLIANCE.md`). Every concept passes an axe-core WCAG 2.2 AA scan with 0 violations and has no horizontal scroll at 360px.
+All concepts use Barfoot & Thompson branding, the same copy deck and the same compliance content (see `COMPLIANCE.md`). The whole site is `noindex` (meta tag and `X-Robots-Tag` header) until Barfoot & Thompson approves it. Every concept passes an axe-core WCAG 2.2 AA scan with 0 violations and has no horizontal scroll at 360px.
 
 Once a concept is chosen, it moves to the site root and the gallery is removed.
 
