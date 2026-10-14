@@ -353,6 +353,7 @@ a.pill:focus-visible{outline-color:#fff}
 .sub-list .bar i{display:block;height:100%;background:var(--royal);border-radius:2px;width:var(--w);transform-origin:left;transition:transform 1s var(--ease)}
 .anim .t-u:not(.in) .bar i{transform:scaleX(0)}
 
+.sub-hint{margin-top:auto;padding-top:10px;font-size:13px;color:var(--muted)}
 /* entrance */
 .anim .tile{opacity:0;transform:translateY(22px) scale(.975)}
 .anim .tile.in{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .9s var(--ease),box-shadow .5s var(--ease);transition-delay:calc(var(--i,0)*70ms),calc(var(--i,0)*70ms),0s}
@@ -820,7 +821,7 @@ dialog.dlg.tint{background:var(--royal-tint)}
 
     <!-- review -->
     <figure data-k="r" class="tile t-r t-pad" style="--i:10;margin:0">
-      <div class="tlabel"><span>Review</span><span class="stars" aria-label="5 out of 5"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span></div>
+      <div class="tlabel"><span>Review</span><span class="stars" role="img" aria-label="5 out of 5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span></div>
       <blockquote>"Professional, honest and supportive. He helped our family find a home at a good price and handled the negotiation well. I highly recommend him to anyone looking to buy a home."</blockquote>
       <figcaption>Gurdeep Singh <span>· Buyer, South Auckland</span></figcaption>
     </figure>
@@ -839,6 +840,7 @@ dialog.dlg.tint{background:var(--royal-tint)}
       <div class="sub-bd">
         <div class="tlabel"><h2 id="sub-h" class="tl-h">Where I'm selling</h2><span>12 homes in this selection</span></div>
         <ul class="sub-list" id="subList"></ul>
+        <p class="sub-hint">Pick a suburb to filter the homes below.</p>
       </div>
     </article>
   </div>

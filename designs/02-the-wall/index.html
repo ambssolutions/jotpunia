@@ -842,19 +842,20 @@ function localFind(raw){
     return {ids:[],text:VALUATION_LINE,guard:true};
   const NUM={one:1,two:2,three:3,four:4,five:5,six:6};
   const num=w=>NUM[w]||parseInt(w,10);
-  const c=[], said=[];   // hard constraints, and how we describe them
+  const c=[], said=[], W=[], P=[], S=[];   // constraints; descriptions: with..., place, states
+  let noun='homes', noun1='home';
   const m=s.match(/\b(\d|one|two|three|four|five|six)\s*\+?\s*(-|\s)?(bed|bdr|br\b|bedroom|bdrm)/);
   let bedMin=0,bedMax=9;
-  if(m){bedMin=num(m[1]);said.push(`${bedMin}+ bedrooms`);}
-  else if(/\b(big|large|spacious|extended|whanau|room to grow|lots of room)\b/.test(s)){bedMin=4;said.push('4+ bedrooms for room to grow');}
-  else if(/\b(family|kids|children)\b/.test(s)){bedMin=3;said.push('3+ bedrooms for a family');}
-  if(/\b(first home|starter|first-home|couple|small|downsiz|compact|investment|investor)/.test(s)){bedMax=3;if(!m)said.push('3 bedrooms or fewer');}
+  if(m){bedMin=num(m[1]);W.push(`${bedMin}+ bedrooms`);}
+  else if(/\b(big|large|spacious|extended|whanau|room to grow|lots of room)\b/.test(s)){bedMin=4;W.push('4+ bedrooms');}
+  else if(/\b(family|kids|children)\b/.test(s)){bedMin=3;W.push('3+ bedrooms, a good start for a family');}
+  if(/\b(first home|starter|first-home|couple|small|downsiz|compact|investment|investor)/.test(s)){bedMax=3;if(!m)W.push('3 bedrooms or fewer');}
   if(bedMin||bedMax<9) c.push(l=>l.bed>=bedMin&&l.bed<=bedMax);
   const b=s.match(/\b(\d|one|two|three)\s*\+?\s*(bath|bathroom)/);
-  if(b){const n=num(b[1]);c.push(l=>l.bath>=n);said.push(`${n}+ bathrooms`);}
+  if(b){const n=num(b[1]);c.push(l=>l.bath>=n);W.push(`${n}+ bathrooms`);}
   const g=s.match(/\b(\d|two|three|four)\s*\+?\s*(car|garage|park)/);
-  if(g){const n=num(g[1]);c.push(l=>l.car>=n);said.push(`parking for ${n}+`);}
-  else if(/\b(garage|parking|cars|trade|tradie|boat|van)\b/.test(s)){c.push(l=>l.car>=2);said.push('parking for 2 or more');}
+  if(g){const n=num(g[1]);c.push(l=>l.car>=n);W.push(`parking for ${n}+`);}
+  else if(/\b(garage|parking|cars|trade|tradie|boat|van)\b/.test(s)){c.push(l=>l.car>=2);W.push('parking for 2 or more');}
   const AREAS=[
     [/mangere|airport/, l=>l.sub==='Māngere','in Māngere'],
     [/papatoetoe|toetoe/, l=>l.sub==='Papatoetoe','in Papatoetoe'],
@@ -868,28 +869,29 @@ function localFind(raw){
     [/franklin|pukekohe|rural|country|lifestyle|quiet|space to breathe/, l=>l.region==='franklin-district','out Franklin way']
   ];
   const areas=AREAS.filter(a=>a[0].test(s));
-  if(areas.length){c.push(l=>areas.some(a=>a[1](l)));said.push(areas.map(a=>a[2]).join(' or '));}
-  if(/townhouse|town house|low maintenance|lock and leave/.test(s)){c.push(l=>l.type==='townhouse');said.push('townhouses');}
-  else if(/standalone|stand-alone|stand alone|freestanding|backyard|section|yard/.test(s)){c.push(l=>l.type==='house');said.push('standalone houses');}
-  if(/auction/.test(s)){c.push(l=>/auction/i.test(l.meth));said.push('going to auction');}
-  if(/open home|this weekend|viewing|inspect/.test(s)){c.push(l=>l.tag==='Open home');said.push('with an open home listed');}
-  if(/\bnew\b|just listed|latest|fresh/.test(s)){c.push(l=>l.tag==='New listing');said.push('newly listed');}
+  if(areas.length){c.push(l=>areas.some(a=>a[1](l)));P.push(areas.map(a=>a[2]).join(' or '));}
+  if(/townhouse|town house|low maintenance|lock and leave/.test(s)){c.push(l=>l.type==='townhouse');noun='townhouses';noun1='townhouse';}
+  else if(/standalone|stand-alone|stand alone|freestanding|backyard|section|yard/.test(s)){c.push(l=>l.type==='house');noun='standalone houses';noun1='standalone house';}
+  if(/auction/.test(s)){c.push(l=>/auction/i.test(l.meth));S.push('going to auction');}
+  if(/open home|this weekend|viewing|inspect/.test(s)){c.push(l=>l.tag==='Open home');S.push('with an open home listed');}
+  if(/\bnew\b|just listed|latest|fresh/.test(s)){c.push(l=>l.tag==='New listing');S.push('newly listed');}
   const bud=s.match(/(?:under|below|less than|max(?:imum)?|up to|budget(?: of)?|around|about|for)\s*(\$)?\s*(\d+(?:\.\d+)?)\s*(k|m|mil|million)?\b/)||s.match(/(\$)\s*(\d+(?:\.\d+)?)\s*(k|m|mil|million)?\b/);
   let budget=0;
   if(bud){let n=parseFloat(bud[2]);const u=bud[3]||'';
     if(u) n*=/^m/.test(u)?1e6:1e3; else if(bud[1]) n*=n<10?1e6:n<5000?1e3:1;
     if((bud[1]||u)&&n>=50000) budget=n;}
-  if(budget){c.push(l=>l.price>0&&l.price<=budget);said.push(`with an advertised price up to $${Math.round(budget/1000)}k`);}
+  if(budget){c.push(l=>l.price>0&&l.price<=budget);W.push(`an advertised price up to $${Math.round(budget/1000)}k`);}
 
   if(!c.length) return {ids:[],text:"Here's the whole wall. Try a suburb, a bedroom count, 'auction' or a budget, and I'll pull the matches forward."};
+  const desc=n=>[n===1?noun1:noun,...P,W.length?'with '+W.join(' and '):'',...S].filter(Boolean).join(' ').replace(/ with (.*?) (going|with an|newly)/,' with $1, $2');
   let hits=LISTINGS.filter(l=>c.every(f=>f(l)));
   let lead;
   if(hits.length){
-    lead=`${hits.length===1?'One home':hits.length+' homes'} ${said.join(', ')}.`;
+    lead=`${hits.length===1?'One':hits.length} ${desc(hits.length)}.`;
   }else{
     const scored=LISTINGS.map(l=>({l,n:c.filter(f=>f(l)).length})).sort((a,b)=>b.n-a.n);
     const top=scored[0].n; hits=top?scored.filter(x=>x.n===top).map(x=>x.l).slice(0,4):[];
-    lead=hits.length?`Nothing ticks every box (${said.join(', ')}), so here are the closest ${hits.length===1?'match':hits.length+' matches'}.`:`Nothing on this wall fits ${said.join(', ')}. Jot has 59 homes for sale, so ask him directly.`;
+    lead=hits.length?`No ${desc(2)} on the wall right now, so here ${hits.length===1?'is the closest match':'are the '+hits.length+' closest'}.`:`Nothing on this wall fits that. Jot has 59 homes for sale, so ask him directly.`;
   }
   let extra='';
   if(budget) extra=' Most of Jot\'s homes are by negotiation or auction, so ask him about those too.';
