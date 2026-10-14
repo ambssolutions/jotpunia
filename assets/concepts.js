@@ -6,15 +6,15 @@
 (function () {
   var CONCEPTS = [
     { slug: '01-signature', name: 'Signature', type: 'Barfoot classic', motion: 'Animated',
-      desc: 'Barfoot DNA done premium. Jot\'s portrait with the yellow SOLD sign, his award, a live listing card and a swipeable rail of his real homes.' },
+      desc: 'Barfoot DNA done premium. Jot\'s portrait with the yellow SOLD sign and his award, plus Ask Jot AI right in the hero for instant answers about his homes and process.' },
     { slug: '02-the-wall', name: 'The Wall', type: 'Listings-first', motion: 'Highly animated',
-      desc: 'Opens on a full-screen living wall of Jot\'s real listings. Filter by suburb, hover any home, and Jot steps out of the grid.' },
+      desc: 'A living wall of Jot\'s real listings, styled like his TikTok grid. Describe your next home to the AI home finder and watch the wall rearrange to match.' },
     { slug: '03-the-story', name: 'The Story', type: 'Cinematic', motion: 'Highly animated',
-      desc: 'A full-screen portrait opening, then Jot\'s story told in pinned chapters, each set against one of his real homes.' },
+      desc: 'A cinematic opening: tell Jot your move in one line and AI writes your three-chapter story, in English or Punjabi. Then his story plays out in pinned chapters.' },
     { slug: '04-dashboard', name: 'Dashboard', type: 'App-like', motion: 'Interactive',
-      desc: 'Jot\'s profile reimagined as a live dashboard. Stats, award, listings, reviews and socials as interactive Barfoot-style tiles.' },
+      desc: 'Jot\'s profile as a live dashboard. Ask it anything in the AI command bar and the matching tiles light up: stats, award, listings, socials and reviews.' },
     { slug: '05-royal', name: 'Royal', type: 'Bold', motion: 'Animated',
-      desc: 'Barfoot royal blue at full volume. Giant serif type, the ampersand as a hero graphic and big alternating feature rows.' }
+      desc: 'Royal blue at full volume. Describe your home and the AI reel hook generator writes the scroll-stopping opener Jot would film, inside a phone frame.' }
   ];
   var KEY = 'jp-shortlist';
   function getList() { try { return JSON.parse(localStorage.getItem(KEY) || '[]').filter(function (s) { return CONCEPTS.some(function (c) { return c.slug === s; }); }); } catch (e) { return []; } }

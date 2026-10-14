@@ -144,6 +144,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .subs-bars i.run::after{animation:fillbar var(--dur,5s) linear forwards}
 @keyframes fillbar{to{transform:none}}
 .subs-lines{margin-top:12px;max-width:620px;display:grid}
+.subs-line,.chap h3,.ftx h3{text-wrap:balance}
 .subs-line{grid-area:1/1;margin:0;font:500 clamp(19px,1.55vw,24px)/1.4 var(--serif);color:#fff;background:rgba(0,18,46,.78);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:4px 12px;border-radius:4px;opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
 .subs-line span.inner{background:inherit}
 .subs-line.on{opacity:1;visibility:visible}
@@ -167,11 +168,12 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .award b{display:block;font:600 16px/1.25 var(--serif);color:#fff}
 .award small{display:block;font-size:12.5px;color:#C9D6F2;margin-top:2px}
 .award small a{color:#fff}
+.hero-copy{min-width:0}
 .hero .lic{margin-top:14px;font-size:12.5px;color:#C9D6F2}
 .hero-photo{position:relative;z-index:1;margin:0}
 .hero-photo .glow{position:absolute;left:50%;top:4%;width:70%;aspect-ratio:1;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(242,106,27,.55),rgba(242,106,27,.18) 50%,transparent 75%);filter:blur(10px);z-index:0;animation:breathe 6s ease-in-out infinite}
 @keyframes breathe{50%{opacity:.7;transform:translateX(-50%) scale(1.06)}}
-.hero-photo .frame{position:absolute;inset:0;z-index:1;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 28%),linear-gradient(to top,transparent 0,#000 26%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 28%),linear-gradient(to top,transparent 0,#000 26%);mask-composite:intersect}
+.hero-photo .frame{position:absolute;inset:0;z-index:1;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 42%),linear-gradient(to top,transparent 0,#000 26%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 42%),linear-gradient(to top,transparent 0,#000 26%);mask-composite:intersect}
 .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%;filter:saturate(1.06) contrast(1.03)}
 .hero-photo .tint{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(0,26,58,.7),transparent 45%);pointer-events:none}
 .credit{position:absolute;right:var(--pad);top:28px;z-index:3;text-align:right;font:500 12.5px/1.5 var(--sans);color:#fff;letter-spacing:.04em;text-shadow:0 1px 10px rgba(0,20,60,.7)}
@@ -182,7 +184,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 @keyframes drip{to{top:110%}}
 @media (min-width:1001px){.hero-photo{height:100%}.cue{left:76%}}
 @media (max-width:1000px){
-  .hero{grid-template-columns:1fr;min-height:0}
+  .hero{grid-template-columns:minmax(0,1fr);min-height:0}
+  .award{width:auto}
   .hero-photo{order:-1;height:min(60svh,600px);min-height:400px;margin-bottom:-110px}
   .hero-photo .frame{-webkit-mask-image:linear-gradient(to top,transparent 0,#000 36%);mask-image:linear-gradient(to top,transparent 0,#000 36%)}
   .hero-copy{padding:0 var(--pad) 56px;max-width:none}
@@ -191,7 +194,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .subs{position:static;margin-top:18px;padding:18px 16px;border-radius:12px;background:rgba(0,18,46,.45);border:1px solid rgba(255,255,255,.14)}
   .credit,.cue{display:none}
 }
-@media (max-width:480px){.slate-in{flex-direction:column}.slate-in .btn{width:100%}.toprow{align-items:flex-start}}
+@media (max-width:600px){.toprow{flex-direction:column;align-items:flex-start;gap:14px}.hero .kicker{letter-spacing:.14em}.subs-top{letter-spacing:.14em;flex-wrap:wrap;justify-content:center}}
+@media (max-width:480px){.slate-in{flex-direction:column}.slate-in .btn{width:100%}}
 
 /* ---------- STORY: pinned horizontal chapters ---------- */
 .story{position:relative;background:#fff}
@@ -200,7 +204,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .hud .now{display:flex;align-items:baseline;gap:10px;white-space:nowrap;min-width:0}
 .hud .now b{font:500 22px/1 var(--serif);color:var(--ink);font-variant-numeric:tabular-nums}
 .hud .now b small{font-size:15px;color:var(--muted)}
-.hud .now span{font:italic 500 17px/1 var(--serif);color:var(--muted);overflow:hidden;text-overflow:ellipsis}
+.hud .now>span{font:italic 500 17px/1 var(--serif);color:var(--muted);overflow:hidden;text-overflow:ellipsis}
 .prog{flex:1;position:relative;height:4px;border-radius:4px;background:var(--royal-tint);overflow:hidden;min-width:60px}
 .prog i{position:absolute;inset:0;background:var(--royal);transform-origin:left;transform:scaleX(.1667);border-radius:4px}
 .ticks{position:absolute;inset:0;display:flex;pointer-events:none}
@@ -218,7 +222,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .chap .ph{position:relative;overflow:hidden;background:var(--bg-2);margin:0}
 .chap .ph .clip{position:absolute;inset:0;will-change:clip-path}
 .chap .ph img{position:absolute;inset:-2% -8%;width:116%;height:104%;max-width:none;object-fit:cover}
-.chap .ph figcaption{position:absolute;left:16px;bottom:16px;right:16px;z-index:2;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font:500 13px/1.3 var(--sans);color:#fff}
+.chap .ph figcaption{position:absolute;left:16px;bottom:16px;right:16px;z-index:2;display:flex;justify-content:flex-end;align-items:center;gap:10px;flex-wrap:wrap;text-align:right;font:500 13px/1.3 var(--sans);color:#fff}
 .chap .ph figcaption span{background:rgba(0,26,58,.78);padding:8px 11px;border-radius:6px;backdrop-filter:blur(6px)}
 .chap .ph figcaption a{color:#fff}
 .chap:nth-child(even){grid-template-columns:.94fr 1.06fr}
@@ -226,15 +230,16 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .chap .num{display:flex;align-items:center;gap:14px;font:600 12.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase}
 .chap .num b{font:italic 500 15px/1 var(--serif);letter-spacing:0;text-transform:none;opacity:.85}
 .chap .big{position:absolute;right:clamp(20px,3vw,48px);top:clamp(14px,2vw,28px);font:italic 500 clamp(80px,10vw,170px)/1 var(--serif);letter-spacing:-.05em;opacity:.12;pointer-events:none}
+.chap .big::before{content:attr(data-n)}
 .chap h3{font-size:clamp(38px,4.2vw,68px);line-height:1.02;letter-spacing:-.028em;margin-top:26px;max-width:13ch}
 .chap h3 em{font-style:italic}
 .chap .say{margin-top:24px;font-size:clamp(16px,1.25vw,18.5px);line-height:1.6;max-width:44ch}
 .chap .fn{margin-top:18px;font-size:13px;opacity:.9}
 .chap .fn a{color:inherit}
-.segs{display:flex;gap:6px;margin-top:auto;padding-top:34px;max-width:320px}
+.chap .top{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.segs{display:flex;gap:5px;width:150px}
 .segs i{flex:1;height:4px;border-radius:4px;background:currentColor;opacity:.2}
 .segs i.on{opacity:1}
-.chap .tx>.top{margin-bottom:auto}
 .chap .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 15px;border-radius:999px;font:600 14px/1 var(--sans);text-decoration:none}
 .pill svg{width:16px;height:16px}
@@ -264,10 +269,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .chap h3{font-size:clamp(32px,9vw,44px);margin-top:18px}
   .chap .say{margin-top:16px;font-size:15.5px}
   .chap .big{font-size:84px;top:auto;bottom:10px}
-  .segs{padding-top:26px}
   .hud{height:auto;min-height:var(--hud);padding:12px 16px;flex-wrap:wrap;row-gap:10px}
   .hud h2{display:none}
-  .hud .now span{display:none}
+  .hud .now>span{display:none}
   .prog{order:3;flex-basis:100%}
   .hud .nb{margin-left:auto}
   .soldsign{padding:8px 12px 7px}.soldsign b{font-size:22px}
@@ -294,7 +298,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .frow{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
 .frow:nth-child(even){grid-template-columns:1fr 1.4fr}
 .frow:nth-child(even) .fph{order:2}
-.fph{position:relative;display:block;aspect-ratio:3/2;border-radius:10px;overflow:hidden;background:var(--bg-2)}
+.fph{position:relative;display:block;aspect-ratio:3/2;border-radius:10px;overflow:hidden}
 .fph .clip{position:absolute;inset:0}
 .fph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 .fph:hover img{transform:scale(1.04)}
@@ -360,7 +364,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .know b{display:block;font:600 12.5px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--royal);margin-bottom:10px}
 .know p+p{margin-top:8px}
 .review{position:relative;margin:0;border-radius:16px;overflow:hidden;background:var(--navy);color:#fff;padding:clamp(30px,4.4vw,60px)}
-.review .q{position:absolute;right:28px;top:-34px;font:700 240px/1 var(--serif);color:var(--yellow);opacity:.9}
+.review .q{position:absolute;right:30px;top:18px;font:italic 600 150px/.8 var(--serif);color:var(--yellow);height:.62em;overflow:hidden}
 .review .stars{display:flex;gap:4px;color:var(--yellow)}.review .stars svg{width:20px;height:20px}
 .review blockquote{position:relative;margin:24px 0 0;font:italic 500 clamp(24px,2.5vw,34px)/1.3 var(--serif);color:#fff;letter-spacing:-.01em}
 .review figcaption{display:flex;align-items:center;gap:14px;margin-top:30px;font-weight:600}
@@ -529,13 +533,13 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
 <section class="hero" id="top" aria-labelledby="hero-h">
   <div class="hero-copy">
     <div class="toprow">
-      <p class="kicker">Residential Sales · Barfoot &amp; Thompson Māngere</p>
+      <p class="kicker">Barfoot &amp; Thompson Māngere · <span lang="pa">ਚੜ੍ਹਦੀ ਕਲਾ</span></p>
       <div class="lang" role="group" aria-label="Hero language">
         <button type="button" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang="pa" aria-pressed="false" lang="pa">ਪੰਜਾਬੀ</button>
       </div>
     </div>
-    <h1 id="hero-h" aria-label="Hello. I'm Jot."></h1>
+    <h1 id="hero-h" aria-label="Hello. I'm Jot."><span class="l" aria-hidden="true"><span class="w"><span>Hello<span class="dot">.</span></span></span></span><span class="l" aria-hidden="true"><span class="w"><span>I'm</span></span> <span class="w"><span><em>Jot</em><span class="dot">.</span></span></span></span></h1>
     <p class="sub" id="heroSub">Every move is a story. Let's write yours.</p>
 
     <form class="slate" id="slate" novalidate aria-describedby="aiNote">
@@ -574,7 +578,6 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
     <span class="frame"><img src="../../assets/real/jot-900.webp" srcset="../../assets/real/jot-600.webp 600w, ../../assets/real/jot-900.webp 900w" sizes="(max-width:1000px) 100vw, 50vw" alt="Jot Punia in a navy suit and orange turban, wearing his Barfoot &amp; Thompson name badge" width="900" height="1199" fetchpriority="high"></span>
     <span class="tint" aria-hidden="true"></span>
   </figure>
-  <p class="credit" aria-hidden="true"><b>Jot Punia</b><span lang="pa">ਚੜ੍ਹਦੀ ਕਲਾ</span> · #Chardikla #Fitagent</p>
   <a class="cue" href="#story"><i aria-hidden="true"></i>The story</a>
 </section>
 
@@ -592,31 +595,29 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
 
         <article class="chap t-royal" data-title="The roots" aria-labelledby="c1">
           <div class="tx">
-            <span class="big" aria-hidden="true">01</span>
-            <p class="num">Chapter 01 <b>The roots</b></p>
+            <span class="big" aria-hidden="true" data-n="01"></span>
+            <div class="top"><p class="num">Chapter 01 <b>The roots</b></p><div class="segs" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div></div>
             <h3 id="c1">40 years of real estate in the <em>family.</em></h3>
             <p class="say">"Real estate runs deep in my blood, with a family legacy spanning over 40 years in the industry."</p>
-            <div class="segs" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
           </div>
           <figure class="ph"><span class="clip"><img src="../../assets/real/9c807-1200.webp" alt="354 Linwood Road, Karaka, a dark-clad family home with a timber gable, one of Jot's listings" width="1200" height="800" loading="eager" decoding="async"></span><figcaption><span>Pictured: 354 Linwood Road, Karaka</span></figcaption></figure>
         </article>
 
         <article class="chap t-white" data-title="The place" aria-labelledby="c2">
           <div class="tx">
-            <span class="big" aria-hidden="true">02</span>
-            <p class="num">Chapter 02 <b>The place</b></p>
+            <span class="big" aria-hidden="true" data-n="02"></span>
+            <div class="top"><p class="num">Chapter 02 <b>The place</b></p><div class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
             <h3 id="c2">15 years in Aotearoa. <em>South Auckland since 2019.</em></h3>
             <p class="say">New Zealand has been home for more than 15 years. I've lived in South Auckland since 2019 and watched these streets grow first-hand. It's why I know them the way I do.</p>
             <div class="row" aria-label="Greetings"><span class="pill">Kia ora</span><span class="pill">Sat Sri Akal</span><span class="pill">Namaste</span></div>
-            <div class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
           </div>
           <figure class="ph"><span class="clip"><img src="../../assets/real/9ca4j-1200.webp" alt="525A Massey Road, Māngere, a new two-storey townhouse, one of Jot's listings" width="1200" height="800" loading="lazy" decoding="async"></span><figcaption><span>Pictured: 525A Massey Road, Māngere</span></figcaption></figure>
         </article>
 
         <article class="chap t-navy" data-title="The craft" aria-labelledby="c3">
           <div class="tx">
-            <span class="big" aria-hidden="true">03</span>
-            <p class="num">Chapter 03 <b>The craft</b></p>
+            <span class="big" aria-hidden="true" data-n="03"></span>
+            <div class="top"><p class="num">Chapter 03 <b>The craft</b></p><div class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
             <h3 id="c3">A digital creator. <em>Your home gets a launch.</em></h3>
             <p class="say">As a digital creator, I use technology and creative strategies to show your property in the best possible light. On TikTok, about 30K people follow along. Your home gets that same energy on launch day.</p>
             <p class="fn">About 30K TikTok followers and 325.8K likes, about 12K on Instagram, as at 14 October 2026.</p>
@@ -624,44 +625,40 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
               <a class="pill" href="https://www.instagram.com/jot_punia_real_estate/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@jot_punia_real_estate</a>
               <a class="pill" href="https://www.tiktok.com/@jotsinghpunia" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tt"/></svg>@jotsinghpunia</a>
             </div>
-            <div class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
           </div>
           <figure class="ph"><span class="clip"><img src="../../assets/real/9abn7-1200.webp" alt="23C Laureston Avenue, Papatoetoe, a row of new townhouses lit up at dusk, one of Jot's listings" width="1200" height="800" loading="lazy" decoding="async"></span><figcaption><span>Pictured: 23C Laureston Avenue, Papatoetoe</span></figcaption></figure>
         </article>
 
         <article class="chap t-white" data-title="The record" aria-labelledby="c4">
           <div class="tx">
-            <span class="big" aria-hidden="true">04</span>
-            <p class="num">Chapter 04 <b>The record</b></p>
+            <span class="big" aria-hidden="true" data-n="04"></span>
+            <div class="top"><p class="num">Chapter 04 <b>The record</b></p><div class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
             <h3 id="c4"><span class="soldsign" aria-hidden="true"><b>SOLD</b><small>Barfoot &amp; Thompson</small></span><br>103 homes <em>sold.</em></h3>
-            <p class="say">And 59 more for sale right now, from Māngere to Clarks Beach. Each one with straight answers on price and an update after every open home.</p>
+            <p class="say">And 59 more for sale right now, from Māngere to Clarks Beach. Plenty of stories still to tell.</p>
             <p class="fn">As at 14 October 2026, from <a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Jot's Barfoot &amp; Thompson profile</a>.</p>
-            <div class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
           </div>
           <figure class="ph"><span class="clip"><img src="../../assets/real/9c9q7-1200.webp" alt="6 Civita Court, Manurewa, a brick home with a wide lawn, one of Jot's listings" width="1200" height="800" loading="lazy" decoding="async"></span><figcaption><span>Pictured: 6 Civita Court, Manurewa, for sale by auction</span></figcaption></figure>
         </article>
 
         <article class="chap t-royal" data-title="The recognition" aria-labelledby="c5">
           <div class="tx">
-            <span class="big" aria-hidden="true">05</span>
-            <p class="num">Chapter 05 <b>The recognition</b></p>
+            <span class="big" aria-hidden="true" data-n="05"></span>
+            <div class="top"><p class="num">Chapter 05 <b>The recognition</b></p><div class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
             <h3 id="c5">Top Salesperson, <em>Manukau Branch.</em></h3>
             <p class="say">Awarded to end March 2026. Trustworthy, honest and a proficient communicator, I put transparency and integrity first, with timely updates and reliable guidance.</p>
             <p class="fn">To end March 2026, from <a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener">Jot's Barfoot &amp; Thompson profile</a>.</p>
-            <div class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
           </div>
           <figure class="ph"><span class="clip"><img src="../../assets/real/9c3jm-1200.webp" alt="29 John Main Drive, Ramarama, a new dark-clad home with a gabled roof, one of Jot's listings" width="1200" height="800" loading="lazy" decoding="async"></span><figcaption><span>Pictured: 29 John Main Drive, Ramarama</span></figcaption></figure>
         </article>
 
         <article class="chap t-navy" data-title="The goal" aria-labelledby="c6">
           <div class="tx">
-            <span class="big" aria-hidden="true">06</span>
-            <p class="num">Chapter 06 <b>The goal</b></p>
+            <span class="big" aria-hidden="true" data-n="06"></span>
+            <div class="top"><p class="num">Chapter 06 <b>The goal</b></p><div class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
             <h3 id="c6">The goal: Barfoot <span class="amp">&amp;</span> Thompson's <em>number one.</em></h3>
             <p class="say">"My mission is to become the number one agent for Barfoot &amp; Thompson, all the while prioritising my clients."</p>
             <p class="fn">A goal, in Jot's words. Not a ranking.</p>
             <a class="btn btn-white" href="#appraisal">Be part of the next chapter <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <div class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
           </div>
           <figure class="ph"><span class="clip"><img src="../../assets/real/9abkx-1200.webp" alt="13E Caspar Road, Papatoetoe, a new two-storey townhouse, one of Jot's listings" width="1200" height="800" loading="lazy" decoding="async"></span><figcaption><span>Pictured: 13E Caspar Road, Papatoetoe</span></figcaption></figure>
         </article>
@@ -882,9 +879,9 @@ addEventListener('DOMContentLoaded',function(){
     const [street,sub]=split(l.addr);
     if(k<FEATURED){
       const row=document.createElement('article');row.className='frow';
-      row.innerHTML=`<a class="fph" href="${l.url}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><span class="clip"><img src="${img(l.id,1200)}" alt="" width="1200" height="800" loading="lazy" decoding="async"></span>${l.tag?`<span class="chip">${l.tag}</span>`:''}</a>
+      row.innerHTML=`<a class="fph" href="${l.url}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><span class="clip"><img src="${img(l.id,1200)}" alt="" width="1200" height="800" loading="lazy" decoding="async">${l.tag?`<span class="chip">${l.tag}</span>`:''}</span></a>
         <div class="ftx rv"><p class="no">No. ${String(k+1).padStart(2,'0')} · ${sub}</p><h3>${street}<small>${sub}</small></h3><p class="meth">${l.meth}</p><p class="spec">${spec(l)}</p>
-        <a class="btn btn-line" href="${l.url}" target="_blank" rel="noopener">View listing<span class="vh">: ${l.addr}</span> on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></a></div>`;
+        <a class="btn btn-line" href="${l.url}" target="_blank" rel="noopener">View listing on barfoot.co.nz<span class="vh">: ${l.addr}</span> <svg aria-hidden="true"><use href="#i-ext"/></svg></a></div>`;
       feat.appendChild(row);
     } else {
       const a=document.createElement('a');a.className='mini rv';a.href=l.url;a.target='_blank';a.rel='noopener';
@@ -917,8 +914,121 @@ addEventListener('DOMContentLoaded',function(){
   /* ---- pause animations (WCAG 2.2.2) ---- */
   let still=html.classList.contains('still');
   const sb=$('#stillBtn');
-  function setStill(v){still=v;html.classList.toggle('still',v);sb.textContent=v?'Play animations':'Pause animations';sb.setAttribute('aria-pressed',v);try{localStorage.setItem('jp-still',v?'1':'0');}catch(e){}}
+  function setStill(v){still=v;html.classList.toggle('still',v);sb.textContent=v?'Play animations':'Pause animations';sb.setAttribute('aria-pressed',v);try{localStorage.setItem('jp-still',v?'1':'0');}catch(e){}if(window.__onStill)window.__onStill(v);}
   sb.addEventListener('click',()=>setStill(!still));setStill(still);
+
+
+  /* ---- AI hero: "Tell Jot your move" -> 3-chapter story as film subtitles ---- */
+  const AI_URL=(()=>{try{return new URL('../../api/ai',location.href).href;}catch(e){return '';}})();
+  const T={
+    en:{h1:`<span class="l" aria-hidden="true"><span class="w"><span>Hello<span class="dot">.</span></span></span></span><span class="l" aria-hidden="true"><span class="w"><span>I'm</span></span> <span class="w"><span><em>Jot</em><span class="dot">.</span></span></span></span>`,aria:"Hello. I'm Jot.",
+        sub:"Every move is a story. Let's write yours.",label:'Tell me your move in one line.',ph:'First home, two kids, budget is tight',go:'Roll the story',busy:'Rolling',
+        idle:"Type your move, or tap an idea. Jot's take arrives in three chapters.",k:'Your story plays here',ch:(i)=>`Chapter ${i} of 3`,load:'Writing your story',replay:'Replay'},
+    pa:{h1:`<span class="l" aria-hidden="true"><span class="w"><span>ਸਤ ਸ੍ਰੀ ਅਕਾਲ<span class="dot">।</span></span></span></span><span class="l" aria-hidden="true"><span class="w"><span>ਮੈਂ</span></span> <span class="w"><span>ਜੋਤ</span></span> <span class="w"><span>ਹਾਂ<span class="dot">।</span></span></span></span>`,aria:'ਸਤ ਸ੍ਰੀ ਅਕਾਲ। ਮੈਂ ਜੋਤ ਹਾਂ।',
+        sub:'ਹਰ ਘਰ ਦੀ ਇੱਕ ਕਹਾਣੀ ਹੈ। ਆਓ ਤੁਹਾਡੀ ਲਿਖੀਏ।',label:'ਆਪਣੀ ਗੱਲ ਇੱਕ ਲਾਈਨ ਵਿੱਚ ਦੱਸੋ।',ph:'ਪਹਿਲਾ ਘਰ, ਦੋ ਬੱਚੇ, ਬਜਟ ਘੱਟ',go:'ਕਹਾਣੀ ਚਲਾਓ',busy:'ਲਿਖ ਰਹੇ ਹਾਂ',
+        idle:'ਆਪਣੀ ਗੱਲ ਲਿਖੋ ਜਾਂ ਕੋਈ ਵਿਚਾਰ ਚੁਣੋ। ਕਹਾਣੀ ਤਿੰਨ ਹਿੱਸਿਆਂ ਵਿੱਚ ਆਵੇਗੀ।',k:'ਤੁਹਾਡੀ ਕਹਾਣੀ',ch:(i)=>`ਅਧਿਆਇ ${i} / 3`,load:'ਕਹਾਣੀ ਲਿਖੀ ਜਾ ਰਹੀ ਹੈ',replay:'ਦੁਬਾਰਾ'}
+  };
+  const PLACES=['Māngere','Mangere','Papatoetoe','Manurewa','Takanini','Papakura','Karaka','Ramarama','Clarks Beach','Flat Bush','Manukau','Ōtāhuhu','Otahuhu','Hill Park','Conifer Grove','Opaheke','Wattle Downs','Pukekohe','Drury'];
+  const STORIES={
+    en:{
+      first:["Your broker, your budget and me at one table. We find the number that works for your family, then we stick to it.","Open homes across {place}, picked for how you actually live. If a place isn't right, you'll hear it from me first.","Offer, conditions, settlement. Then the best scene of all: your keys, your front door. Chardi Kala, from day one."],
+      sell:["A free written appraisal for your place in {place}, backed by comparable local sales. An honest number, not a flattering one.","Launch day. Photos, video and reels go live on barfoot.co.nz, Trade Me and socials together, with an update after every open home.","I negotiate for your best result and stay right through to settlement. High spirits, steady hands. That's Chardi Kala."],
+      up:["More room, same people you love. We plan the sale and the purchase together, so nobody ends up between homes.","I launch your current home in {place} while we shortlist the bigger one. Two storylines, one calm plan.","Settlement dates lined up, boxes packed, a bigger table for Sunday lunch. Chardi Kala, all the way in."],
+      invest:["Clear numbers first. We talk about what you want the property to do, and your own adviser checks the finance side.","I show you homes across {place} and tell you the honest upkeep story on each one, not just the good angles.","Offer, due diligence and settlement, done properly. Calm head, high spirits. Chardi Kala."],
+      down:["A family home holds a lot of stories. We take our time, and we start with a free written appraisal.","A launch that does your home justice, and a shortlist of easier-living places near the people you love in {place}.","One move, a lighter load and more time for what matters. Chardi Kala for the next chapter."],
+      any:["First, I listen. Coffee, questions and a clear picture of what you want from your move.","Then a plan for {place} with every step and cost laid out, and updates you never have to chase.","Through to the final signature, with me in your corner. Whatever the plot, we keep our spirits high. Chardi Kala."]},
+    pa:{
+      first:['ਪਹਿਲਾਂ ਸਹੀ ਬਜਟ ਅਤੇ ਸਾਫ਼ ਯੋਜਨਾ।','ਫਿਰ {place} ਵਿੱਚ ਤੁਹਾਡੇ ਪਰਿਵਾਰ ਲਈ ਸਹੀ ਘਰ ਦੀ ਭਾਲ।','ਅੰਤ ਵਿੱਚ ਚਾਬੀਆਂ ਤੁਹਾਡੇ ਹੱਥ। ਚੜ੍ਹਦੀ ਕਲਾ।'],
+      sell:['ਮੁਫ਼ਤ ਲਿਖਤੀ ਅੰਦਾਜ਼ਾ, ਨੇੜਲੀਆਂ ਵਿਕਰੀਆਂ ਦੇ ਆਧਾਰ ਤੇ।','ਤੁਹਾਡੇ ਘਰ ਦਾ ਲਾਂਚ: ਫ਼ੋਟੋ, ਵੀਡੀਓ ਅਤੇ ਰੀਲਾਂ।','ਸੈਟਲਮੈਂਟ ਤੱਕ ਤੁਹਾਡੇ ਨਾਲ। ਚੜ੍ਹਦੀ ਕਲਾ।'],
+      up:['ਵਧਦੇ ਪਰਿਵਾਰ ਲਈ ਵੱਡਾ ਘਰ।','ਵੇਚਣ ਅਤੇ ਖਰੀਦਣ ਦੀ ਇੱਕੋ ਯੋਜਨਾ।','ਨਵੇਂ ਘਰ ਵਿੱਚ ਹੋਰ ਥਾਂ, ਹੋਰ ਹਾਸਾ। ਚੜ੍ਹਦੀ ਕਲਾ।'],
+      invest:['ਪਹਿਲਾਂ ਸਾਫ਼ ਅੰਕੜੇ।','{place} ਵਿੱਚ ਘਰ, ਹਰ ਇੱਕ ਦੀ ਸੱਚੀ ਗੱਲ ਨਾਲ।','ਸਮਝਦਾਰ ਸੌਦਾ। ਚੜ੍ਹਦੀ ਕਲਾ।'],
+      down:['ਪਰਿਵਾਰਕ ਘਰ ਦੀਆਂ ਯਾਦਾਂ ਦਾ ਸਤਿਕਾਰ।','ਅਗਲਾ ਘਰ ਛੋਟਾ, ਸੌਖਾ ਅਤੇ ਸੋਹਣਾ।','ਨਵੀਂ ਸ਼ੁਰੂਆਤ। ਚੜ੍ਹਦੀ ਕਲਾ।'],
+      any:['ਪਹਿਲਾਂ ਮੈਂ ਤੁਹਾਡੀ ਗੱਲ ਸੁਣਾਂਗਾ।','ਫਿਰ ਸਾਫ਼ ਯੋਜਨਾ, ਹਰ ਕਦਮ ਤੇ ਖ਼ਬਰ।','ਆਖ਼ਰੀ ਦਸਤਖ਼ਤ ਤੱਕ ਨਾਲ। ਚੜ੍ਹਦੀ ਕਲਾ।']}
+  };
+  const REFUSE={en:"I won't guess a number. Jot gives a free written appraisal backed by comparable sales.",pa:'ਮੈਂ ਕੀਮਤ ਦਾ ਅੰਦਾਜ਼ਾ ਨਹੀਂ ਲਾਵਾਂਗਾ। ਜੋਤ ਮੁਫ਼ਤ ਲਿਖਤੀ ਅੰਦਾਜ਼ਾ ਦਿੰਦੇ ਹਨ।'};
+  const PRICEQ=/(\bworth\b|\bvalu(e|ation)\b|how much (is|would|will|could|can|does)|what('?s| is| would)? (it|my|the|this|our)[^.?]{0,30}(price|sell for|go for|fetch)|\bsell for\b|\bgo for\b|ਕੀਮਤ|ਮੁੱਲ)/i;
+  function pick(t){t=t.toLowerCase();
+    if(/downsiz|smaller|retir|empty nest|kids (have )?(left|moved)/.test(t))return 'down';
+    if(/upsiz|bigger|more room|more space|baby|growing|extra bedroom|ਵੱਡਾ/.test(t))return 'up';
+    if(/invest|rental|\byield|portfolio|landlord|ਨਿਵੇਸ਼/.test(t))return 'invest';
+    if(/first|starter|first-home|ਪਹਿਲਾ/.test(t))return 'first';
+    if(/sell|selling|list my|listing|ਵੇਚ/.test(t))return 'sell';
+    if(/kids|budget|buy|rent(ing)? now/.test(t))return 'first';
+    return 'any';}
+  function localStory(text,lang){
+    if(PRICEQ.test(text))return {refuse:true,beats:lang==='pa'?[REFUSE.pa,REFUSE.en]:[REFUSE.en]};
+    const place=(PLACES.find(p=>text.toLowerCase().includes(p.toLowerCase()))||(lang==='pa'?'ਦੱਖਣੀ ਆਕਲੈਂਡ':'South Auckland')).replace('Mangere','Māngere').replace('Otahuhu','Ōtāhuhu');
+    return {beats:STORIES[lang][pick(text)].map(b=>b.replace('{place}',place))};
+  }
+  function parseBeats(txt){
+    txt=String(txt||'').trim();if(!txt)return null;
+    let parts=txt.split(/(?:^|\n|\s)(?:\*\*)?(?:chapter|ਅਧਿਆਇ)\s*[1-3੧-੩]\s*(?:of 3|\/\s*3)?\s*(?:\*\*)?\s*[.:)\-]?\s*/i).map(x=>x.trim()).filter(Boolean);
+    if(parts.length<3){const lines=txt.split(/\n+/).map(x=>x.trim()).filter(Boolean);if(lines.length>=3)parts=lines;}
+    if(parts.length<3){const sn=txt.match(/[^.!?।]+[.!?।]+/g)||[txt];const n=Math.ceil(sn.length/3);parts=[0,1,2].map(i=>sn.slice(i*n,i*n+n).join(' ').trim()).filter(Boolean);}
+    return parts.slice(0,3);
+  }
+  async function askAI(text,lang){
+    if(!AI_URL||location.protocol==='file:')throw new Error('offline');
+    const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),8000);
+    try{const r=await fetch(AI_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({task:'story',input:((lang==='pa'?'[pa] ':'')+text).slice(0,300)}),signal:ctl.signal});
+      if(!r.ok)throw new Error(r.status);const j=await r.json();const b=parseBeats(j&&j.text);if(!b||!b.length)throw new Error('empty');
+      if(b.some(x=>/\$\s?\d|\d{3},\d{3}|\d+(\.\d+)?\s?(k|m)\b/i.test(x)))return {refuse:true,beats:lang==='pa'?[REFUSE.pa,REFUSE.en]:[REFUSE.en]};
+      return {beats:b};
+    }finally{clearTimeout(to);}
+  }
+  let lang='en';
+  const h1=$('#hero-h'),heroSub=$('#heroSub'),aiLabel=$('#aiLabel'),aiIn=$('#aiIn'),aiGo=$('#aiGo'),aiGoT=$('#aiGoT'),subs=$('#subs'),subsK=$('#subsK'),subsLines=$('#subsLines'),subsCtl=$('#subsCtl'),aiLive=$('#aiLive'),bars=$$('.subs-bars i',subs);
+  const setLangAttr=(el,l)=>{if(l==='pa')el.setAttribute('lang','pa');else el.removeAttribute('lang');};
+  let beats=[],bi=0,timer=null,beatLang='en';
+  const dur=t=>Math.max(4200,Math.min(9000,t.length*60));
+  const autoplay=()=>!(reduce||html.classList.contains('still'));
+  function idle(){subs.dataset.state='idle';subs.classList.remove('all');subsCtl.hidden=true;bars.forEach(b=>b.className='');subsK.textContent=T[lang].k;setLangAttr(subsK,lang);
+    subsLines.innerHTML='';const p=document.createElement('p');p.className='subs-line on';p.textContent=T[lang].idle;setLangAttr(p,lang);subsLines.appendChild(p);}
+  function applyLang(l,anim){lang=l;$$('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
+    h1.innerHTML=T[l].h1;h1.setAttribute('aria-label',T[l].aria);setLangAttr(h1,l);
+    heroSub.textContent=T[l].sub;setLangAttr(heroSub,l);aiLabel.textContent=T[l].label;setLangAttr(aiLabel,l);
+    aiIn.placeholder=T[l].ph;aiGoT.textContent=T[l].go;setLangAttr(aiGoT,l);
+    if(subs.dataset.state==='idle')idle();
+    if(anim&&window.__heroIn)window.__heroIn();}
+  $$('.lang button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang,true)));
+  function show(i){clearTimeout(timer);bi=i;const ls=$$('.subs-line',subsLines);
+    subsK.textContent=T[beatLang].ch(i+1);setLangAttr(subsK,beatLang);
+    bars.forEach((b,k)=>{b.className=k<i?'done':'';b.style.removeProperty('--dur');});
+    if(subs.classList.contains('all')){bars.forEach(b=>b.className='done');return;}
+    ls.forEach((l,k)=>l.classList.toggle('on',k===i));
+    const words=$$('.wd',ls[i]);words.forEach(w=>w.classList.remove('in'));
+    if(autoplay()){words.forEach((w,k)=>setTimeout(()=>w.classList.add('in'),60+k*70));const d=dur(beats[i]);bars[i].style.setProperty('--dur',d+'ms');void bars[i].offsetWidth;bars[i].className='run';
+      if(i<beats.length-1)timer=setTimeout(()=>show(i+1),d);else timer=setTimeout(()=>{bars[i].className='done';},d);}
+    else{words.forEach(w=>w.classList.add('in'));bars[i].className='done';}
+  }
+  function play(res,l){beats=res.beats;beatLang=l;subs.dataset.state='play';subsLines.innerHTML='';
+    beats.forEach((t,k)=>{const p=document.createElement('p');p.className='subs-line';const pl=(res.refuse&&k===1)?'en':l;setLangAttr(p,pl);
+      p.innerHTML=t.split(/(\s+)/).map(w=>/^\s+$/.test(w)?w:`<span class="wd">${w.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))}</span>`).join('');subsLines.appendChild(p);});
+    bars.forEach((b,k)=>b.style.visibility=k<beats.length?'visible':'hidden');
+    subs.classList.toggle('all',!autoplay());subsCtl.hidden=false;
+    aiLive.setAttribute('lang',l==='pa'?'pa':'en');
+    aiLive.textContent=res.refuse?beats.join(' '):beats.map((b,k)=>(l==='pa'?`ਅਧਿਆਇ ${k+1}. `:`Chapter ${k+1}. `)+b).join(' ');
+    show(0);
+  }
+  async function run(text){
+    text=(text||'').trim().slice(0,300);if(!text){aiIn.focus();return;}
+    clearTimeout(timer);const l=lang;
+    aiGo.disabled=true;aiGo.setAttribute('aria-busy','true');aiGoT.textContent=T[l].busy;
+    subs.dataset.state='loading';subs.classList.remove('all');subsCtl.hidden=true;bars.forEach(b=>b.className='');subsK.textContent=T[l].k;setLangAttr(subsK,l);
+    subsLines.innerHTML=`<p class="subs-line on"${l==='pa'?' lang="pa"':''}>${T[l].load}</p>`;aiLive.textContent='';
+    let res;
+    if(PRICEQ.test(text))res=localStory(text,l);
+    else{try{res=await askAI(text,l);}catch(e){res=localStory(text,l);}}
+    aiGo.disabled=false;aiGo.removeAttribute('aria-busy');aiGoT.textContent=T[lang].go;
+    play(res,l);
+  }
+  $('#slate').addEventListener('submit',e=>{e.preventDefault();run(aiIn.value);});
+  $$('#chips button').forEach(b=>b.addEventListener('click',()=>{aiIn.value=b.textContent;run(b.textContent);}));
+  $('#sPrev').addEventListener('click',()=>{if(subs.classList.contains('all'))return;show(Math.max(0,bi-1));});
+  $('#sNext').addEventListener('click',()=>{if(subs.classList.contains('all'))return;show(Math.min(beats.length-1,bi+1));});
+  $('#sReplay').addEventListener('click',()=>{if(beats.length){subs.classList.toggle('all',!autoplay());show(0);}});
+  window.__onStill=v=>{if(subs.dataset.state!=='play')return;clearTimeout(timer);subs.classList.toggle('all',v||reduce);if(!v&&!reduce)show(bi);else show(bi);};
+  idle();
 
   /* ---- story chapters: shared HUD ---- */
   const story=$('#story'), track=$('#track'), chaps=$$('.chap',track), N=chaps.length;
@@ -952,15 +1062,15 @@ addEventListener('DOMContentLoaded',function(){
       $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length<2)return;const t=$(id);if(!t)return;e.preventDefault();lenis.scrollTo(t,{offset:id==='#top'?-200:(id==='#story'?-74:-90)});}));}
 
     /* hero: word-by-word headline, portrait reveal */
+    window.__heroIn=()=>gsap.to('.hero h1 .w>span',{y:0,duration:1.2,stagger:.14,ease:'expo.out'});
     const tl=gsap.timeline({defaults:{ease:'expo.out'}});
     tl.to('.hero h1 .w>span',{y:0,duration:1.25,stagger:.16},.2)
       .from('.hero-photo .frame',{clipPath:'inset(0 0 100% 0)',duration:1.6,ease:'expo.inOut'},0)
       .from('.hero-photo img',{scale:1.18,duration:2.2},.1)
       .from('.hero-photo .glow',{opacity:0,scale:.6,duration:1.8},.6)
-      .from('.credit',{y:20,opacity:0,duration:1},1);
+            .from('.hero .toprow,.hero .sub,.slate,.subs,.award,.hero .lic',{y:24,opacity:0,stagger:.08,duration:1},.7);
     if(innerWidth>1000){
       gsap.to('.hero-photo img',{yPercent:6,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-      gsap.to('.hero-copy',{yPercent:-10,opacity:.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     }
 
     if(pinMode){
@@ -974,7 +1084,7 @@ addEventListener('DOMContentLoaded',function(){
       chaps.forEach((c,i)=>{
         const clip=$('.clip',c), im=$('img',c), even=i%2===1;
         const from=even?'inset(0 100% 0 0)':'inset(0 0 0 100%)';
-        const tx=$$('.num,h3,.say,.row,.fn,.btn,.segs',c);
+        const tx=$$('.top,h3,.say,.row,.fn,.btn',c);
         if(i===0){
           gsap.fromTo(clip,{clipPath:from},{clipPath:'inset(0 0% 0 0%)',ease:'expo.inOut',duration:1.4,scrollTrigger:{trigger:story,start:'top 70%'}});
           gsap.from(tx,{y:40,opacity:0,stagger:.08,duration:1,ease:'expo.out',scrollTrigger:{trigger:story,start:'top 60%'}});
