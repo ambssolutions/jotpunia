@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_NZ">
 <meta property="og:title" content="Jot Punia | Barfoot &amp; Thompson Māngere">
-<meta property="og:description" content="Real estate, minus the waffle. 59 for sale, 103 sold across South Auckland.">
+<meta property="og:description" content="Describe your next home and watch the wall move. 59 for sale, 103 sold across South Auckland.">
 <meta property="og:image" content="../../assets/real/jot-900.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23003572'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-weight='700' font-size='40' fill='%23F8C00B'%3E%26%3C/text%3E%3C/svg%3E">
 <script>
@@ -142,6 +142,19 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .tile[data-slot="2"],.tile[data-slot="3"],.tile[data-slot="6"],.tile[data-slot="7"],.tile[data-slot="10"],.tile[data-slot="11"]{top:-110px;--cy:340px}
 .tile[data-slot="0"],.tile[data-slot="1"],.tile[data-slot="4"],.tile[data-slot="5"],.tile[data-slot="8"],.tile[data-slot="9"]{--cy:0px}
 
+/* wide screens: three reel columns a side, two rows */
+@media (min-width:1760px){
+  .wall{grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,2.4fr) repeat(3,minmax(0,1fr))}
+  .jot{grid-column:4!important;grid-row:2/4!important}
+  .tile[data-slot="0"]{grid-area:2/3}.tile[data-slot="1"]{grid-area:2/5}.tile[data-slot="2"]{grid-area:2/2}.tile[data-slot="3"]{grid-area:2/6}
+  .tile[data-slot="4"]{grid-area:2/1}.tile[data-slot="5"]{grid-area:2/7}.tile[data-slot="6"]{grid-area:3/3}.tile[data-slot="7"]{grid-area:3/5}
+  .tile[data-slot="8"]{grid-area:3/2}.tile[data-slot="9"]{grid-area:3/6}.tile[data-slot="10"]{grid-area:3/1}.tile[data-slot="11"]{grid-area:3/7}
+  .tile[data-slot]{top:0;--cy:0px}
+  .tile[data-slot="2"],.tile[data-slot="3"],.tile[data-slot="8"],.tile[data-slot="9"]{top:-50px;--cy:150px}
+  .tile[data-slot="4"],.tile[data-slot="5"],.tile[data-slot="10"],.tile[data-slot="11"]{top:-110px;--cy:330px}
+}
+@media (min-width:1200px) and (max-width:1499px){.fbar .lbl span{display:none}}
+@media (min-width:1200px) and (max-width:1365px){.fbar .lbl{display:none}}
 /* Jot's profile card */
 .jot{grid-column:3;grid-row:2/5;position:sticky;top:calc(var(--navh) + 12px);z-index:5;align-self:start;background:#fff;border-radius:12px;padding:clamp(20px,1.9vw,30px);
   box-shadow:0 40px 80px -36px rgba(0,36,79,.5),0 0 0 1px rgba(0,36,79,.08)}
@@ -176,7 +189,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .ai button[type=submit] svg{width:16px;height:16px}
 .ai button:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .sugg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.sugg button{min-height:44px;padding:0 12px;border-radius:8px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;font:500 13.5px/1.2 var(--sans);cursor:pointer;text-align:left}
+.sugg::-webkit-scrollbar{display:none}
+.sugg button{flex:none;min-height:44px;padding:0 11px;border-radius:8px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;font:500 13px/1.2 var(--sans);cursor:pointer;text-align:left;white-space:nowrap}
 .sugg button:hover{background:rgba(255,255,255,.2)}
 .answer{margin-top:12px;min-height:0;font:500 15px/1.45 var(--sans);color:#fff}
 .answer:empty{display:none}
@@ -185,6 +199,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .dots i{width:6px;height:6px;border-radius:50%;background:#fff;animation:dot 1s infinite ease-in-out}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
 @keyframes dot{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+.jump{display:none;align-items:center;gap:8px;min-height:44px;margin-top:6px;color:#fff;font:600 14px/1 var(--sans)}
+.jump svg{width:16px;height:16px;transform:rotate(90deg)}
+@media (max-width:1199px){.jump.on{display:inline-flex}}
 .ai .disc{margin-top:10px;font:400 12px/1.45 var(--sans);color:#E4E7FF}
 .ai .reset{all:unset;cursor:pointer;font:600 12.5px/1 var(--sans);text-decoration:underline;min-height:24px;display:none;align-items:center}
 .ai .reset.on{display:inline-flex}
@@ -224,7 +241,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .tile:nth-child(odd){}
 }
 @media (max-width:860px){
-  .jot{grid-template-columns:1fr}.jot > .r{grid-column:1}
+  .jot{grid-template-columns:minmax(0,1fr)}.jot > .r{grid-column:1}
 }
 @media (max-width:699px){
   .wall{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;padding:3px}
@@ -237,7 +254,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .tile .tour svg{width:12px;height:12px}
   .tile .tour .t{display:none}
   .tile .tour small{font-size:11.5px;color:#fff;font-weight:600}
-  .tile .info{display:none}
+  .tile .info{width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .tile:hover .tour,.tile:focus-visible .tour{opacity:1}
   .tile.hit .tour{opacity:1}
   .jot h1{font-size:clamp(32px,9.4vw,42px)}
@@ -246,7 +263,6 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
   .av{width:68px;height:68px}
   .ai-row{flex-direction:column}
   .sugg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
-  .sugg button{flex:none}
   .ai button[type=submit]{justify-content:center}
   .jot .cta .btn{flex:1 1 100%}
 }
@@ -491,7 +507,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
 <!-- ============ THE WALL ============ -->
 <section class="wall" id="top" aria-labelledby="hero-h">
   <div class="fbar" id="fbar">
-    <p class="lbl"><b>The wall.</b>12 of Jot's 59 homes for sale</p>
+    <p class="lbl"><b>The wall.</b><span>12 of Jot's 59 homes for sale</span></p>
     <div class="chips" role="group" aria-label="Filter the wall by suburb">
       <button type="button" class="chip-btn" data-f="all" aria-pressed="true">All <i>12</i></button>
       <button type="button" class="chip-btn" data-f="mangere" aria-pressed="false">Māngere <i>1</i></button>
@@ -530,6 +546,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
           <button type="button" data-q="Auction homes in Manurewa">Manurewa auctions</button>
         </div>
         <p class="answer" id="answer" aria-live="polite"></p>
+        <a class="jump" id="jump" href="#fbar">See the homes on the wall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <p class="disc" id="ai-disc">AI-generated, may be imperfect. Not financial or legal advice. For a real appraisal, talk to Jot.</p>
       </form>
       <div class="cta">
@@ -545,7 +562,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9ca4j-640.webp" srcset="../../assets/real/9ca4j-640.webp 640w, ../../assets/real/9ca4j-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">New listing</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Māngere</small></span></span>
-      <span class="info"><span class="addr">525A Massey Road<span class="vh">, Māngere.</span></span><span class="sub">Māngere · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">525A Massey Road<span class="vh">, Māngere.</span></span><span class="sub">Māngere · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/franklin-district/karaka/house/942995" target="_blank" rel="noopener" data-id="9c807" data-sub="franklin" data-slot="1" style="--d:0.35;--kd:27s;--kdl:-5s;--kx:-2%;--ky:1%">
@@ -553,7 +570,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9c807-640.webp" srcset="../../assets/real/9c807-640.webp 640w, ../../assets/real/9c807-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">New listing</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Karaka</small></span></span>
-      <span class="info"><span class="addr">354 Linwood Road<span class="vh">, Karaka.</span></span><span class="sub">Karaka · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>5<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>3<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>4<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">354 Linwood Road<span class="vh">, Karaka.</span></span><span class="sub">Karaka · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>5<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>3<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>4<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/franklin-district/ramarama/house/942844" target="_blank" rel="noopener" data-id="9c3jm" data-sub="franklin" data-slot="2" style="--d:0.7;--kd:21s;--kdl:-10s;--kx:1.5%;--ky:1.5%">
@@ -561,7 +578,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9c3jm-640.webp" srcset="../../assets/real/9c3jm-640.webp 640w, ../../assets/real/9c3jm-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">New listing</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Ramarama</small></span></span>
-      <span class="info"><span class="addr">29 John Main Drive<span class="vh">, Ramarama.</span></span><span class="sub">Ramarama · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">29 John Main Drive<span class="vh">, Ramarama.</span></span><span class="sub">Ramarama · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/manukau-city/papatoetoe/house-on-cross-lease/942424" target="_blank" rel="noopener" data-id="9c92n" data-sub="papatoetoe" data-slot="3" style="--d:0.5;--kd:28s;--kdl:-15s;--kx:-1.5%;--ky:-1%">
@@ -569,7 +586,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9c92n-640.webp" srcset="../../assets/real/9c92n-640.webp 640w, ../../assets/real/9c92n-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">New listing</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Papatoetoe</small></span></span>
-      <span class="info"><span class="addr">2/105 Coronation Road<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>2<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>1<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">2/105 Coronation Road<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>2<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>1<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/franklin-district/clarks-beach/house/942582" target="_blank" rel="noopener" data-id="9bpsb" data-sub="franklin" data-slot="4" style="--d:1;--kd:22s;--kdl:-3s;--kx:2.5%;--ky:1%">
@@ -577,7 +594,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9bpsb-640.webp" srcset="../../assets/real/9bpsb-640.webp 640w, ../../assets/real/9bpsb-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Clarks Beach</small></span></span>
-      <span class="info"><span class="addr">55 Clarks Beach Road<span class="vh">, Clarks Beach.</span></span><span class="sub">Clarks Beach · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">55 Clarks Beach Road<span class="vh">, Clarks Beach.</span></span><span class="sub">Clarks Beach · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/manukau-city/manurewa/house/941764" target="_blank" rel="noopener" data-id="9c9q7" data-sub="manurewa" data-slot="5" style="--d:0.45;--kd:29s;--kdl:-8s;--kx:-1%;--ky:-2%">
@@ -585,7 +602,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9c9q7-640.webp" srcset="../../assets/real/9c9q7-640.webp 640w, ../../assets/real/9c9q7-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Manurewa</small></span></span>
-      <span class="info"><span class="addr">6 Civita Court<span class="vh">, Manurewa.</span></span><span class="sub">Manurewa · For sale by auction, 28 October</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">6 Civita Court<span class="vh">, Manurewa.</span></span><span class="sub">Manurewa · For sale by auction, 28 October</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/manukau-city/manurewa/house/941424" target="_blank" rel="noopener" data-id="9c9yp" data-sub="manurewa" data-slot="6" style="--d:0.8;--kd:23s;--kdl:-13s;--kx:1%;--ky:-1%">
@@ -593,7 +610,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9c9yp-640.webp" srcset="../../assets/real/9c9yp-640.webp 640w, ../../assets/real/9c9yp-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Manurewa</small></span></span>
-      <span class="info"><span class="addr">10 Piriti Place<span class="vh">, Manurewa.</span></span><span class="sub">Manurewa · For sale by auction, 20 October</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">10 Piriti Place<span class="vh">, Manurewa.</span></span><span class="sub">Manurewa · For sale by auction, 20 October</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>2<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/papakura-district/takanini/house/941968" target="_blank" rel="noopener" data-id="9b3g9" data-sub="takanini" data-slot="7" style="--d:0.3;--kd:30s;--kdl:-1s;--kx:-2.5%;--ky:1.5%">
@@ -601,7 +618,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9b3g9-640.webp" srcset="../../assets/real/9b3g9-640.webp 640w, ../../assets/real/9b3g9-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Takanini</small></span></span>
-      <span class="info"><span class="addr">Lot 6/18 Airfield Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">Lot 6/18 Airfield Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/papakura-district/takanini/house/941969" target="_blank" rel="noopener" data-id="9axx2" data-sub="takanini" data-slot="8" style="--d:0.6;--kd:24s;--kdl:-6s;--kx:2%;--ky:-1%">
@@ -609,7 +626,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9axx2-640.webp" srcset="../../assets/real/9axx2-640.webp 640w, ../../assets/real/9axx2-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Takanini</small></span></span>
-      <span class="info"><span class="addr">Lot 7/18 Airfield Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">Lot 7/18 Airfield Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>4<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/papakura-district/takanini/townhouse/940546" target="_blank" rel="noopener" data-id="9acsc" data-sub="takanini" data-slot="9" style="--d:0.95;--kd:31s;--kdl:-11s;--kx:-1.5%;--ky:2%">
@@ -617,7 +634,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9acsc-640.webp" srcset="../../assets/real/9acsc-640.webp 640w, ../../assets/real/9acsc-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Takanini</small></span></span>
-      <span class="info"><span class="addr">67C Soaring Bird Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · $769,000</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>1<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">67C Soaring Bird Drive<span class="vh">, Takanini.</span></span><span class="sub">Takanini · $769,000</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>1<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/manukau-city/papatoetoe/townhouse/941660" target="_blank" rel="noopener" data-id="9abn7" data-sub="papatoetoe" data-slot="10" style="--d:0.4;--kd:25s;--kdl:-16s;--kx:1.5%;--ky:-1.5%">
@@ -625,7 +642,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9abn7-640.webp" srcset="../../assets/real/9abn7-640.webp 640w, ../../assets/real/9abn7-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Papatoetoe</small></span></span>
-      <span class="info"><span class="addr">23C Laureston Avenue<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · $748,000</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">23C Laureston Avenue<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · $748,000</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
   <a class="tile" href="https://www.barfoot.co.nz/property/residential/manukau-city/papatoetoe/townhouse/941661" target="_blank" rel="noopener" data-id="9abkx" data-sub="papatoetoe" data-slot="11" style="--d:0.75;--kd:32s;--kdl:-4s;--kx:-2%;--ky:1%">
@@ -633,7 +650,7 @@ footer{background:var(--bg-2);color:var(--text);padding:64px 0 40px;font-size:15
       <span class="cs"><span class="drift"><img src="../../assets/real/9abkx-640.webp" srcset="../../assets/real/9abkx-640.webp 640w, ../../assets/real/9abkx-1200.webp 1200w" sizes="(min-width:700px) 30vw, 66vw" alt="" width="640" height="427" decoding="async"></span></span>
       <span class="chip">Open home</span>
       <span class="tour" aria-hidden="true"><svg><use href="#i-play"/></svg><span><span class="t">Take the tour</span><small>Papatoetoe</small></span></span>
-      <span class="info"><span class="addr">13E Caspar Road<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> (opens in a new tab)</span></span>
+      <span class="info"><span class="addr">13E Caspar Road<span class="vh">, Papatoetoe.</span></span><span class="sub">Papatoetoe · For sale by negotiation</span><span class="spec"><span><svg aria-hidden="true"><use href="#i-bed"/></svg>3<span class="vh"> bedrooms,</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>2<span class="vh"> bathrooms,</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>1<span class="vh"> car parks.</span></span></span><span class="go">Take the tour <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="vh"> on barfoot.co.nz (opens in a new tab)</span></span>
     </span>
   </a>
 </section>
@@ -842,19 +859,20 @@ function localFind(raw){
     return {ids:[],text:VALUATION_LINE,guard:true};
   const NUM={one:1,two:2,three:3,four:4,five:5,six:6};
   const num=w=>NUM[w]||parseInt(w,10);
-  const c=[], said=[];   // hard constraints, and how we describe them
+  const c=[], said=[], W=[], P=[], S=[];   // constraints; descriptions: with..., place, states
+  let noun='homes', noun1='home';
   const m=s.match(/\b(\d|one|two|three|four|five|six)\s*\+?\s*(-|\s)?(bed|bdr|br\b|bedroom|bdrm)/);
   let bedMin=0,bedMax=9;
-  if(m){bedMin=num(m[1]);said.push(`${bedMin}+ bedrooms`);}
-  else if(/\b(big|large|spacious|extended|whanau|room to grow|lots of room)\b/.test(s)){bedMin=4;said.push('4+ bedrooms for room to grow');}
-  else if(/\b(family|kids|children)\b/.test(s)){bedMin=3;said.push('3+ bedrooms for a family');}
-  if(/\b(first home|starter|first-home|couple|small|downsiz|compact|investment|investor)/.test(s)){bedMax=3;if(!m)said.push('3 bedrooms or fewer');}
+  if(m){bedMin=num(m[1]);W.push(`${bedMin}+ bedrooms`);}
+  else if(/\b(big|large|spacious|extended|whanau|room to grow|lots of room)\b/.test(s)){bedMin=4;W.push('4+ bedrooms');}
+  else if(/\b(family|kids|children)\b/.test(s)){bedMin=3;W.push('3+ bedrooms, a good start for a family');}
+  if(/\b(first home|starter|first-home|couple|small|downsiz|compact|investment|investor)/.test(s)){bedMax=3;if(!m)W.push('3 bedrooms or fewer');}
   if(bedMin||bedMax<9) c.push(l=>l.bed>=bedMin&&l.bed<=bedMax);
   const b=s.match(/\b(\d|one|two|three)\s*\+?\s*(bath|bathroom)/);
-  if(b){const n=num(b[1]);c.push(l=>l.bath>=n);said.push(`${n}+ bathrooms`);}
+  if(b){const n=num(b[1]);c.push(l=>l.bath>=n);W.push(`${n}+ bathrooms`);}
   const g=s.match(/\b(\d|two|three|four)\s*\+?\s*(car|garage|park)/);
-  if(g){const n=num(g[1]);c.push(l=>l.car>=n);said.push(`parking for ${n}+`);}
-  else if(/\b(garage|parking|cars|trade|tradie|boat|van)\b/.test(s)){c.push(l=>l.car>=2);said.push('parking for 2 or more');}
+  if(g){const n=num(g[1]);c.push(l=>l.car>=n);W.push(`parking for ${n}+`);}
+  else if(/\b(garage|parking|cars|trade|tradie|boat|van)\b/.test(s)){c.push(l=>l.car>=2);W.push('parking for 2 or more');}
   const AREAS=[
     [/mangere|airport/, l=>l.sub==='Māngere','in Māngere'],
     [/papatoetoe|toetoe/, l=>l.sub==='Papatoetoe','in Papatoetoe'],
@@ -868,32 +886,33 @@ function localFind(raw){
     [/franklin|pukekohe|rural|country|lifestyle|quiet|space to breathe/, l=>l.region==='franklin-district','out Franklin way']
   ];
   const areas=AREAS.filter(a=>a[0].test(s));
-  if(areas.length){c.push(l=>areas.some(a=>a[1](l)));said.push(areas.map(a=>a[2]).join(' or '));}
-  if(/townhouse|town house|low maintenance|lock and leave/.test(s)){c.push(l=>l.type==='townhouse');said.push('townhouses');}
-  else if(/standalone|stand-alone|stand alone|freestanding|backyard|section|yard/.test(s)){c.push(l=>l.type==='house');said.push('standalone houses');}
-  if(/auction/.test(s)){c.push(l=>/auction/i.test(l.meth));said.push('going to auction');}
-  if(/open home|this weekend|viewing|inspect/.test(s)){c.push(l=>l.tag==='Open home');said.push('with an open home listed');}
-  if(/\bnew\b|just listed|latest|fresh/.test(s)){c.push(l=>l.tag==='New listing');said.push('newly listed');}
+  if(areas.length){c.push(l=>areas.some(a=>a[1](l)));P.push(areas.map(a=>a[2]).join(' or '));}
+  if(/townhouse|town house|low maintenance|lock and leave/.test(s)){c.push(l=>l.type==='townhouse');noun='townhouses';noun1='townhouse';}
+  else if(/standalone|stand-alone|stand alone|freestanding|backyard|section|yard/.test(s)){c.push(l=>l.type==='house');noun='standalone houses';noun1='standalone house';}
+  if(/auction/.test(s)){c.push(l=>/auction/i.test(l.meth));S.push('going to auction');}
+  if(/open home|this weekend|viewing|inspect/.test(s)){c.push(l=>l.tag==='Open home');S.push('with an open home listed');}
+  if(/\bnew\b|just listed|latest|fresh/.test(s)){c.push(l=>l.tag==='New listing');S.push('newly listed');}
   const bud=s.match(/(?:under|below|less than|max(?:imum)?|up to|budget(?: of)?|around|about|for)\s*(\$)?\s*(\d+(?:\.\d+)?)\s*(k|m|mil|million)?\b/)||s.match(/(\$)\s*(\d+(?:\.\d+)?)\s*(k|m|mil|million)?\b/);
   let budget=0;
   if(bud){let n=parseFloat(bud[2]);const u=bud[3]||'';
     if(u) n*=/^m/.test(u)?1e6:1e3; else if(bud[1]) n*=n<10?1e6:n<5000?1e3:1;
     if((bud[1]||u)&&n>=50000) budget=n;}
-  if(budget){c.push(l=>l.price>0&&l.price<=budget);said.push(`with an advertised price up to $${Math.round(budget/1000)}k`);}
+  if(budget){c.push(l=>l.price>0&&l.price<=budget);W.push(`an advertised price up to $${Math.round(budget/1000)}k`);}
 
   if(!c.length) return {ids:[],text:"Here's the whole wall. Try a suburb, a bedroom count, 'auction' or a budget, and I'll pull the matches forward."};
+  const desc=n=>[n===1?noun1:noun,...P,W.length?'with '+W.join(' and '):'',...S].filter(Boolean).join(' ').replace(/ with (.*?) (going|with an|newly)/,' with $1, $2');
   let hits=LISTINGS.filter(l=>c.every(f=>f(l)));
   let lead;
   if(hits.length){
-    lead=`${hits.length===1?'One home':hits.length+' homes'} ${said.join(', ')}.`;
+    lead=`${hits.length===1?'One':hits.length} ${desc(hits.length)}.`;
   }else{
     const scored=LISTINGS.map(l=>({l,n:c.filter(f=>f(l)).length})).sort((a,b)=>b.n-a.n);
     const top=scored[0].n; hits=top?scored.filter(x=>x.n===top).map(x=>x.l).slice(0,4):[];
-    lead=hits.length?`Nothing ticks every box (${said.join(', ')}), so here are the closest ${hits.length===1?'match':hits.length+' matches'}.`:`Nothing on this wall fits ${said.join(', ')}. Jot has 59 homes for sale, so ask him directly.`;
+    lead=hits.length?`No ${desc(2)} on the wall right now, so here ${hits.length===1?'is the closest match':'are the '+hits.length+' closest'}.`:`Nothing on this wall fits that. Jot has 59 homes for sale, so ask him directly.`;
   }
   let extra='';
   if(budget) extra=' Most of Jot\'s homes are by negotiation or auction, so ask him about those too.';
-  else if(hits.length&&hits.length<=3) extra=' First up: '+hits[0].addr+'.';
+  else if(hits.length>1&&hits.length<=3) extra=' First up: '+hits[0].addr+'.';
   return {ids:hits.map(l=>l.id),text:lead+extra};
 }
 
@@ -960,13 +979,14 @@ addEventListener('DOMContentLoaded',function(){
     }
     if(!res) {res=local; await new Promise(r=>setTimeout(r,reduce?0:650));}
     pressChip('');
+    $('#jump').classList.toggle('on',res.ids.length>0);
     if(res.ids.length){arrange(new Set(res.ids.map(id=>byId.get(id))));reset.classList.add('on');}
     else {arrange(null);reset.classList.remove('on');pressChip('all');}
     say(res.text,true);
   }
   ai.addEventListener('submit',e=>{e.preventDefault();ask(q.value);});
   $$('.sugg button').forEach(b=>b.addEventListener('click',()=>{q.value=b.dataset.q;ask(b.dataset.q);}));
-  reset.addEventListener('click',()=>{arrange(null);pressChip('all');reset.classList.remove('on');say('Showing every home on the wall.');q.focus();});
+  reset.addEventListener('click',()=>{$('#jump').classList.remove('on');arrange(null);pressChip('all');reset.classList.remove('on');say('Showing every home on the wall.');q.focus();});
 
   /* ---------- living wall: drift + pointer parallax ---------- */
   const layers=tiles.map((t,i)=>({el:$('.drift',t),d:+t.style.getPropertyValue('--d')||.5,ph:i*1.7,sp:.00016+(i%5)*.00004,ax:10+(i%3)*4,ay:9+(i%4)*3}));
