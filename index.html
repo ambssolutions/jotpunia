@@ -25,7 +25,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gurmukhi:wght@500&text=%E0%A8%9A%E0%A9%9C%E0%A9%8D%E0%A8%B9%E0%A8%A6%E0%A9%80%20%E0%A8%95%E0%A8%B2%E0%A8%BE%E0%A8%B8%E0%A8%A4%20%E0%A8%B8%E0%A9%8D%E0%A8%B0%E0%A9%80%20%E0%A8%85%E0%A8%95%E0%A8%BE%E0%A8%B2&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/real/jot-900.webp" imagesrcset="assets/real/jot-600.webp 600w, assets/real/jot-900.webp 900w" imagesizes="(max-width:980px) 48vw, 380px">
-<link rel="modulepreload" href="assets/vendor/three/three.module.min.js">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"RealEstateAgent","name":"Jot Punia","description":"Residential Sales, Barfoot & Thompson Māngere, South Auckland","image":"assets/real/jot-900.webp","telephone":"+64277860004","email":"j.punia@barfoot.co.nz","parentOrganization":{"@type":"RealEstateAgent","name":"Barfoot & Thompson","url":"https://www.barfoot.co.nz"},"areaServed":["Māngere","Papatoetoe","Manurewa","Takanini","Papakura","Karaka","Ramarama","Clarks Beach"],"sameAs":["https://www.barfoot.co.nz/our-people/j.punia","https://www.instagram.com/jot_punia_real_estate/","https://www.tiktok.com/@jotsinghpunia"]}
 </script>
@@ -74,42 +73,60 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 .btn-white:hover{background:var(--royal-tint)}
 .ic{width:18px;height:18px;flex:none}
 
-/* ---------- welcome: Jot's own video ---------- */
+/* ---------- welcome: a message from Jot (AI video slot, captions until the video is ready) ---------- */
 .intro{display:none}
 .intro-on{overflow:hidden}
-.intro-on .intro{display:block;position:fixed;inset:0;z-index:500;color:#fff;background:#020a1c;overflow:auto}
-.tv-bg{position:absolute;inset:-40px;background:center/cover no-repeat;filter:blur(28px) saturate(1.1);opacity:.45;transform:scale(1.1)}
-.tv-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,28,.55),rgba(2,10,28,.9))}
-.tv{position:relative;z-index:1;min-height:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(32px,6vw,96px);padding:clamp(28px,6vh,72px) var(--pad);max-width:1240px;margin:0 auto}
-.tv-k{font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:#c3cbe4}
-.tv-name{margin:14px 0 0;color:#fff;font:500 clamp(48px,6.4vw,96px)/.95 var(--serif);letter-spacing:-.02em}
-.tv-name em{color:var(--yellow)}
-.tv-s{margin:22px 0 0;max-width:40ch;font:400 17px/1.6 var(--sans);color:#dfe4f2}
-.tv-s [lang=pa]{font-family:var(--pa)}
-.tv-acts{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:30px}
+.intro-on .intro{display:block;position:fixed;inset:0;z-index:500;color:#fff;background:#020a1c;overflow:hidden}
+.ms{position:relative;height:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;max-width:1360px;margin:0 auto;padding:0 var(--pad)}
+.ms-glow{position:absolute;inset:0;background:radial-gradient(60% 70% at 68% 62%,rgba(56,53,226,.42),rgba(2,10,28,0) 70%),radial-gradient(40% 40% at 70% 40%,rgba(248,192,11,.12),rgba(2,10,28,0) 70%);pointer-events:none}
+.ms-copy{position:relative;z-index:2;align-self:center;padding:clamp(24px,5vh,64px) 0}
+.ms-k{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:#c3cbe4}
+.ms-k i{width:8px;height:8px;border-radius:50%;background:#ff5c5c;box-shadow:0 0 0 0 rgba(255,77,77,.6);animation:msRec 1.6s ease-out infinite}
+@keyframes msRec{70%{box-shadow:0 0 0 10px rgba(255,77,77,0)}100%{box-shadow:0 0 0 0 rgba(255,77,77,0)}}
+.ms-name{margin:16px 0 0;color:#fff;font:500 clamp(52px,7vw,112px)/.92 var(--serif);letter-spacing:-.025em}
+.ms-name em{color:var(--yellow)}
+.ms-say{margin:26px 0 0;min-height:3.3em;max-width:26ch;font:400 clamp(22px,2.2vw,32px)/1.3 var(--serif);color:#fff}
+.ms-say .w{display:inline-block;opacity:.18;transition:opacity .35s ease,transform .35s ease;transform:translateY(4px)}
+.ms-say .w.on{opacity:1;transform:none}
+.ms-say [lang=pa]{font-family:var(--pa)}
+.ms-wave{display:flex;align-items:center;gap:4px;height:26px;margin-top:20px}
+.ms-wave b{width:3px;height:100%;border-radius:3px;background:var(--yellow);transform:scaleY(.15);transform-origin:center}
+.ms.talk .ms-wave b{animation:msWave 1s ease-in-out infinite}
+.ms-wave b:nth-child(2n){animation-delay:-.3s!important}.ms-wave b:nth-child(3n){animation-delay:-.55s!important}.ms-wave b:nth-child(5n){animation-delay:-.8s!important}
+@keyframes msWave{0%,100%{transform:scaleY(.15)}50%{transform:scaleY(1)}}
+.ms-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:30px}
 .tv-go{display:inline-flex;align-items:center;gap:12px;min-height:54px;padding:0 26px;border:0;border-radius:999px;background:var(--yellow);color:#00244F;font:700 16px/1 var(--sans);cursor:pointer;transition:transform .3s var(--ease)}
 .tv-go:hover{transform:translateY(-2px)}
 .tv-go svg{width:18px;height:18px}
-.tv-skip{background:none;border:0;color:#c3cbe4;font:600 14px/1 var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:12px 4px;min-height:44px}
-.tv-go:focus-visible,.tv-skip:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.tv-phone{position:relative;height:min(78vh,720px);aspect-ratio:9/16;border-radius:28px;overflow:hidden;background:#000 center/cover no-repeat;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 0 9px rgba(255,255,255,.04),0 40px 90px -30px rgba(0,0,0,.9)}
-.tv-phone iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.tv-tag{position:absolute;left:50%;transform:translateX(-50%);bottom:-34px;white-space:nowrap;font:500 12.5px/1 var(--sans);color:#aab4cf}
-.tv-tag a{color:#fff}
-.tv-copy,.tv-phone{opacity:0;animation:tvIn .9s var(--ease) forwards}
-.tv-phone{animation-delay:.1s}.tv-copy{animation-delay:.35s}
-@keyframes tvIn{to{opacity:1}}
-.intro.leaving{animation:tvOut .6s ease forwards}
-@keyframes tvOut{to{opacity:0}}
+.tv-skip,.ms-snd{background:none;border:0;color:#c3cbe4;font:600 14px/1 var(--sans);cursor:pointer;padding:12px 4px;min-height:44px}
+.tv-skip{text-decoration:underline;text-underline-offset:3px}
+.ms-snd{display:inline-flex;align-items:center;gap:8px;padding:0 16px;border-radius:999px;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35);color:#fff}
+.ms-snd[hidden]{display:none}
+.tv-go:focus-visible,.tv-skip:focus-visible,.ms-snd:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.ms-stage{position:relative;z-index:1;height:100%;display:flex;align-items:flex-end;justify-content:center}
+.ms-stage img,.ms-stage video{display:block;height:min(92vh,1000px);width:auto;max-width:100%;object-fit:contain;object-position:bottom}
+.ms-stage img{animation:msBreath 7s ease-in-out infinite;transform-origin:50% 100%;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent 98%),linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,#000 70%,transparent 98%),linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-composite:intersect}
+@keyframes msBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.012) translateY(-2px)}}
+.ms-stage video{height:min(86vh,900px);aspect-ratio:9/16;object-fit:cover;align-self:center;border-radius:28px;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 40px 90px -30px rgba(0,0,0,.9)}
+.ms-copy,.ms-stage{opacity:0;animation:tvIn 1s var(--ease) forwards}
+.ms-copy{animation-delay:.25s}
+@keyframes tvIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.intro.leaving{animation:tvOut .7s ease forwards}
+@keyframes tvOut{to{opacity:0;transform:scale(1.03)}}
 @media (max-width:860px){
-  .tv{grid-template-columns:1fr;justify-items:center;text-align:center;gap:26px;padding-top:22px;padding-bottom:40px}
-  .tv-phone{order:-1;height:min(60svh,560px)}
-  .tv-name{font-size:clamp(40px,11vw,60px)}
-  .tv-s{font-size:15.5px;margin-inline:auto}
-  .tv-acts{justify-content:center;margin-top:22px}
-  .tv-k{margin-top:22px}
+  .intro-on .intro{overflow:auto}
+  .ms{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:stretch;text-align:center;min-height:100%;height:auto}
+  .ms-glow{background:radial-gradient(80% 50% at 50% 30%,rgba(56,53,226,.45),rgba(2,10,28,0) 70%)}
+  .ms-stage{order:-1;height:auto;min-height:0;padding-top:12px}
+  .ms-stage img{height:min(46svh,440px)}
+  .ms-stage video{height:min(52svh,480px)}
+  .ms-copy{padding:6px 0 30px}
+  .ms-name{font-size:clamp(40px,11vw,60px);margin-top:12px}
+  .ms-say{margin:14px auto 0;font-size:20px;min-height:2.6em}
+  .ms-wave{justify-content:center;margin-top:12px}
+  .ms-acts{justify-content:center;margin-top:20px}
 }
-@media (prefers-reduced-motion:reduce){.tv-copy,.tv-phone{animation:none;opacity:1}.intro.leaving{animation:none;display:none}}
+@media (prefers-reduced-motion:reduce){.ms-copy,.ms-stage,.ms-stage img,.ms-k i{animation:none;opacity:1}.ms-say .w{opacity:1;transform:none;transition:none}.intro.leaving{animation:none;display:none}}
 .still .intro *{animation-play-state:running!important}
 
 
@@ -176,26 +193,6 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--ink);margin:0;lett
 
 
 
-/* ---------- from my TikTok ---------- */
-.ttk{background:#00244F;color:#fff;padding:clamp(90px,10vw,150px) 0 clamp(80px,9vw,130px)}
-.ttk .eyebrow{color:#a9b6ff}.ttk .h2{color:#fff}.ttk .h2 em{color:var(--yellow)}
-.ttk-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.ttk-follow{color:#fff;font:600 15px/1 var(--sans);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:6px}
-.ttk-follow:hover{border-color:var(--yellow)}
-.ttk-row{list-style:none;margin:clamp(40px,5vw,64px) calc(var(--pad) * -1) 0;padding:0 var(--pad) 10px;display:flex;gap:clamp(14px,1.6vw,22px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);scrollbar-width:none}
-.ttk-row::-webkit-scrollbar{display:none}
-.ttk-row li{flex:0 0 clamp(210px,21vw,270px);scroll-snap-align:start}
-.ttk-card{position:relative;display:block;width:100%;aspect-ratio:9/16;padding:0;border:0;border-radius:18px;overflow:hidden;background:#000;cursor:pointer;color:#fff}
-.ttk-card img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
-.ttk-card:hover img{transform:scale(1.04)}
-.ttk-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.7));pointer-events:none}
-.ttk-play{position:absolute;left:50%;top:50%;width:62px;height:62px;margin:-31px 0 0 -31px;border-radius:50%;background:rgba(255,255,255,.92);color:#00244F;display:grid;place-items:center;transition:transform .35s var(--ease)}
-.ttk-play svg{width:26px;height:26px;margin-left:3px}
-.ttk-card:hover .ttk-play{transform:scale(1.08)}
-.ttk-cap{position:absolute;z-index:1;left:16px;right:16px;bottom:16px;text-align:left;font:600 15px/1.3 var(--sans)}
-.ttk-card:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
-.ttk-row iframe{display:block;width:100%;aspect-ratio:9/16;border:0;border-radius:18px;background:#000}
-.ttk-fine{margin-top:22px;font-size:13px;color:#aab4cf}
 /* ---------- hero ---------- */
 /* ---------- hero effects ---------- */
 .hero-aura{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
@@ -862,19 +859,17 @@ footer :focus-visible{outline-color:#fff}
 </style>
 </head>
 <body>
-<div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="wcT" aria-describedby="wcS">
-  <div class="tv-bg" aria-hidden="true" style="background-image:url(assets/tt/7687840237564775700.webp)"></div>
-  <div class="tv">
-    <div class="tv-copy">
-      <p class="tv-k">A welcome from</p>
-      <h2 class="tv-name" id="wcT">Jot <em>Punia.</em></h2>
-      <p class="tv-s" id="wcS">Kia ora · <span lang="pa">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</span> · Namaste. I'm Jot, your South Auckland agent with Barfoot &amp; Thompson. Come on in and have a look around.</p>
-      <div class="tv-acts"><button class="tv-go" type="button" id="wcGo">Come and have a look <svg aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="tv-skip" type="button" id="wcSkip">Skip</button></div>
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="wcT" aria-describedby="wcS" data-video="">
+  <div class="ms" id="ms">
+    <div class="ms-glow" aria-hidden="true"></div>
+    <div class="ms-copy">
+      <p class="ms-k"><i aria-hidden="true"></i>A message from</p>
+      <h2 class="ms-name" id="wcT">Jot <em>Punia.</em></h2>
+      <p class="ms-say" id="wcS">Kia ora, <span lang="pa">ਸਤ ਸ੍ਰੀ ਅਕਾਲ</span>, I'm Jot. Let's take a look at my website.</p>
+      <div class="ms-wave" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
+      <div class="ms-acts"><button class="tv-go" type="button" id="wcGo">Come and have a look <svg aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="ms-snd" type="button" id="wcSnd" hidden>Tap for sound</button><button class="tv-skip" type="button" id="wcSkip">Skip</button></div>
     </div>
-    <div class="tv-phone" style="background-image:url(assets/tt/7687840237564775700.webp)">
-      <iframe id="wcVid" title="Video from Jot's TikTok" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" data-src="https://www.tiktok.com/player/v1/7687840237564775700?autoplay=1&amp;loop=1&amp;music_info=0&amp;description=0&amp;rel=0&amp;native_context_menu=0"></iframe>
-      <span class="tv-tag">From Jot's TikTok · <a href="https://www.tiktok.com/@jotsinghpunia" target="_blank" rel="noopener">@jotsinghpunia</a></span>
-    </div>
+    <div class="ms-stage" id="wcStage"><img src="assets/real/jot-cut-760.webp" srcset="assets/real/jot-cut-760.webp 760w, assets/real/jot-cut-1300.webp 1300w" sizes="(max-width:980px) 80vw, 46vw" width="1300" height="1684" alt="Jot Punia" fetchpriority="high"></div>
   </div>
 </div>
 <a class="skip" href="#main">Skip to content</a>
@@ -1041,24 +1036,6 @@ footer :focus-visible{outline-color:#fff}
       <li class="rv" style="--rd:2"><b>Transparency</b><span>Your plan and every cost set out up front.</span></li>
       <li class="rv" style="--rd:3"><b>Communication</b><span>Timely updates you never have to chase.</span></li>
     </ul>
-  </div>
-</section>
-
-<!-- ============ FROM MY TIKTOK ============ -->
-<section class="ttk sc dk curtain" id="tiktok" aria-labelledby="ttk-h">
-  <div class="wrap">
-    <div class="ttk-head">
-      <div><span class="eyebrow rv">On the feed</span><h2 class="h2 split" id="ttk-h">From my <em>TikTok.</em></h2></div>
-      <a class="ttk-follow" href="https://www.tiktok.com/@jotsinghpunia" target="_blank" rel="noopener">Follow @jotsinghpunia <span class="vh">(opens TikTok)</span></a>
-    </div>
-    <ul class="ttk-row">
-      <li><button class="ttk-card" type="button" data-id="7686730819729198357" aria-label="Play video: Renovation walk-through"><img src="assets/tt/7686730819729198357.webp" alt="" width="540" height="960" loading="lazy" decoding="async"><span class="ttk-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="ttk-cap">Renovation walk-through</span></button></li>
-      <li><button class="ttk-card" type="button" data-id="7688591599164476693" aria-label="Play video: The plus points of this home"><img src="assets/tt/7688591599164476693.webp" alt="" width="540" height="960" loading="lazy" decoding="async"><span class="ttk-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="ttk-cap">The plus points of this home</span></button></li>
-      <li><button class="ttk-card" type="button" data-id="7691922777015684373" aria-label="Play video: Find me one like this"><img src="assets/tt/7691922777015684373.webp" alt="" width="540" height="960" loading="lazy" decoding="async"><span class="ttk-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="ttk-cap">Find me one like this</span></button></li>
-      <li><button class="ttk-card" type="button" data-id="7695991275962600705" aria-label="Play video: Nothing else compares"><img src="assets/tt/7695991275962600705.webp" alt="" width="540" height="960" loading="lazy" decoding="async"><span class="ttk-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="ttk-cap">Nothing else compares</span></button></li>
-      <li><button class="ttk-card" type="button" data-id="7690796914840702229" aria-label="Play video: Three in one, check it out"><img src="assets/tt/7690796914840702229.webp" alt="" width="540" height="960" loading="lazy" decoding="async"><span class="ttk-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="ttk-cap">Three in one, check it out</span></button></li>
-    </ul>
-    <p class="ttk-fine">Videos play from TikTok and only load when you press play. About 30K followers and 325.8K likes, as at 14 October 2026.</p>
   </div>
 </section>
 
@@ -1316,24 +1293,47 @@ addEventListener('DOMContentLoaded',function(){
   const byId=Object.fromEntries(LISTINGS.map(l=>[l.id,l]));
   const spec=l=>`<span><svg aria-hidden="true"><use href="#i-bed"/></svg>${l.bed}<span class="vh"> bedrooms</span></span><span><svg aria-hidden="true"><use href="#i-bath"/></svg>${l.bath}<span class="vh"> bathrooms</span></span><span><svg aria-hidden="true"><use href="#i-car"/></svg>${l.car}<span class="vh"> car parks</span></span>`;
 
-  /* ---------- welcome: Jot's own TikTok video, then into the site ---------- */
+  /* ---------- welcome: a message from Jot. Plays his AI video when data-video names one, else speaks in captions ---------- */
   const intro=$('#intro');
   JP.introDelay=html.classList.contains('intro-on')?9999:0;
   if(html.classList.contains('intro-on')){
-    const go=$('#wcGo'), skip=$('#wcSkip'), vid=$('#wcVid');
-    if(vid&&vid.dataset.src)vid.src=vid.dataset.src;
+    const go=$('#wcGo'), skip=$('#wcSkip'), snd=$('#wcSnd'), ms=$('#ms'), say=$('#wcS'), src=intro.dataset.video;
+    let vid=null, timers=[];
+    /* captions: reveal his line word by word, like he is saying it */
+    const words=[];
+    (function split(node){[...node.childNodes].forEach(n=>{if(n.nodeType===3){const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.append(t);return;}const w=document.createElement('span');w.className='w';w.textContent=t;words.push(w);f.append(w);});n.replaceWith(f);}else split(n);});})(say);
+    function speak(){
+      if(reduce){words.forEach(w=>w.classList.add('on'));return;}
+      ms.classList.add('talk');let t=700;
+      words.forEach((w,k)=>{timers.push(setTimeout(()=>w.classList.add('on'),t));t+=/[,.]$/.test(w.textContent)?520:260;});
+      timers.push(setTimeout(()=>ms.classList.remove('talk'),t+200));
+    }
+    if(src){
+      /* Jot's AI video: muted autoplay (browsers block sound until a tap), captions from the .vtt beside it */
+      vid=document.createElement('video');
+      Object.assign(vid,{muted:true,playsInline:true,autoplay:!reduce,loop:false,preload:'auto',poster:'assets/real/jot-cut-760.webp'});
+      vid.setAttribute('playsinline','');vid.setAttribute('aria-label','Video message from Jot Punia');
+      vid.innerHTML=`<source src="${src}" type="video/mp4"><track kind="captions" srclang="en" label="English" src="${src.replace(/\.mp4$/,'.vtt')}" default>`;
+      vid.addEventListener('loadeddata',()=>{const st=$('#wcStage');st.replaceChildren(vid);ms.classList.add('has-video');snd.hidden=false;});
+      vid.addEventListener('error',()=>{},true);
+      vid.addEventListener('playing',()=>ms.classList.add('talk'));vid.addEventListener('pause',()=>ms.classList.remove('talk'));vid.addEventListener('ended',()=>{ms.classList.remove('talk');go.focus();});
+      snd.addEventListener('click',()=>{vid.muted=false;vid.currentTime=0;vid.play().catch(()=>{});snd.hidden=true;});
+      vid.load();
+    }
+    speak();
     go.focus({preventScroll:true});
     let closed=false;
     function enter(){
       if(closed)return;closed=true;
       try{sessionStorage.setItem('jp-landmark-intro','1');}catch(e){}
-      const done=()=>{if(vid)vid.src='about:blank';html.classList.add('intro-done');html.classList.remove('intro-on');document.dispatchEvent(new Event('jp:enter'));if(window.__lenis)__lenis.start();JP.introDelay=0;if(JP.onIntroSkip)JP.onIntroSkip();const h=$('#hero-h');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true});}};
-      if(reduce)done();else{intro.classList.add('leaving');setTimeout(done,600);}
+      timers.forEach(clearTimeout);if(vid){vid.pause();vid.removeAttribute('src');}
+      const done=()=>{html.classList.add('intro-done');html.classList.remove('intro-on');intro.remove();document.dispatchEvent(new Event('jp:enter'));if(window.__lenis)__lenis.start();JP.introDelay=0;if(JP.onIntroSkip)JP.onIntroSkip();const h=$('#hero-h');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true});}};
+      if(reduce)done();else{intro.classList.add('leaving');setTimeout(done,650);}
       removeEventListener('keydown',onKey);
     }
     function onKey(e){
       if(e.key==='Escape'){e.preventDefault();enter();return;}
-      if(e.key==='Tab'){const f=[...intro.querySelectorAll('button,a,iframe')],i=f.indexOf(document.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus();}}
+      if(e.key==='Tab'){const f=[...intro.querySelectorAll('button:not([hidden]),a,video[controls]')],i=f.indexOf(document.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus();}}
     }
     go.addEventListener('click',enter);skip.addEventListener('click',enter);addEventListener('keydown',onKey);
   }
@@ -1349,7 +1349,7 @@ addEventListener('DOMContentLoaded',function(){
   const gal=$('#gal');
   order.slice(0,6).forEach((id,k)=>{const l=byId[id];
     const el=document.createElement('article');el.className='lst';
-    el.innerHTML=`<a href="${l.url}" target="_blank" rel="noopener" data-cur="view"><span class="ph lq clip"><img src="${img(l.id,1200)}" alt="" width="1200" height="800" loading="${k<3?'eager':'lazy'}" decoding="async"></span><span class="tx"><span class="top"><span class="no">${String(k+1).padStart(2,'0')}</span><span class="chip ${l.tag==='Open home'?'open':''} ${l.tag?'':'none'}">${l.tag||'Listing'}</span></span><h3>${l.addr}</h3><span class="meth">${l.meth}</span><span class="spec">${spec(l)}</span><span class="vh"> (opens barfoot.co.nz)</span></span></a>`;
+    el.innerHTML=`<a href="${l.url}" target="_blank" rel="noopener" data-cur="view"><span class="ph lq clip"><img src="${img(l.id,1200)}" srcset="${img(l.id,640)} 640w, ${img(l.id,1200)} 1200w" sizes="(max-width:900px) 86vw, 62vw" alt="" width="1200" height="800" loading="lazy" decoding="async"></span><span class="tx"><span class="top"><span class="no">${String(k+1).padStart(2,'0')}</span><span class="chip ${l.tag==='Open home'?'open':''} ${l.tag?'':'none'}">${l.tag||'Listing'}</span></span><h3>${l.addr}</h3><span class="meth">${l.meth}</span><span class="spec">${spec(l)}</span><span class="vh"> (opens barfoot.co.nz)</span></span></a>`;
     gal.appendChild(el);});
   {const end=document.createElement('article');end.className='lst end';
     end.innerHTML=`<a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener"><span class="end-n" aria-hidden="true">59</span><span><span class="end-t">See all 59 on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="end-p">Six of Jot's 59 current listings. All 12 featured homes are on the map above. Counts as at 14 October 2026, from his Barfoot &amp; Thompson profile.</span></span></a>`;
@@ -1653,10 +1653,7 @@ addEventListener('DOMContentLoaded',function(){
 <script type="module">
 /* Hero: the Barfoot ampersand, extruded from the real Gelasio Bold "&" glyph, in gold metal.
    Listings: a WebGL liquid hover. Both stop rendering when off-screen, hidden or paused. */
-import * as THREE from 'three';
-import {RoomEnvironment} from './assets/vendor/three/addons/environments/RoomEnvironment.js';
-import {SVGLoader} from './assets/vendor/three/addons/loaders/SVGLoader.js';
-import {toCreasedNormals} from './assets/vendor/three/addons/utils/BufferGeometryUtils.js';
+let THREE=null; /* three.js loads only on desktop, the first time a listing photo is hovered */
 
 const JP=window.JP||(window.JP={});
 const html=document.documentElement;
@@ -1665,92 +1662,11 @@ const COARSE=matchMedia('(pointer: coarse)').matches;
 const DPR=Math.min(devicePixelRatio||1,COARSE?1.25:1.5);
 function glOK(){try{const c=document.createElement('canvas');return !!(c.getContext('webgl2')||c.getContext('webgl'));}catch(e){return false;}}
 
-if(!glOK()) html.classList.add('no-webgl'); else { const startGL=()=>{ try{ liquid(); }catch(e){} }; if(html.classList.contains('intro-on')) document.addEventListener('jp:enter',startGL,{once:true}); else startGL(); }
-
-function hero(){
-  const canvas=document.getElementById('heroGL'), sec=document.getElementById('top'), anchor=document.getElementById('ampAnchor');
-  const renderer=new THREE.WebGLRenderer({canvas,antialias:DPR<1.5,alpha:true,powerPreference:'high-performance'});
-  renderer.setPixelRatio(DPR);
-  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;
-  renderer.outputColorSpace=THREE.SRGBColorSpace;
-  const scene=new THREE.Scene();
-  const pmrem=new THREE.PMREMGenerator(renderer);
-  scene.environment=pmrem.fromScene(new RoomEnvironment(),0.035).texture;
-  scene.environmentIntensity=1.1;
-  const camera=new THREE.PerspectiveCamera(35,1,.1,100);camera.position.set(0,0,10);
-
-  /* geometry from the glyph outline (font units, y up) */
-  const d=document.querySelector('#ampSvg path').getAttribute('d');
-  const svg=new SVGLoader().parse(`<svg xmlns="http://www.w3.org/2000/svg"><path d="${d}"/></svg>`);
-  const shapes=[];svg.paths.forEach(p=>shapes.push(...SVGLoader.createShapes(p)));
-  let geo=new THREE.ExtrudeGeometry(shapes,{depth:250,bevelEnabled:true,bevelThickness:48,bevelSize:24,bevelSegments:COARSE?4:6,curveSegments:COARSE?10:14});
-  geo=toCreasedNormals(geo,Math.PI/4.5);
-  geo.center();const S=1/1488;geo.scale(S,S,S);
-  const mat=COARSE?new THREE.MeshStandardMaterial({color:new THREE.Color('#F0B73A'),metalness:1,roughness:.24,envMapIntensity:1.35}):new THREE.MeshPhysicalMaterial({color:new THREE.Color('#F0B73A'),metalness:1,roughness:.27,clearcoat:1,clearcoatRoughness:.1,envMapIntensity:1.25});
-  const amp=new THREE.Mesh(geo,mat);
-  const pivot=new THREE.Group();pivot.add(amp);scene.add(pivot);
-
-  /* lights: warm key, royal rims */
-  const key=new THREE.DirectionalLight('#fff1d6',2.2);key.position.set(3,4,6);scene.add(key);
-  const rim1=new THREE.DirectionalLight('#5552ff',9);rim1.position.set(-5,2,-4);scene.add(rim1);
-  const rim2=new THREE.DirectionalLight('#3835E2',7);rim2.position.set(5,-2,-3);scene.add(rim2);
-  const fill=new THREE.PointLight('#6c69ff',14,12,1.6);fill.position.set(-2.5,-1.5,2.5);scene.add(fill);
-
-  /* gold dust */
-  const P=reduce?0:(COARSE?90:150), pg=new THREE.BufferGeometry(), pos=new Float32Array(P*3), sp=new Float32Array(P);
-  for(let i=0;i<P;i++){pos[i*3]=(Math.random()-.5)*14;pos[i*3+1]=(Math.random()-.5)*8;pos[i*3+2]=(Math.random()-.5)*6-1;sp[i]=.15+Math.random()*.5;}
-  pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  const dotTex=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');const gr=g.createRadialGradient(32,32,0,32,32,32);gr.addColorStop(0,'rgba(255,230,160,1)');gr.addColorStop(.4,'rgba(248,192,11,.5)');gr.addColorStop(1,'rgba(248,192,11,0)');g.fillStyle=gr;g.fillRect(0,0,64,64);const t=new THREE.CanvasTexture(c);return t;})();
-  const dust=new THREE.Points(pg,new THREE.PointsMaterial({size:.07,map:dotTex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:.75}));
-  scene.add(dust);
-
-  /* place the ampersand over its DOM anchor so layout stays responsive */
-  const base={x:0,y:0,s:1};let W=1,H=1;
-  function layout(){
-    W=canvas.clientWidth;H=canvas.clientHeight;if(!W||!H)return;
-    renderer.setSize(W,H,false);camera.aspect=W/H;camera.updateProjectionMatrix();
-    const a=anchor.getBoundingClientRect(), c=canvas.getBoundingClientRect();
-    const k=2*10*Math.tan(THREE.MathUtils.degToRad(17.5))/H;
-    base.x=(a.left+a.width/2-c.left-W/2)*k;base.y=-(a.top+a.height/2-c.top-H/2)*k;base.s=a.height*k*.98;
-    render();
-  }
-  const rig={dolly:0,orbit:0,center:0,intro:reduce?1:0};
-  let t=0,last=performance.now(),px=0,py=0,tx=0,ty=0;
-  function update(dt){
-    if(!JP.still&&!reduce)t+=dt;
-    px+=(tx-px)*.05;py+=(ty-py)*.05;
-    const e=rig.intro, s=base.s*(.55+.45*e)*(1+rig.dolly*.18);
-    pivot.position.set(base.x+(0-base.x)*rig.center,base.y+(0-base.y)*rig.center+rig.dolly*.2,0);
-    pivot.scale.setScalar(s);
-    amp.rotation.y=(1-e)*-1.6+Math.sin(t*.35)*.42+px*.35;
-    amp.rotation.x=Math.sin(t*.22)*.06-py*.22+(1-e)*.3;
-    amp.rotation.z=Math.sin(t*.18)*.03;
-    const o=rig.orbit, dist=10-rig.dolly*3.2;
-    camera.position.set(Math.sin(o)*dist,rig.dolly*.9,Math.cos(o)*dist);camera.lookAt(0,rig.dolly*.25,0);
-    if(P){dust.rotation.y=t*.02;dust.position.y=((t*.05)%1)*.6-.3;}
-  }
-  let ready=false;
-  function render(){update(0);renderer.render(scene,camera);if(!ready){ready=true;sec.classList.add('gl-ready');}}
-  let vis=true,raf=0;
-  function tick(now){raf=0;if(!vis||document.hidden)return;if(COARSE&&now-last<31){raf=requestAnimationFrame(tick);return;}const dt=Math.min(.05,(now-last)/1000);last=now;update(dt);renderer.render(scene,camera);if(!ready){ready=true;sec.classList.add('gl-ready');}
-    if(!reduce&&(!JP.still||animating))raf=requestAnimationFrame(tick);}
-  let animating=false;
-  function kick(){if(reduce){render();return;}if(vis&&!document.hidden&&!raf){last=performance.now();raf=requestAnimationFrame(tick);}}
-  new IntersectionObserver(es=>{vis=es[0].isIntersecting;kick();}).observe(sec);
-  document.addEventListener('visibilitychange',kick);
-  document.addEventListener('jp:still',kick);
-  let lw=0,lh=0;new ResizeObserver(()=>{const w=sec.clientWidth,h=sec.clientHeight;if(w===lw&&Math.abs(h-lh)<140)return;lw=w;lh=h;layout();}).observe(sec);
-  if(!reduce) addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;tx=(e.clientX/innerWidth)*2-1;ty=(e.clientY/innerHeight)*2-1;if(JP.still)kick();},{passive:true});
-  layout();
-  if(window.gsap&&window.ScrollTrigger&&!reduce){
-    const st={trigger:sec,start:'top top',end:'bottom top',scrub:.8,onUpdate:()=>{if(JP.still)renderOnce();}};
-    gsap.to(rig,{dolly:1,orbit:.75,center:.55,ease:'none',scrollTrigger:st});
-    const go=()=>{animating=true;gsap.to(rig,{intro:1,duration:2.2,ease:'expo.out',onUpdate:()=>{if(JP.still)renderOnce();},onComplete:()=>{animating=false;}});kick();};
-    const delay=(JP.introDelay||0)*1000;let fired=false;const fire=()=>{if(fired)return;fired=true;go();};
-    setTimeout(fire,Math.max(0,delay-250));const prev=JP.onIntroSkip;JP.onIntroSkip=()=>{prev&&prev();fire();};
-  } else { rig.intro=1; }
-  function renderOnce(){update(0);renderer.render(scene,camera);}
-  kick();
+if(glOK()&&!reduce&&matchMedia('(hover: hover) and (pointer: fine)').matches){
+  let loading=null;
+  const start=()=>loading||(loading=import('three').then(m=>{THREE=m;liquid();}).catch(()=>{}));
+  document.addEventListener('pointerover',e=>{const el=e.target.closest&&e.target.closest('.lq');if(!el||THREE)return;
+    start().then(()=>{if(el.matches(':hover'))el.dispatchEvent(new PointerEvent('pointerover',{bubbles:true,pointerType:'mouse'}));});},{passive:true});
 }
 
 function liquid(){
@@ -1902,13 +1818,5 @@ addEventListener('DOMContentLoaded',function(){
 });
 </script>
 
-<script>
-/* From my TikTok: swap a poster for TikTok's player only when someone presses play */
-document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ttk-card');if(!b)return;
-  var f=document.createElement('iframe');f.title=b.getAttribute('aria-label').replace('Play video: ','Video from Jot\'s TikTok: ');
-  f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture';f.referrerPolicy='strict-origin-when-cross-origin';
-  f.src='https://www.tiktok.com/player/v1/'+b.dataset.id+'?autoplay=1&music_info=0&description=0&rel=0&native_context_menu=0';
-  b.replaceWith(f);f.focus();});
-</script>
 </body>
 </html>
