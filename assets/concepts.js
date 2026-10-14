@@ -70,7 +70,8 @@
     '.toast{position:absolute;left:0;bottom:calc(100% + 8px);background:#F8C00B;color:#002A5C;font-weight:700;font-size:12.5px;padding:8px 12px;border-radius:999px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:opacity .2s,transform .2s;pointer-events:none}' +
     '.toast.on{opacity:1;transform:none}' +
     '@media (max-width:760px){.bar{left:50%;transform:translateX(-50%);bottom:calc(var(--jp-mb,' + mobileBottom + 'px) + env(safe-area-inset-bottom))}.sub,.name{display:none}.menu{left:50%;transform:translateX(-50%);min-width:min(290px,calc(100vw - 32px))}.toast{left:50%;transform:translate(-50%,4px)}.toast.on{transform:translate(-50%,0)}}' +
-    '@media (prefers-reduced-motion:reduce){.toast{transition:none}}' +
+    '@media (max-width:760px){.bar.away{opacity:0;pointer-events:none;translate:0 24px}.bar{transition:bottom .35s ease,opacity .25s ease,translate .3s ease}}' +
+    '@media (prefers-reduced-motion:reduce){.toast{transition:none}.bar{transition:none}}' +
     '@media print{.bar{display:none}}' +
     '</style>' +
     '<nav class="bar" aria-label="Design concepts">' +
@@ -117,6 +118,19 @@
   var footers = document.querySelectorAll('footer'), last = footers[footers.length - 1];
   if (last) { var pad = parseFloat(getComputedStyle(last).paddingBottom) || 0; last.style.paddingBottom = (pad + 64) + 'px'; }
   document.body.appendChild(host);
+
+  // On phones the switcher tucks away while scrolling down and comes back on scroll up, at the top or at the end of the page.
+  var bar = root.querySelector('.bar'), lastY = scrollY, hidden = false;
+  var small = matchMedia('(max-width:760px)');
+  addEventListener('scroll', function () {
+    var y = scrollY, end = y + innerHeight >= document.documentElement.scrollHeight - 80;
+    var hide = small.matches && y > lastY + 4 && y > 200 && !end && !menu.classList.contains('open');
+    var show = !small.matches || y < lastY - 4 || y <= 200 || end;
+    if (hide && !hidden) { hidden = true; bar.classList.add('away'); }
+    else if (show && hidden) { hidden = false; bar.classList.remove('away'); }
+    if (Math.abs(y - lastY) > 4) lastY = y;
+  }, { passive: true });
+  bar.addEventListener('focusin', function () { hidden = false; bar.classList.remove('away'); });
 
   // On phones, a page can name its own bottom bar (data-mobile-bar). The switcher sits above it only while it is showing.
   var barSel = script && script.getAttribute('data-mobile-bar');
