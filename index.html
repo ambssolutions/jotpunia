@@ -1081,6 +1081,18 @@ footer :focus-visible{outline-color:#fff}
 @media (min-width:981px) and (max-height:900px){.hero-cta{margin-top:14px}.hero .ask{margin-top:14px}.proof{margin-top:14px}.hero .lead{margin-top:14px}}
 @media (min-width:981px) and (max-height:780px){.hero-cta{margin-top:12px}.hero-cta .btn{min-height:46px}.hero .ask{margin-top:12px}.hero .ask-note{display:none}}
 @media (max-width:980px){.hc-call{display:none}.proof .tr{width:22px;height:22px;vertical-align:-5px}.proof .tr svg{width:11px;height:11px}.hero-cta{order:5;width:100%;margin-top:20px}.hero-cta .btn{flex:1 1 auto;justify-content:center}.hero-copy .ask{order:6}}
+
+/* homes reel: self-moving carousel with controls */
+.hs-track{scroll-behavior:auto}
+.lst{width:min(78vw,440px)}
+@media (min-width:900px){.lst{width:min(34vw,520px)}}
+.hs-ctl{display:flex;gap:8px;flex:none}
+.hs-btn{width:44px;height:44px;border-radius:50%;border:1px solid #CDD3DE;background:#fff;color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:background .3s,border-color .3s}
+.hs-btn:hover{border-color:var(--navy);background:var(--bg-2)}
+.hs-btn svg{width:16px;height:16px}
+.hs-btn .pl{display:none}.hs-btn.paused .pl{display:block}.hs-btn.paused .pa{display:none}
+.hs-btn:focus-visible{outline:3px solid var(--royal);outline-offset:3px}
+.hs-foot{max-width:760px;margin-inline:auto}
 </style>
 </head>
 <body>
@@ -1269,7 +1281,7 @@ footer :focus-visible{outline-color:#fff}
       </div>
     </div>
     <div class="hs-track" id="gal"></div>
-    <div class="wrap hs-foot" aria-hidden="true"><span class="hs-count"><b id="hsN">01</b>/ 06</span><span class="hs-bar"><i id="hsBar"></i></span><span class="hs-hint" id="hsHint">Scroll</span></div>
+    <div class="wrap hs-foot"><span class="hs-count" aria-hidden="true"><b id="hsN">01</b>/ 06</span><span class="hs-bar" aria-hidden="true"><i id="hsBar"></i></span><span class="hs-ctl"><button type="button" class="hs-btn" id="hsPrev" aria-label="Previous home"><svg aria-hidden="true" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button><button type="button" class="hs-btn" id="hsPlay" aria-label="Pause the homes carousel" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="pa" fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="pl" fill="currentColor" d="M8 5v14l11-7z"/></svg></button><button type="button" class="hs-btn" id="hsNext" aria-label="Next home"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button></span></div>
   </div>
 </section>
 
@@ -1561,7 +1573,24 @@ addEventListener('DOMContentLoaded',function(){
   const hsN=$('#hsN'), hsBar=$('#hsBar');let hsLast=-1;
   JP.hsCount=p=>{p=Math.min(1,Math.max(0,p));const n=Math.min(6,1+Math.floor(p*6*.9999));if(n!==hsLast){hsLast=n;hsN.textContent=String(n).padStart(2,'0');}hsBar.style.transform=`scaleX(${Math.max(1/6,p).toFixed(4)})`;};
   {let r=0;gal.addEventListener('scroll',()=>{if(r||html.classList.contains('hs-on'))return;r=requestAnimationFrame(()=>{r=0;const m=gal.scrollWidth-gal.clientWidth;JP.hsCount(m>0?gal.scrollLeft/m:0);});},{passive:true});}
-  $('#hsHint').textContent=fine?'Scroll':'Swipe';
+  /* the reel moves on its own: one home every few seconds, looping. It pauses for hover, touch, focus,
+     the Pause control (WCAG 2.2.2), reduced motion, a hidden tab, or when it's off screen */
+  {const cards=()=>[...gal.querySelectorAll('.lst')],play=$('#hsPlay');let idx=0,timer=0,hold=false,userPaused=false,seen=false;
+    const left=c=>c.offsetLeft-parseFloat(getComputedStyle(gal).paddingLeft);
+    const cur=()=>{const cs=cards(),x=gal.scrollLeft;let b=0,d=1e9;cs.forEach((c,k)=>{const dd=Math.abs(left(c)-x);if(dd<d){d=dd;b=k;}});return b;};
+    const go=k=>{const cs=cards(),max=gal.scrollWidth-gal.clientWidth;if(k<0)k=cs.length-1;if(k>=cs.length)k=0;idx=k;gal.scrollTo({left:Math.min(max,left(cs[k])),behavior:reduce?'auto':'smooth'});};
+    const can=()=>!reduce&&!JP.still&&!userPaused&&!hold&&seen&&!document.hidden;
+    const tick=()=>{clearTimeout(timer);if(!can())return;timer=setTimeout(()=>{if(!can())return;const max=gal.scrollWidth-gal.clientWidth;go(gal.scrollLeft>=max-2?0:cur()+1);tick();},3200);};
+    const setHold=v=>{hold=v;if(v)clearTimeout(timer);else tick();};
+    gal.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')setHold(true);});gal.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')setHold(false);});
+    gal.addEventListener('touchstart',()=>{setHold(true);clearTimeout(gal._rt);},{passive:true});gal.addEventListener('touchend',()=>{gal._rt=setTimeout(()=>setHold(false),5000);},{passive:true});
+    gal.addEventListener('focusin',()=>setHold(true));gal.addEventListener('focusout',e=>{if(!gal.contains(e.relatedTarget))setHold(false);});
+    const sync=()=>{const p=userPaused||JP.still||reduce;play.setAttribute('aria-pressed',String(p));play.setAttribute('aria-label',p?'Play the homes carousel':'Pause the homes carousel');play.classList.toggle('paused',p);};
+    play.addEventListener('click',()=>{userPaused=!userPaused;sync();tick();});
+    $('#hsPrev').addEventListener('click',()=>{go(cur()-1);tick();});$('#hsNext').addEventListener('click',()=>{const max=gal.scrollWidth-gal.clientWidth;go(gal.scrollLeft>=max-2?0:cur()+1);tick();});
+    document.addEventListener('jp:still',()=>{sync();tick();});document.addEventListener('visibilitychange',tick);
+    if('IntersectionObserver' in window)new IntersectionObserver(es=>{seen=es[0].isIntersecting;tick();},{threshold:.35}).observe(gal);else{seen=true;tick();}
+    sync();}
   /* keyboard: focusing a card brings it into view, in either mode */
   gal.addEventListener('focusin',e=>{const card=e.target.closest('.lst');if(!card)return;const st=JP.hsST;
     if(st){$('#hsPin').scrollLeft=0;const dist=st.end-st.start;const want=card.offsetLeft-(innerWidth-card.offsetWidth)/2;const p=Math.min(1,Math.max(0,want/Math.max(1,gal.scrollWidth-innerWidth)));const y=st.start+p*dist;
@@ -1863,15 +1892,6 @@ addEventListener('DOMContentLoaded',function(){
     gsap.to('.cut',{yPercent:4,scale:1.05,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     gsap.to('.hero-copy',{yPercent:-10,opacity:.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     const mm=gsap.matchMedia();
-    /* listings: pinned horizontal reel on wide screens with a fine pointer */
-    mm.add('(min-width:900px) and (min-height:600px) and (pointer:fine)',()=>{
-      html.classList.add('hs-on');
-      const track=$('#gal'), dist=()=>Math.max(0,track.scrollWidth-innerWidth);
-      const tw=gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#hsPin',start:'top top',end:()=>'+='+dist(),pin:true,scrub:.8,anticipatePin:1,invalidateOnRefresh:true,onUpdate:s=>JP.hsCount(s.progress)}});
-      JP.hsST=tw.scrollTrigger;
-      ScrollTrigger.create({trigger:'#hsPin',start:'top bottom',end:()=>'+='+(dist()+innerHeight*2),onToggle:s=>{track.style.willChange=s.isActive?'transform':'auto';}});
-      return ()=>{html.classList.remove('hs-on');JP.hsST=null;gsap.set(track,{clearProps:'transform'});};
-    });
     /* kinetic band: words travel in opposite directions as you scroll */
     gsap.fromTo('#kr1',{xPercent:-2},{xPercent:-34,ease:'none',scrollTrigger:{trigger:'.kin',start:'top bottom',end:'bottom top',scrub:.6}});
     gsap.fromTo('#kr2',{xPercent:-40},{xPercent:-8,ease:'none',scrollTrigger:{trigger:'.kin',start:'top bottom',end:'bottom top',scrub:.6}});
