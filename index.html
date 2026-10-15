@@ -679,8 +679,14 @@ html:not(.intro-on) .pillars li:nth-child(2)::before{animation-delay:1.55s}html:
 .kin-row.r2{font-style:italic;color:transparent;-webkit-text-stroke:1px rgba(169,182,255,.7);margin-top:.06em}
 .kin-row.r2 .a{-webkit-text-stroke:0;color:var(--yellow)}
 .kin-row [lang=pa]{font-size:.8em}
-.kin-row.r1{transform:translateX(-6%)}
-.kin-row.r2{transform:translateX(-30%)}
+.kin-row{width:max-content;gap:0;will-change:transform}
+.kin-set{display:flex;gap:.4em;padding-right:.4em;flex:none}
+.kin-row.r1{animation:kinL 46s linear infinite}
+.kin-row.r2{animation:kinR 54s linear infinite}
+@keyframes kinL{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes kinR{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}
+.kin.off .kin-row,.still .kin-row{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.kin-row{animation:none}.kin-row.r2{transform:translateX(-20%)}}
 @media (max-width:760px){.kin-row{font-size:clamp(36px,11vw,56px)}}
 
 /* ---------- vision & mission: two sentences, one ampersand ---------- */
@@ -1235,8 +1241,8 @@ footer :focus-visible{outline-color:#fff}
 <section class="kin dk" aria-labelledby="kin-h">
   <h2 class="vh" id="kin-h">Chardi Kala, #Fitagent and South Auckland pride.</h2>
   <div aria-hidden="true">
-    <div class="kin-row r1" id="kr1"><span>Chardi Kala <i class="a">&amp;</i></span><span lang="pa">ਚੜ੍ਹਦੀ ਕਲਾ</span><span><i class="a">&amp;</i> #Fitagent <i class="a">&amp;</i></span><span>South Auckland pride <i class="a">&amp;</i></span><span>Chardi Kala <i class="a">&amp;</i></span><span>#Fitagent</span></div>
-    <div class="kin-row r2" id="kr2"><span>Māngere <i class="a">&amp;</i></span><span>Papatoetoe <i class="a">&amp;</i></span><span>Manurewa <i class="a">&amp;</i></span><span>Takanini <i class="a">&amp;</i></span><span>Karaka <i class="a">&amp;</i></span><span>Ramarama <i class="a">&amp;</i></span><span>Clarks Beach <i class="a">&amp;</i></span><span>Māngere</span></div>
+    <div class="kin-row r1" id="kr1"><div class="kin-set"><span>Chardi Kala <i class="a">&amp;</i></span><span lang="pa">ਚੜ੍ਹਦੀ ਕਲਾ</span><span><i class="a">&amp;</i> #Fitagent <i class="a">&amp;</i></span><span>South Auckland pride <i class="a">&amp;</i></span><span>Chardi Kala <i class="a">&amp;</i></span><span>#Fitagent</span></div><div class="kin-set"><span>Chardi Kala <i class="a">&amp;</i></span><span lang="pa">ਚੜ੍ਹਦੀ ਕਲਾ</span><span><i class="a">&amp;</i> #Fitagent <i class="a">&amp;</i></span><span>South Auckland pride <i class="a">&amp;</i></span><span>Chardi Kala <i class="a">&amp;</i></span><span>#Fitagent</span></div></div>
+    <div class="kin-row r2" id="kr2"><div class="kin-set"><span>Māngere <i class="a">&amp;</i></span><span>Papatoetoe <i class="a">&amp;</i></span><span>Manurewa <i class="a">&amp;</i></span><span>Takanini <i class="a">&amp;</i></span><span>Karaka <i class="a">&amp;</i></span><span>Ramarama <i class="a">&amp;</i></span><span>Clarks Beach <i class="a">&amp;</i></span><span>Māngere</span></div><div class="kin-set"><span>Māngere <i class="a">&amp;</i></span><span>Papatoetoe <i class="a">&amp;</i></span><span>Manurewa <i class="a">&amp;</i></span><span>Takanini <i class="a">&amp;</i></span><span>Karaka <i class="a">&amp;</i></span><span>Ramarama <i class="a">&amp;</i></span><span>Clarks Beach <i class="a">&amp;</i></span><span>Māngere</span></div></div>
   </div>
 </section>
 
@@ -1569,6 +1575,7 @@ addEventListener('DOMContentLoaded',function(){
   {const end=document.createElement('article');end.className='lst end';
     end.innerHTML=`<a href="https://www.barfoot.co.nz/our-people/j.punia" target="_blank" rel="noopener"><span class="end-n" aria-hidden="true">59</span><span><span class="end-t">See all 59 on barfoot.co.nz <svg aria-hidden="true"><use href="#i-ext"/></svg></span><span class="end-p">Six of Jot's 59 current listings. All 12 featured homes are on the map above. Counts as at 14 October 2026, from his Barfoot &amp; Thompson profile.</span></span></a>`;
     gal.appendChild(end);}
+  {const k=$('.kin');if(k&&'IntersectionObserver' in window)new IntersectionObserver(es=>k.classList.toggle('off',!es[0].isIntersecting)).observe(k);}
   /* reel counter, "01 / 06": driven by the pin on desktop, by the swipe row elsewhere */
   const hsN=$('#hsN'), hsBar=$('#hsBar');let hsLast=-1;
   JP.hsCount=p=>{p=Math.min(1,Math.max(0,p));const n=Math.min(6,1+Math.floor(p*6*.9999));if(n!==hsLast){hsLast=n;hsN.textContent=String(n).padStart(2,'0');}hsBar.style.transform=`scaleX(${Math.max(1/6,p).toFixed(4)})`;};
@@ -1893,8 +1900,6 @@ addEventListener('DOMContentLoaded',function(){
     gsap.to('.hero-copy',{yPercent:-10,opacity:.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     const mm=gsap.matchMedia();
     /* kinetic band: words travel in opposite directions as you scroll */
-    gsap.fromTo('#kr1',{xPercent:-2},{xPercent:-34,ease:'none',scrollTrigger:{trigger:'.kin',start:'top bottom',end:'bottom top',scrub:.6}});
-    gsap.fromTo('#kr2',{xPercent:-40},{xPercent:-8,ease:'none',scrollTrigger:{trigger:'.kin',start:'top bottom',end:'bottom top',scrub:.6}});
     /* split-word headings and statements rise line by line */
     $$('.split').forEach(h=>gsap.to($$('.w>span',h),{y:0,duration:1.1,stagger:.04,ease:'expo.out',scrollTrigger:{trigger:h,start:'top 88%'},onComplete:()=>h.classList.add('done')}));
     /* clip-path image reveals */
@@ -1906,7 +1911,7 @@ addEventListener('DOMContentLoaded',function(){
     gsap.fromTo('.nums-bg',{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:'.nums',start:'top bottom',end:'bottom top',scrub:true}});
     /* layers are promoted only while their scene is on screen */
     const promote=(sel,trig)=>ScrollTrigger.create({trigger:trig,start:'top bottom',end:'bottom top',onToggle:s=>$$(sel).forEach(e=>e.style.willChange=s.isActive?'transform':'auto')});
-    promote('#kr1,#kr2','.kin');promote('.nums-bg','.nums');promote('#apprImg','.appr');promote('#tlMark','#tl');
+    promote('.nums-bg','.nums');promote('#apprImg','.appr');promote('#tlMark','#tl');
     ScrollTrigger.create({trigger:'.nums',start:'top bottom',end:'bottom top',toggleClass:{targets:'.nums',className:'kb-on'}});
     /* why: each card eases back as the next one slides over it */
     mm.add('(min-width:900px) and (min-height:640px)',()=>{const cards=$$('#stack .card');cards.forEach((c,i)=>{if(i===cards.length-1)return;const t=gsap.timeline({scrollTrigger:{trigger:cards[i+1],start:'top bottom',end:'top 22%',scrub:true}});t.to(c,{scale:.94,ease:'none',duration:1},0).to(c.children,{opacity:0,ease:'none',duration:.35},.65);});});
