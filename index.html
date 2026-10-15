@@ -993,6 +993,80 @@ footer :focus-visible{outline-color:#fff}
   .q .fold p{transition:none}
   .hero-gl{transition:none}
 }
+
+/* ---------- centred layout: every section's headings and copy sit on the centre line ---------- */
+.eyebrow::after{content:"";width:30px;height:1.5px;background:currentColor;flex:none}
+/* hero: copy column centred */
+.hero-copy{text-align:center;align-items:center!important;display:flex;flex-direction:column}
+.hero .eyebrow{justify-content:center}
+.hero .lead{margin-inline:auto}
+.proof{display:block;text-align:center;margin-inline:auto}
+.proof .tr{display:inline-grid;width:26px;height:26px;vertical-align:-7px;margin-right:8px}.proof .tr svg{width:13px;height:13px}
+.hero .ask{width:100%;margin-inline:auto}
+.hero .ask-note{margin-inline:auto}
+@media (max-width:980px){.hero-foot .wrap{justify-content:center!important;text-align:center}}
+@media (min-width:981px){.hero-foot .wrap{justify-content:flex-start!important}.hero-foot .lic{width:calc(50% - 24px);text-align:center;max-width:none}.hero .ask{max-width:min(460px,34vw)}}
+@media (max-width:980px){.hero h1,.hero-copy .lead,.proof,.hero-copy .ask,.ask-note{text-align:center}}
+/* map */
+.patch-head{text-align:center}
+.ch-nav{justify-content:center}
+.chs{text-align:center;margin-inline:auto}
+.ch p{margin-inline:auto}
+.homes{max-width:460px;margin-inline:auto}
+.home a{text-align:left}
+.patch-foot{text-align:center;justify-content:center}
+.patch.pinned .chs{margin-inline:0}
+@media (min-width:981px){.map-shade{background:linear-gradient(90deg,rgba(0,22,52,.95) 0%,rgba(0,22,52,.88) 34%,rgba(0,22,52,.5) 46%,rgba(0,22,52,0) 60%),linear-gradient(0deg,rgba(0,22,52,.7),rgba(0,22,52,0) 30%)}}
+/* vision values */
+.vm-vals li,.vm-vals li:first-child{padding:22px 20px 0;text-align:center}
+/* homes */
+.hs-head{flex-direction:column;align-items:center;text-align:center;gap:22px}
+.hs-meta{display:flex;flex-direction:column;align-items:center;gap:10px}
+.asat{text-align:center}
+.hs-foot{justify-content:center}
+/* numbers */
+.nums-in{text-align:center}
+.nums-in .eyebrow{justify-content:center}
+.num,.num:first-child{padding:0 clamp(16px,3vw,48px)}
+.num>span{margin-inline:auto}
+.soc-line,.nums-in .fine{margin-inline:auto}
+/* why */
+.why-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px}
+.why-q{padding:0;border:0;max-width:56ch}
+.why-q blockquote::before{content:"";display:block;width:36px;height:2px;background:var(--yellow);margin:0 auto 14px}
+.card{grid-template-columns:1fr;justify-items:center;text-align:center;align-content:center;gap:10px}
+.card .n{align-self:auto}
+.card p{margin-inline:auto}
+/* process */
+.proc-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+.proc-head .lead{padding:0;border:0;max-width:46ch}
+/* buyers */
+.buy .wrap{text-align:center}
+.buy .wrap>.eyebrow{justify-content:center}
+.buy-grid{grid-template-columns:1fr;max-width:880px;margin-inline:auto;gap:clamp(40px,5vw,64px)}
+.review figcaption{justify-content:center;text-align:left}
+.review .stars{margin-left:12px}
+.blist{display:grid;grid-template-columns:repeat(3,1fr);border-top:0;gap:0}
+.blist li{border-bottom:0;padding:18px 20px;border-top:1px solid var(--line)}
+.blist li+li{border-left:1px solid var(--line)}
+.know{max-width:60ch;margin-inline:auto}
+@media (max-width:760px){.blist{grid-template-columns:1fr}.blist li+li{border-left:0}}
+/* appraisal */
+.appr-copy{text-align:center;margin-inline:auto}
+.appr-copy .eyebrow{justify-content:center}
+.ticks{justify-content:center}
+.form h3,.form .sub,.form .note,.form .status{text-align:center}
+.form .btn{display:flex;width:100%;justify-content:center}
+.contact{justify-content:center}
+/* faq */
+.faq-more{text-align:center}
+/* footer */
+.sign{flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.sign p{margin-inline:auto}
+.foot-grid{text-align:center}
+.foot-grid .lk{align-items:center}
+.foot-grid .lk img{align-self:center}
+.legal{text-align:center}
 </style>
 </head>
 <body>
